@@ -21,6 +21,9 @@
     $('fee-inputs').hidden = type !== 'fee';
   }
   $('type').addEventListener('change', showType);
+  // Only accept the guide's public draft type; never pass private case text in URLs.
+  const selectedType = new URLSearchParams(window.location.search).get('type');
+  if (['request','denial','fee','followup'].includes(selectedType)) $('type').value=selectedType;
   showType();
 
   function buildDraft() {

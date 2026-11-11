@@ -1,0 +1,32 @@
+name: Free Michigan FOIA Guide Checks
+on:
+  push:
+    branches:
+      - free-foia-guide
+      - main
+    paths:
+      - 'guide*'
+      - 'tests/guide.test.cjs'
+      - 'desk.js'
+      - '.github/workflows/foia-guide-checks.yml'
+permissions:
+  contents: read
+concurrency:
+  group: foia-guide-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  local-guidance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Validate browser JavaScript
+        run: |
+          node --check guide-core.js
+          node --check guide.js
+          node --check desk.js
+      - name: Run offline Michigan guidance tests
+        run: node --test tests/guide.test.cjs

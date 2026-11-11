@@ -1,0 +1,28 @@
+.guide-hero{padding:62px 0 32px}.guide-hero h1{max-width:950px}.guide-hero .notice{margin:18px 0 0}
+.guide-grid{display:grid;grid-template-columns:minmax(250px,330px) minmax(0,1fr);gap:20px;margin:0 0 25px;align-items:start}
+.guide-secondary{grid-template-columns:1fr 1fr;margin-bottom:66px}
+.desk-card{border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#102c32,#0a1e28);padding:27px}
+.guide-grid label:not(.guide-checklist label){display:block;font-size:14px;font-weight:700;color:#e7f4f1;margin:20px 0 7px}
+.guide-grid select{display:block;width:100%;background:#081d27;color:var(--ink);border:1px solid #45686a;border-radius:9px;font:16px/1.4 system-ui;padding:13px 12px;max-width:100%}
+.guide-grid select:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+.guide-extra{background:#133a37;border:1px solid #427f75;border-radius:11px;padding:14px 17px;margin:12px 0;color:var(--mint2);font-size:14px}
+.guide-steps{counter-reset:steps;list-style:none;padding:0;margin:23px 0 25px}
+.guide-steps li{position:relative;counter-increment:steps;display:block;margin:0 0 15px;padding:3px 0 16px 50px;border-bottom:1px solid #2a484c;min-height:50px}
+.guide-steps li:before{content:counter(steps);position:absolute;left:0;top:0;display:grid;place-items:center;width:34px;height:34px;border:1px solid #478f7a;border-radius:10px;color:var(--mint);font-weight:800}
+.guide-steps strong{display:block;margin-bottom:6px;line-height:1.3}
+.guide-steps p{font-size:14px;line-height:1.62;margin:0}
+.guide-warning{border-left:3px solid #edca8d;background:#302b20;color:#f3dfbf;padding:15px 17px;margin:0 0 23px;font-size:14px;border-radius:0 10px 10px 0}
+.guide-warning strong{color:#ffe6b4}
+.guide-draft{padding:19px;border:1px solid #427265;background:#17392f;border-radius:13px}
+.guide-draft p{font-size:14px;margin-bottom:15px}
+.guide-draft .eyebrow{margin:0 0 8px}
+.guide-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+.guide-actions .button{font-size:13px;padding:11px 12px}
+.guide-checklist{display:grid;gap:7px}.guide-checklist label{display:flex;gap:11px;align-items:flex-start;padding:10px 0;line-height:1.45;font-size:14px;cursor:pointer;border-bottom:1px solid #254750}
+.guide-checklist input{width:18px;height:18px;flex:none;accent-color:#63d7bd;margin-top:2px}
+.guide-checklist label:has(input:checked) span{color:var(--muted);text-decoration:line-through}
+.guide-sources{display:grid;gap:12px;margin:20px 0}.guide-sources a{font-size:14px;text-decoration:none;border:1px solid #33595c;border-radius:9px;padding:12px;display:block;background:#112b33}
+.guide-sources a:hover,.guide-sources a:focus-visible{border-color:var(--mint)}
+.tiny{font-size:13px;color:var(--muted)}#guide-message{min-height:20px;margin:9px 0 0}
+@media(max-width:800px){.guide-grid,.guide-secondary{grid-template-columns:1fr}.guide-hero{padding:42px 0 24px}.desk-card{padding:21px}}
+@media print{.nav,footer,.guide-input,.guide-draft,.guide-actions,.guide-hero .notice{display:none!important}body{background:white!important;color:#101a1c!important}.container{max-width:none}.guide-grid,.guide-secondary{display:block;margin:0}.desk-card{background:white!important;border:0!important;padding:5px 0!important;box-shadow:none!important}.guide-steps li{border-bottom:1px solid #bbb;color:#111}.guide-steps p,.guide-warning,.guide-checklist,.guide-sources a{color:#111!important}.guide-warning{background:#fff!important;border-left:3px solid #444}.guide-extra{background:white!important;border:1px solid #888;color:#111!important}.guide-checklist label{display:flex}.guide-sources a{border:0;padding:3px}.guide-hero{padding:0}h1,h2,h3,p,.eyebrow{color:#111!important}}
