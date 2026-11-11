@@ -69,8 +69,9 @@ try{
  page.once('dialog',async dialog=>{await dialog.accept('DELETE');});
  await page.locator('#delete-local').click();
  await page.locator('#confirm-pane').waitFor({state:'visible'});
- await page.locator('#pass').fill(pass);
  await page.setInputFiles('#backup-file',{name:'backup.shieldvault',mimeType:'application/json',buffer:backup});
+ await page.locator('#pass').fill(pass);
+ await page.locator('#restore-selected').click();
  try { await page.getByText('Verified encrypted backup restored.').waitFor({timeout:12000}); }
  catch(err) { throw Error('Backup restore UI did not succeed: '+await page.locator('#lock-status').innerText()+' | '+err.message); }
  await page.locator('#pass').fill(pass);
@@ -96,9 +97,10 @@ try{
    });
    db.close();
  });
+ await page.setInputFiles('#backup-file',{name:'verified-backup.shieldvault',mimeType:'application/json',buffer:backup});
  await page.locator('#pass').fill(pass);
  page.once('dialog',async dialog=>{await dialog.accept();});
- await page.setInputFiles('#backup-file',{name:'verified-backup.shieldvault',mimeType:'application/json',buffer:backup});
+ await page.locator('#restore-selected').click();
  try {await page.getByText('Verified encrypted backup restored.').waitFor({timeout:15000});}
  catch(err){throw Error('Recovery from damaged local pack failed: '+await page.locator('#lock-status').innerText()+' | '+err.message);}
  await page.locator('#pass').fill(pass);
