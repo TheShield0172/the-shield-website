@@ -73,3 +73,18 @@ test('same-revision replacement and authenticated header changes are rejected be
  ])assert.equal(C.sameEncryptedSnapshot(original,altered),false);
  assert.equal(C.sameEncryptedSnapshot({},original),false);
 });
+
+test('damaged local snapshots compare exactly for safe backup recovery and deletion',async()=>{
+ const v=await fresh();
+ const damaged={...v.envelope,ciphertext:'!not-valid-base64!'};
+ assert.equal(C.validateEnvelope(damaged),false);
+ assert.equal(C.sameEncryptedSnapshot(damaged,structuredClone(damaged)),false);
+ assert.equal(C.sameStoredSnapshot(damaged,structuredClone(damaged)),true);
+ assert.equal(C.sameStoredSnapshot(damaged,{...damaged,ciphertext:'another-damaged-value'}),false);
+ assert.equal(C.sameStoredSnapshot(damaged,v.envelope),false);
+ assert.equal(C.sameStoredSnapshot(null,null),true);
+ assert.equal(C.sameStoredSnapshot(null,damaged),false);
+ assert.equal(C.sameStoredSnapshot(damaged,null),false);
+ // A damaged snapshot must never authenticate as valid encrypted evidence.
+ await assert.rejects(()=>C.openPack(damaged,PASS));
+});
