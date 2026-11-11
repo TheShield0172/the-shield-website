@@ -55,3 +55,21 @@ test('attachment restrictions prevent unsupported and mislabeled files',async()=
  await assert.rejects(()=>C.fileRecord({name:'fake.pdf',size:x.length,arrayBuffer:async()=>x.buffer}));
  await assert.rejects(()=>C.fileRecord({name:'huge.txt',size:C.MAX_FILE_BYTES+1}));
 });
+
+test('same-revision replacement and authenticated header changes are rejected before a write',async()=>{
+ const v=await fresh();
+ const original=v.envelope;
+ const later=await C.seal(v.data,v.key,v.salt,original.revision);
+ assert.equal(C.sameEncryptedSnapshot(null,null),true);
+ assert.equal(C.sameEncryptedSnapshot(null,original),false);
+ assert.equal(C.sameEncryptedSnapshot(original,null),false);
+ assert.equal(C.sameEncryptedSnapshot(original,structuredClone(original)),true);
+ assert.equal(C.sameEncryptedSnapshot(original,later),false,'same revision does not imply same ciphertext');
+ for(const altered of [
+  {...original,revision:original.revision+1},
+  {...original,kdf:{...original.kdf,salt:C.toB64(C.rnd(16))}},
+  {...original,cipher:{...original.cipher,iv:C.toB64(C.rnd(12))}},
+  {...original,ciphertext:later.ciphertext},
+ ])assert.equal(C.sameEncryptedSnapshot(original,altered),false);
+ assert.equal(C.sameEncryptedSnapshot({},original),false);
+});
