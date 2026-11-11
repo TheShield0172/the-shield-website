@@ -76,11 +76,39 @@ try{
  await page.locator('#pass').fill(pass);
  await clickAndCheck(page,'#open','#vault-pane');
  await page.waitForFunction(()=>document.querySelector('#case-count').textContent==='1 case(s)');
+ // Corrupt the local encrypted package deliberately, then verify that an
+ // independently authenticated encrypted backup can repair the broken copy.
+ await clickAndCheck(page,'#lock','#lock-pane');
+ await page.evaluate(async()=>{
+   const db=await new Promise((resolve,reject)=>{
+     const req=indexedDB.open('the-shield-local-vault-review',1);
+     req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);
+   });
+   await new Promise((resolve,reject)=>{
+     const tx=db.transaction('packs','readwrite'),store=tx.objectStore('packs'),req=store.get('primary');
+     req.onsuccess=()=>{
+       const envelope=req.result;
+       if(!envelope){tx.abort();return;}
+       envelope.ciphertext='!DELIBERATELY-CORRUPTED-LOCAL-TEST!';
+       store.put(envelope,'primary');
+     };
+     tx.oncomplete=()=>resolve();tx.onabort=()=>reject(tx.error||Error('Tamper setup failed'));
+   });
+   db.close();
+ });
+ await page.locator('#pass').fill(pass);
+ page.once('dialog',async dialog=>{await dialog.accept();});
+ await page.setInputFiles('#backup-file',{name:'verified-backup.shieldvault',mimeType:'application/json',buffer:backup});
+ try {await page.getByText('Verified encrypted backup restored.').waitFor({timeout:15000});}
+ catch(err){throw Error('Recovery from damaged local pack failed: '+await page.locator('#lock-status').innerText()+' | '+err.message);}
+ await page.locator('#pass').fill(pass);
+ await clickAndCheck(page,'#open','#vault-pane');
+ await page.waitForFunction(()=>document.querySelector('#case-count').textContent==='1 case(s)');
  // Mobile layout should not require horizontal scrolling.
  await page.setViewportSize({width:390,height:844});
  assert(await page.evaluate('document.documentElement.scrollWidth<=innerWidth+2'),'Mobile page overflow');
  assert.deepEqual(errors,[]);
- console.log('PASS: Chromium e2e creates/edits/imports/exports, rejects wrong key and stale-tab overwrite, restores backup, checks mobile layout');
+ console.log('PASS: Chromium e2e encrypts records, rejects stale tab, recovers damaged local storage from authenticated backup, and checks mobile layout');
 } finally {
  if(browser)await browser.close();
  server.kill('SIGTERM');
