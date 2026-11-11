@@ -45,6 +45,17 @@
       return true;
     } catch (_) { return false; }
   }
+  // Compare the complete authenticated pack identity, not just its revision.
+  // This prevents a same-revision replacement from being silently overwritten
+  // during save, restore, or deletion. Null is permitted only for a new pack.
+  function sameEncryptedSnapshot(current, expected) {
+    if (current == null || expected == null) return current == null && expected == null;
+    return validateEnvelope(current) && validateEnvelope(expected) &&
+      current.revision === expected.revision &&
+      current.kdf.salt === expected.kdf.salt &&
+      current.cipher.iv === expected.cipher.iv &&
+      current.ciphertext === expected.ciphertext;
+  }
   function aad(x) {
     return utf8([x.format, x.version, x.revision, x.kdf.name, x.kdf.hash, x.kdf.iterations, x.kdf.salt, x.cipher.name, x.cipher.tagBits, x.cipher.iv].join('|'));
   }
@@ -140,5 +151,5 @@
     const encoded=toB64(bytes);bytes.fill(0);
     return {id:crypto.randomUUID(),name,size:file.size,type:file.type||'application/octet-stream',sha256:hash,data:encoded,at:now()};
   }
-  return Object.freeze({MAGIC,VERSION,ITERATIONS,MAX_FILE_BYTES,MAX_FILE_TOTAL_BYTES,create,derive,seal,openPack,decryptPack,validateEnvelope,validateData,verifyFileDigests,fileRecord,fromB64,toB64,digest,rnd});
+  return Object.freeze({MAGIC,VERSION,ITERATIONS,MAX_FILE_BYTES,MAX_FILE_TOTAL_BYTES,create,derive,seal,openPack,decryptPack,validateEnvelope,validateData,verifyFileDigests,fileRecord,fromB64,toB64,digest,rnd,sameEncryptedSnapshot});
 });
