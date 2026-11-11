@@ -71,7 +71,8 @@ try{
  await page.locator('#confirm-pane').waitFor({state:'visible'});
  await page.locator('#pass').fill(pass);
  await page.setInputFiles('#backup-file',{name:'backup.shieldvault',mimeType:'application/json',buffer:backup});
- await page.getByText('Verified encrypted backup restored.').waitFor();
+ try { await page.getByText('Verified encrypted backup restored.').waitFor({timeout:12000}); }
+ catch(err) { throw Error('Backup restore UI did not succeed: '+await page.locator('#lock-status').innerText()+' | '+err.message); }
  await page.locator('#pass').fill(pass);
  await clickAndCheck(page,'#open','#vault-pane');
  await page.waitForFunction(()=>document.querySelector('#case-count').textContent==='1 case(s)');
