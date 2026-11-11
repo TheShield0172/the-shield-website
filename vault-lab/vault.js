@@ -67,6 +67,8 @@
 
   async function refreshLocked(){try{const old=await readPack();$('confirm-pane').hidden=Boolean(old);$('open').textContent=old?'Unlock encrypted test vault':'Create encrypted test vault';$('export-locked').disabled=!old; if(old && !C.validateEnvelope(old))setMsg('Stored encrypted package failed validation. Do not overwrite.',true);}catch(e){statusError(e);}}
   function openView(){
+    // A created/unlocked vault is never in the new-vault confirmation state.
+    $('confirm-pane').hidden=true;
     $('lock-pane').hidden=true;$('vault-pane').hidden=false;
     $('revision').textContent='Revision '+state.revision;state.last=Date.now();render();
   }
