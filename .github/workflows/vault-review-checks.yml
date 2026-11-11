@@ -31,3 +31,9 @@ jobs:
         run: python -m pip install beautifulsoup4==4.13.4
       - name: Check HTML CSP, DOM bindings and prohibited APIs
         run: python vault-lab/tests/test_static.py
+      - name: Install headless Chromium for browser workflow testing
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Test local encrypted vault workflow in a real browser
+        run: node vault-lab/tests/e2e.mjs
