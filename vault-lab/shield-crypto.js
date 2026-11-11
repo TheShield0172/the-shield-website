@@ -56,6 +56,17 @@
       current.cipher.iv === expected.cipher.iv &&
       current.ciphertext === expected.ciphertext;
   }
+  // Recovering from damaged storage requires exact compare-and-swap of the
+  // untrusted stored object. It does NOT authenticate the damaged record.
+  // Only an independently authenticated backup may replace a damaged record.
+  function sameStoredSnapshot(current, expected) {
+    if (current == null || expected == null) return current == null && expected == null;
+    try {
+      const a=JSON.stringify(current), b=JSON.stringify(expected);
+      return typeof a==='string' && typeof b==='string' &&
+        a.length<=MAX_CIPHER_CHARS+4096 && a===b;
+    } catch (_) { return false; }
+  }
   function aad(x) {
     return utf8([x.format, x.version, x.revision, x.kdf.name, x.kdf.hash, x.kdf.iterations, x.kdf.salt, x.cipher.name, x.cipher.tagBits, x.cipher.iv].join('|'));
   }
@@ -151,5 +162,5 @@
     const encoded=toB64(bytes);bytes.fill(0);
     return {id:crypto.randomUUID(),name,size:file.size,type:file.type||'application/octet-stream',sha256:hash,data:encoded,at:now()};
   }
-  return Object.freeze({MAGIC,VERSION,ITERATIONS,MAX_FILE_BYTES,MAX_FILE_TOTAL_BYTES,create,derive,seal,openPack,decryptPack,validateEnvelope,validateData,verifyFileDigests,fileRecord,fromB64,toB64,digest,rnd,sameEncryptedSnapshot});
+  return Object.freeze({MAGIC,VERSION,ITERATIONS,MAX_FILE_BYTES,MAX_FILE_TOTAL_BYTES,create,derive,seal,openPack,decryptPack,validateEnvelope,validateData,verifyFileDigests,fileRecord,fromB64,toB64,digest,rnd,sameEncryptedSnapshot,sameStoredSnapshot});
 });
