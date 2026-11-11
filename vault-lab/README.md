@@ -1,6 +1,6 @@
 # THE SHIELD — Encrypted Case Vault Test Lab
 
-A functional, local-first **security-review candidate** for fictional employee documentation workflows. **Not approved for storing real evidence.**
+A functional, local-first **security-review candidate** for fictional employee documentation workflows. **Not approved for storing real evidence.** The separate [test-only lab](https://the-shield-vault-security-lab.onrender.com/) is hosted on its own origin; the public FOIA Desk remains separate. CI smoke tests and Chromium workflow tests run on the development branch.
 
 ## Run locally
 
