@@ -1,0 +1,14 @@
+# Never commit real cases, sensitive files, credentials or environment settings
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+*.sqlite
+*.db
+case_files/
+evidence/
+private/
+node_modules/
+.DS_Store
