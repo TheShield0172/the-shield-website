@@ -68,6 +68,7 @@ try{
  await page.locator('#lock').click();
  page.once('dialog',async dialog=>{await dialog.accept('DELETE');});
  await page.locator('#delete-local').click();
+ await page.getByText('Encrypted browser copy deleted. Previously exported backups are unaffected.').waitFor({timeout:15000});
  await page.locator('#confirm-pane').waitFor({state:'visible'});
  await page.setInputFiles('#backup-file',{name:'backup.shieldvault',mimeType:'application/json',buffer:backup});
  await page.locator('#pass').fill(pass);
