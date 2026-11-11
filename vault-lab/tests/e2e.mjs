@@ -107,11 +107,30 @@ try{
  await page.locator('#pass').fill(pass);
  await clickAndCheck(page,'#open','#vault-pane');
  await page.waitForFunction(()=>document.querySelector('#case-count').textContent==='1 case(s)');
+ // Backup must restore into a completely isolated browser profile with no
+ // access to the original profile's IndexedDB. This is NOT a physical-device test.
+ const isolatedContext=await browser.newContext({acceptDownloads:true,viewport:{width:390,height:844}});
+ const isolated=await isolatedContext.newPage();
+ isolated.on('pageerror',e=>errors.push('Isolated profile: '+e.message));
+ isolated.on('request',request=>{if(new URL(request.url()).origin!==new URL(BASE).origin)errors.push('Isolated profile network request: '+request.url());});
+ await isolated.goto(BASE,{waitUntil:'load'});
+ assert(await isolated.locator('#confirm-pane').isVisible(),'New isolated profile must not have an existing vault');
+ await isolated.setInputFiles('#backup-file',{name:'transfer-test.shieldvault',mimeType:'application/json',buffer:backup});
+ await isolated.locator('#pass').fill(pass);
+ await isolated.locator('#restore-selected').click();
+ await isolated.getByText('Verified encrypted backup restored.').waitFor({timeout:15000});
+ await isolated.locator('#pass').fill(pass);
+ await clickAndCheck(isolated,'#open','#vault-pane');
+ await isolated.waitForFunction(()=>document.querySelector('#case-count').textContent==='1 case(s)');
+ await isolated.locator('#case-select').selectOption({index:1});
+ await isolated.locator('#events').getByText('Imaginary meeting').waitFor();
+ await isolated.locator('#foias').getByText('Fictional City Records Office').waitFor();
+ await isolatedContext.close();
  // Mobile layout should not require horizontal scrolling.
  await page.setViewportSize({width:390,height:844});
  assert(await page.evaluate('document.documentElement.scrollWidth<=innerWidth+2'),'Mobile page overflow');
  assert.deepEqual(errors,[]);
- console.log('PASS: Chromium e2e encrypts records, rejects stale tab, recovers damaged local storage from authenticated backup, and checks mobile layout');
+ console.log('PASS: Chromium e2e encrypts records, rejects stale tab, recovers damaged local storage, restores in an isolated browser profile, and checks mobile layout');
 } finally {
  if(browser)await browser.close();
  server.kill('SIGTERM');
