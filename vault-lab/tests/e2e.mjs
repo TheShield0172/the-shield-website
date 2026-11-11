@@ -16,7 +16,7 @@ async function awaitServer(){for(let i=0;i<40;i++){try{const r=await fetch(BASE)
 async function clickAndCheck(page, selector, visible){await page.locator(selector).click();await page.locator(visible).waitFor({state:'visible',timeout:15000});}
 try{
  await awaitServer();
- browser = await chromium.launch({headless:true,args:['--no-sandbox']});
+ browser = await chromium.launch({channel:'chrome',headless:true,args:['--no-sandbox']});
  const context = await browser.newContext({acceptDownloads:true,viewport:{width:1280,height:900}});
  const page = await context.newPage();
  const errors=[];
