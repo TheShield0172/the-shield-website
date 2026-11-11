@@ -50,7 +50,7 @@ It is expressly **not** for: litigation documents, law enforcement databases, CJ
 
 `python tests/test_static.py` (passed): HTML ID bindings, strict inline CSP presence, script source restrictions, dangerous API scan, visible warnings. `node --check shield-crypto.js` and `node --check vault.js` pass.
 
-**Not tested successfully in this environment:** end-to-end browser interactions, mobile Safari/Android, load testing, stress testing, real concurrent browser tabs, third-party penetration testing. Browser navigation to local pages was blocked by the execution environment's administrator policy. The tests prove limited behaviors, not general security.
+**GitHub Actions browser integration:** the Chromium test suite passed on the GitHub-hosted runner: creating and unlocking a test vault, saving a fictional case/event/FOIA, importing and fingerprinting an attachment, exporting and restoring an encrypted package, wrong-passphrase rejection, simulated stale-tab overwrite rejection, local test vault deletion, and a mobile-width overflow check. See https://github.com/TheShield0172/the-shield-website/actions/runs/42978635002. This is an automated functional test, NOT an independent penetration test.\n\n**Not tested successfully here:** Safari iOS/desktop, Android Chrome, Firefox, load testing, forced-quota/data eviction, malicious browser extensions, supply-chain attacks, offline recovery after corruption, true cross-device restores, and third-party penetration testing. Local browser navigation was blocked in the model execution environment, but GitHub Actions ran Chromium successfully. The tests prove limited behaviors, not general security.
 
 ## Supporting primary references
 
