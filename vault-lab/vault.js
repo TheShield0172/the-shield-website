@@ -6,7 +6,7 @@
   const C = window.ShieldCrypto;
   const $ = id => document.getElementById(id);
   const V = id => ($(id)?.value || '').trim();
-  const state = {key:null,salt:null,data:null,revision:null,selected:'',busy:false,last:0,lastCiphertext:null};
+  const state = {key:null,salt:null,data:null,revision:null,selected:'',busy:false,last:0,lastEnvelope:null};
   let databasePromise = null;
   const now = () => new Date().toISOString();
   const ALLOW_LOCK_MS = 5*60*1000;
@@ -32,13 +32,13 @@
   async function readPack(){const database=await db();return new Promise((resolve,reject)=>{
     const tx=database.transaction('packs','readonly');const r=tx.objectStore('packs').get('primary');r.onsuccess=()=>resolve(r.result||null);r.onerror=()=>reject(r.error);
   });}
-  async function compareAndSwap(next,expected,expectedCiphertext){
+  async function compareAndSwap(next,expectedSnapshot){
     const database=await db();return new Promise((resolve,reject)=>{
       const tx=database.transaction('packs','readwrite');let failure=null;
       const r=tx.objectStore('packs').get('primary');
-      r.onsuccess=()=>{const prev=r.result||null;const prevRevision=prev?.revision??null;
+      r.onsuccess=()=>{const prev=r.result||null;
         if(prev && !C.validateEnvelope(prev)){failure=Error('Stored package is corrupted; export it before troubleshooting.');tx.abort();return;}
-        if(prevRevision!==expected || (expectedCiphertext!==undefined && prev?.ciphertext!==expectedCiphertext)){failure=Error('Another tab or restore changed this vault. Your edit was NOT saved. Reopen the vault.');tx.abort();return;}
+        if(!C.sameEncryptedSnapshot(prev,expectedSnapshot)){failure=Error('Another tab or restore changed this vault. Your edit was NOT saved. Reopen the vault.');tx.abort();return;}
         tx.objectStore('packs').put(next,'primary');
       };
       r.onerror=()=>{failure=r.error||Error('Cannot read current revision.');tx.abort();};
@@ -48,7 +48,7 @@
     });
   }
   function lock(msg){
-    state.key=null;state.salt=null;state.data=null;state.revision=null;state.selected='';state.lastCiphertext=null;state.busy=false;
+    state.key=null;state.salt=null;state.data=null;state.revision=null;state.selected='';state.lastEnvelope=null;state.busy=false;
     $('vault-pane').hidden=true;$('lock-pane').hidden=false;
     for(const id of ['pass','confirm-pass','case-name','event-title','event-body','foia-agency','foia-description']) $(id).value='';
     for(const id of ['events','foias','attachments','history','case-metrics'])clear($(id));
@@ -75,10 +75,10 @@
       if(!globalThis.crypto?.subtle)throw Error('Web Crypto is unavailable. Use a secure modern browser.');
       const pass=$('pass').value;
       const stored=await readPack();
-      if(stored){const result=await C.openPack(stored,pass);state.key=result.key;state.salt=result.salt;state.data=result.data;state.revision=stored.revision;state.lastCiphertext=stored.ciphertext;}
+      if(stored){const result=await C.openPack(stored,pass);state.key=result.key;state.salt=result.salt;state.data=result.data;state.revision=stored.revision;state.lastEnvelope=stored;}
       else{if(pass!==$('confirm-pass').value)throw Error('Passphrases do not match.');
         const result=await C.create(pass);await compareAndSwap(result.envelope,null);
-        state.key=result.key;state.salt=result.salt;state.data=result.data;state.revision=0;state.lastCiphertext=result.envelope.ciphertext;
+        state.key=result.key;state.salt=result.salt;state.data=result.data;state.revision=0;state.lastEnvelope=result.envelope;
       }
       $('pass').value='';$('confirm-pass').value='';openView();
     }catch(e){statusError(e);}finally{state.busy=false;$('open').disabled=false;}
@@ -96,9 +96,9 @@
       C.validateData(fresh);
       const nextRev=state.revision+1;
       const envelope=await C.seal(fresh,state.key,state.salt,nextRev);
-      await compareAndSwap(envelope,state.revision,state.lastCiphertext);
+      await compareAndSwap(envelope,state.lastEnvelope);
       if(!state.key || state.key !== heldKey) return result; // The user locked while saving. Never re-expose plaintext.
-      state.data=fresh;state.revision=nextRev;state.lastCiphertext=envelope.ciphertext;
+      state.data=fresh;state.revision=nextRev;state.lastEnvelope=envelope;
       $('revision').textContent='Revision '+state.revision;
       touch();render();return result;
     }catch(e){if(/Another tab or restore/.test(e.message))lock('A conflicting change was detected. Reopen the vault before editing.');throw e;}
@@ -181,7 +181,7 @@
       await new Promise((resolve,reject)=>{
         const tx=database.transaction('packs','readwrite');let failed=null;
         const req=tx.objectStore('packs').get('primary');
-        req.onsuccess=()=>{if(req.result?.revision!==existing.revision){failed=Error('Vault changed in another tab. Try again.');tx.abort();return;}tx.objectStore('packs').delete('primary');};
+        req.onsuccess=()=>{if(!C.sameEncryptedSnapshot(req.result||null,existing)){failed=Error('Vault changed in another tab. Try again.');tx.abort();return;}tx.objectStore('packs').delete('primary');};
         req.onerror=()=>{failed=Error('Cannot read stored vault.');tx.abort();};
         tx.oncomplete=()=>resolve();tx.onabort=()=>reject(failed||tx.error||Error('Delete failed.'));
       });
@@ -200,7 +200,7 @@
       // Preserve monotonic revision even if intentionally restoring an older backup.
       const baseRev=existing?existing.revision:-1;
       const next=await C.seal(opened.data,opened.key,opened.salt,baseRev+1);
-      await compareAndSwap(next,existing?existing.revision:null);
+      await compareAndSwap(next,existing);
       lock('Verified encrypted backup restored. Unlock again with the backup passphrase.');await refreshLocked();
     }catch(err){statusError(err);}
   });
