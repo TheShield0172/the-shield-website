@@ -1,0 +1,33 @@
+name: Case Vault Security Review Checks
+on:
+  push:
+    branches:
+      - security-vault-lab
+    paths:
+      - 'vault-lab/**'
+      - '.github/workflows/vault-review-checks.yml'
+  pull_request:
+    paths:
+      - 'vault-lab/**'
+
+permissions:
+  contents: read
+
+jobs:
+  crypto-and-static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check vault-lab/shield-crypto.js
+          node --check vault-lab/vault.js
+      - name: Test encryption, auth tag and file validation
+        run: node --test vault-lab/tests/crypto.test.cjs
+      - name: Install static checker dependency
+        run: python -m pip install beautifulsoup4==4.13.4
+      - name: Check HTML CSP, DOM bindings and prohibited APIs
+        run: python vault-lab/tests/test_static.py
