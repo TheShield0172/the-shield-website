@@ -32,13 +32,14 @@
   async function readPack(){const database=await db();return new Promise((resolve,reject)=>{
     const tx=database.transaction('packs','readonly');const r=tx.objectStore('packs').get('primary');r.onsuccess=()=>resolve(r.result||null);r.onerror=()=>reject(r.error);
   });}
-  async function compareAndSwap(next,expectedSnapshot){
+  async function compareAndSwap(next,expectedSnapshot,allowDamagedPrevious=false){
     const database=await db();return new Promise((resolve,reject)=>{
       const tx=database.transaction('packs','readwrite');let failure=null;
       const r=tx.objectStore('packs').get('primary');
       r.onsuccess=()=>{const prev=r.result||null;
-        if(prev && !C.validateEnvelope(prev)){failure=Error('Stored package is corrupted; export it before troubleshooting.');tx.abort();return;}
-        if(!C.sameEncryptedSnapshot(prev,expectedSnapshot)){failure=Error('Another tab or restore changed this vault. Your edit was NOT saved. Reopen the vault.');tx.abort();return;}
+        if(prev && !C.validateEnvelope(prev) && !allowDamagedPrevious){failure=Error('Stored encrypted pack is damaged. Restore a verified backup or delete the local copy.');tx.abort();return;}
+        if(!C.sameEncryptedSnapshot(prev,expectedSnapshot) &&
+           !(allowDamagedPrevious && C.sameStoredSnapshot(prev,expectedSnapshot))){failure=Error('Another tab or restore changed this vault. Your edit was NOT saved. Reopen the vault.');tx.abort();return;}
         tx.objectStore('packs').put(next,'primary');
       };
       r.onerror=()=>{failure=r.error||Error('Cannot read current revision.');tx.abort();};
@@ -181,7 +182,7 @@
       await new Promise((resolve,reject)=>{
         const tx=database.transaction('packs','readwrite');let failed=null;
         const req=tx.objectStore('packs').get('primary');
-        req.onsuccess=()=>{if(!C.sameEncryptedSnapshot(req.result||null,existing)){failed=Error('Vault changed in another tab. Try again.');tx.abort();return;}tx.objectStore('packs').delete('primary');};
+        req.onsuccess=()=>{if(!C.sameStoredSnapshot(req.result||null,existing)){failed=Error('Vault changed in another tab. Try again.');tx.abort();return;}tx.objectStore('packs').delete('primary');};
         req.onerror=()=>{failed=Error('Cannot read stored vault.');tx.abort();};
         tx.oncomplete=()=>resolve();tx.onabort=()=>reject(failed||tx.error||Error('Delete failed.'));
       });
@@ -200,7 +201,7 @@
       // Preserve monotonic revision even if intentionally restoring an older backup.
       const baseRev=existing?existing.revision:-1;
       const next=await C.seal(opened.data,opened.key,opened.salt,baseRev+1);
-      await compareAndSwap(next,existing);
+      await compareAndSwap(next,existing,true);
       lock('Verified encrypted backup restored. Unlock again with the backup passphrase.');await refreshLocked();
     }catch(err){statusError(err);}
   });
