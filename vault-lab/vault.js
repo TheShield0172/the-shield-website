@@ -189,12 +189,25 @@
       lock('Encrypted browser copy deleted. Previously exported backups are unaffected.');await refreshLocked();
     }catch(e){statusError(e);}
   });
-  $('backup-file').addEventListener('change',async e=>{
-    const file=e.target.files?.[0];e.target.value='';if(!file)return;
-    if(file.size>14500000){setMsg('File is too large for this test restore.',true);return;}
+  // The file chooser never performs a destructive action by itself.
+  // Separate the encrypted file selection from explicit authentication / restore.
+  let pendingBackupFile=null, restoreBusy=false;
+  $('backup-file').addEventListener('change',e=>{
+    const chosen=e.target.files?.[0]||null;
+    pendingBackupFile=chosen && chosen.size<=14500000 ? chosen : null;
+    $('restore-selected').disabled=!pendingBackupFile;
+    if(chosen && !pendingBackupFile) setMsg('Encrypted backup is too large for this test restore.',true);
+    else if(pendingBackupFile) setMsg('Encrypted backup selected. Enter its passphrase, then choose Verify and restore. No local data has been changed.');
+    else setMsg('No encrypted backup selected.');
+  });
+  $('restore-selected').addEventListener('click',async()=>{
+    if(restoreBusy||!pendingBackupFile)return;
+    restoreBusy=true;$('restore-selected').disabled=true;
     try{
-      const envelope=JSON.parse(await file.text());if(!C.validateEnvelope(envelope))throw Error('Not a valid THE SHIELD encrypted package.');
-      const pass=$('pass').value;if(!pass)throw Error('Enter the backup passphrase before choosing the file.');
+      const pass=$('pass').value;
+      if(!pass)throw Error('Enter the backup passphrase, then select Verify and restore.');
+      const envelope=JSON.parse(await pendingBackupFile.text());
+      if(!C.validateEnvelope(envelope))throw Error('Not a valid THE SHIELD encrypted package.');
       const opened=await C.openPack(envelope,pass); // Authenticate FIRST, before touching stored data.
       const existing=await readPack();
       if(existing&&!confirm('Replace the entire existing encrypted TEST vault? First export a separate backup of the current vault. This is irreversible without a previous backup.'))return;
@@ -202,8 +215,11 @@
       const baseRev=existing?existing.revision:-1;
       const next=await C.seal(opened.data,opened.key,opened.salt,baseRev+1);
       await compareAndSwap(next,existing,true);
-      lock('Verified encrypted backup restored. Unlock again with the backup passphrase.');await refreshLocked();
+      pendingBackupFile=null;$('backup-file').value='';
+      lock('Verified encrypted backup restored. Unlock again with the backup passphrase.');
+      await refreshLocked();
     }catch(err){statusError(err);}
+    finally{restoreBusy=false;$('restore-selected').disabled=!pendingBackupFile;}
   });
   if(!globalThis.crypto?.subtle||!globalThis.indexedDB){setMsg('This browser is missing required secure local storage or Web Crypto.',true);$('open').disabled=true;}
   else refreshLocked();
