@@ -1,0 +1,30 @@
+.kit{padding-bottom:64px}.intro{padding:72px 0 35px}.intro h1{max-width:980px}.intro .notice{max-width:980px}.kit-actions{display:flex;flex-wrap:wrap;gap:11px;margin:22px 0 12px}.tiny{font-size:13px;color:var(--muted)}
+.sheet{background:#fdfefd;border:1px solid #9cadad;border-radius:14px;color:#192c30;padding:34px;margin:0 0 22px;min-height:840px;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,.12)}
+.sheet-top{display:flex;justify-content:space-between;gap:15px;padding-bottom:13px;margin-bottom:19px;border-bottom:2px solid #1c6457;align-items:center}
+.sheet-logo{font-size:17px;color:#136e59;font-weight:900;letter-spacing:.04em}.sheet-tag{font-size:11px;font-weight:800;letter-spacing:.08em;color:#446d68}
+.sheet h2{font-size:clamp(24px,3vw,32px);color:#0b2f36;letter-spacing:-.035em;margin-bottom:10px}.sheet h3{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.025em;color:#174c48;margin:19px 0 8px}
+.sheet-desc{font-size:14px;color:#445e62;margin-bottom:22px;line-height:1.55}
+.sheet p:not(.sheet-foot):not(.sheet-desc){color:#263f42}
+.line-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;margin-bottom:14px}.line-grid>div{display:flex;flex-direction:column;min-height:53px;justify-content:space-between}
+.line-grid b{font-size:12px;color:#38565b;letter-spacing:.01em}.write-line{display:block;height:23px;border-bottom:1px solid #93a9a8}
+.ruled{height:var(--rh,130px);background:repeating-linear-gradient(to bottom,transparent,transparent 27px,#b2c4c2 28px);border-bottom:1px solid #b2c4c2}
+.rows-7{--rh:196px}.rows-5{--rh:140px}.rows-4{--rh:112px}
+.worksheet-table{width:100%;border-collapse:collapse;table-layout:fixed;margin:10px 0 18px;font-size:12px}
+.worksheet-table th{background:#e4efec;color:#19473e;font-size:11px;line-height:1.4;padding:11px 9px;border:1px solid #9bacab;text-align:left}
+.worksheet-table td{height:55px;padding:8px;border:1px solid #9bacab;vertical-align:top}
+.sheet-foot{font-size:11px;color:#65767a;margin:auto 0 0;padding-top:21px;line-height:1.55}
+.checks{display:grid;grid-template-columns:1fr;gap:10px;font-size:13px;margin-top:10px;color:#173d3b}
+.outro{padding:33px 0}.outro p{max-width:640px}.outro h2{font-size:27px}
+@media(max-width:660px){.intro{padding:42px 0 20px}.sheet{padding:20px 15px;min-height:auto}.line-grid{grid-template-columns:1fr}.sheet h2{font-size:24px}.worksheet-table{font-size:10px}.worksheet-table th{font-size:9px;padding:5px}.worksheet-table td{height:50px}.sheet-top{align-items:start}}
+@media print{
+ @page{size:letter;margin:0.48in}
+ html,body{background:#fff!important;margin:0!important;padding:0!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .screen-only,footer,.nav,.intro,.outro{display:none!important}
+ .kit{max-width:none!important;padding:0!important;margin:0!important}
+ .sheet{width:100%!important;height:10in!important;min-height:10in!important;max-height:10in!important;margin:0!important;padding:0.16in 0.12in!important;box-shadow:none!important;border:none!important;border-radius:0!important;break-after:page;page-break-after:always}
+ .sheet:last-of-type{break-after:auto;page-break-after:auto}
+ .sheet-top{padding-top:0;margin:0 0 0.19in}.sheet h2{font-size:23px;margin:0 0 7px}.sheet h3{margin:13px 0 7px}
+ .sheet-desc{margin-bottom:12px}.line-grid{gap:9px 16px;grid-template-columns:1fr 1fr}.line-grid>div{min-height:45px}
+ .worksheet-table td{height:59px}.ruled.rows-7{height:1.7in}.ruled.rows-5{height:1.2in}.ruled.rows-4{height:1in}
+ .sheet-foot{font-size:10px}
+}
