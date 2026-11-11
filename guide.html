@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'none'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="description" content="Free Michigan FOIA next-step guide: requests, denials, fees, incomplete responses and delays. Official statute links. No sign-in or AI charges.">
+<title>Michigan FOIA Next-Step Guide | THE SHIELD</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="guide.css">
+<script defer src="guide-core.js"></script>
+<script defer src="guide.js"></script>
+</head>
+<body>
+<header class="nav"><div class="container navinner">
+<a class="logo" href="index.html"><span class="logomark" aria-hidden="true">✦</span> THE SHIELD</a>
+<nav class="navlinks" aria-label="Site"><a href="index.html">Home</a><a href="desk.html">FOIA Desk</a><a class="button secondary" href="privacy.html">Privacy</a></nav>
+</div></header>
+<main class="container">
+<section class="guide-hero"><div class="eyebrow">MICHIGAN • FREE • NO SIGN-IN</div>
+<h1>FOIA: What happens <span class="inline">next?</span></h1>
+<p class="lead">Choose what happened with your records request. Get a plain-language action checklist, official statute links, and the right drafting tool—all without sending details to a server.</p>
+<div class="notice" role="note"><strong>Educational information, not legal advice.</strong> No AI reviews your situation, no documents are uploaded, and no letter is filed automatically. Deadlines may be short; do not rely on this page to calculate them. This guide applies to Michigan public bodies, not federal FOIA.</div>
+</section>
+<section class="guide-grid" aria-label="FOIA next-step guide">
+<div class="guide-input desk-card">
+<div class="eyebrow">STEP 1 — YOUR SITUATION</div>
+<h2>What happened?</h2>
+<label for="guide-issue">Choose one situation</label>
+<select id="guide-issue">
+<option value="request">I want to request public records</option>
+<option value="denial">My FOIA request was denied</option>
+<option value="partial">Some records were withheld or missing</option>
+<option value="fee">The agency wants too much money</option>
+<option value="overdue">I haven't received a response</option>
+</select>
+<div id="fee-route-box" hidden>
+<label for="guide-fee-route">Do the agency's published FOIA procedures offer an administrative fee appeal?</label>
+<select id="guide-fee-route">
+<option value="unknown">I haven't checked / not sure</option>
+<option value="yes">Yes, they offer an appeal</option>
+<option value="no">No, they do not offer an appeal</option>
+</select>
+<p class="tiny">Check the agency's published written procedures. Don't assume it offers this type of appeal.</p>
+</div>
+<p class="tiny spaced-small">Nothing you choose here is saved or sent anywhere. This is a rules-based guide, not a live AI analysis.</p>
+<div class="guide-actions">
+<button class="button secondary" type="button" id="guide-copy">Copy action checklist</button>
+<button class="button secondary" type="button" id="guide-print">Print checklist</button>
+</div>
+<p id="guide-message" class="tiny" role="status" aria-live="polite"></p>
+</div>
+<div class="guide-results desk-card" id="guide-result">
+<div class="eyebrow">STEP 2 — RECOMMENDED NEXT STEPS</div>
+<h2 id="guide-title"></h2>
+<p id="guide-intro"></p>
+<div id="guide-additional" class="guide-extra" hidden></div>
+<ol id="guide-steps" class="guide-steps"></ol>
+<div class="guide-warning" role="note"><strong>Watch your rights:</strong> <span id="guide-warning"></span></div>
+<div class="guide-draft">
+<div class="eyebrow">STEP 3 — PREPARE YOUR LETTER</div>
+<p>The FOIA Desk creates editable drafts in your own browser. Review the details before sending anything.</p>
+<a class="button primary" id="guide-desk-link" href="desk.html">Open the free FOIA Desk →</a>
+</div>
+</div>
+</section>
+<section class="guide-grid guide-secondary">
+<div class="desk-card">
+<h2>Records to keep</h2>
+<p>Preserve your correspondence outside this website. Select items as you gather them; these checkmarks are not saved.</p>
+<div id="guide-checklist" class="guide-checklist"></div>
+</div>
+<div class="desk-card">
+<h2>Official Michigan sources</h2>
+<p>These primary-source links explain the rules. Check their current text and the public body's procedures before filing.</p>
+<div id="guide-sources" class="guide-sources"></div>
+<p class="tiny">If a lawsuit deadline, employment dispute, litigation hold, or privileged record is involved, contact an appropriate attorney promptly. An AI or template cannot replace a legal assessment.</p>
+</div>
+</section>
+</main>
+<footer><div class="container inner"><span>© 2026 THE SHIELD • No-cost public FOIA education • No legal advice</span>
+<div class="footerlinks"><a href="desk.html">Draft a letter</a><a href="privacy.html">Privacy</a><a href="index.html">Home</a></div></div></footer>
+</body></html>
