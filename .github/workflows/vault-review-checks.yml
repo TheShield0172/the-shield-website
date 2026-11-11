@@ -1,3 +1,5 @@
+# One run per development-branch commit; PR checks use the same commit status.
+# This avoids duplicate failure emails from push + pull_request builds.
 name: Case Vault Security Review Checks
 on:
   push:
@@ -6,16 +8,14 @@ on:
     paths:
       - 'vault-lab/**'
       - '.github/workflows/vault-review-checks.yml'
-  pull_request:
-    paths:
-      - 'vault-lab/**'
 
 permissions:
   contents: read
 
 jobs:
   crypto-and-static-checks:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
