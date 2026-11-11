@@ -9,6 +9,10 @@ on:
       - 'vault-lab/**'
       - '.github/workflows/vault-review-checks.yml'
 
+concurrency:
+  group: vault-review-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
