@@ -64,6 +64,56 @@ try{
  await page2.locator('#lock-pane').waitFor({state:'visible'});
  assert.match(await page2.locator('#lock-status').innerText(),/Another tab or restore changed this vault/);
  await page2.close();
+ // Regression: a damaged EXPORTED backup must not overwrite an existing
+ // fictional case or invalidate the original open session. No paid reviewer needed.
+ // Restoring while unlocked is unavailable in the UI; explicit locking is required.
+ assert(await page.locator('#vault-pane').isVisible(),'The fictional case must be open before the attempted restore.');
+ assert.equal(await page.locator('#case-count').innerText(),'2 case(s)');
+ assert.equal(await page.locator('#restore-selected').isVisible(),false,'Restore controls must not be visible while a case is open.');
+ const originalBeforeFailedRestore=await page.evaluate(async()=>{
+   const database=await new Promise((resolve,reject)=>{
+     const request=indexedDB.open('the-shield-local-vault-review',1);
+     request.onsuccess=()=>resolve(request.result);
+     request.onerror=()=>reject(request.error);
+   });
+   return await new Promise((resolve,reject)=>{
+     const tx=database.transaction('packs','readonly');
+     const request=tx.objectStore('packs').get('primary');
+     request.onsuccess=()=>resolve(JSON.stringify(request.result));
+     request.onerror=()=>reject(request.error);
+   });
+ });
+ const corruptedExport=JSON.parse(backup.toString('utf8'));
+ corruptedExport.ciphertext=(corruptedExport.ciphertext[0]==='A'?'B':'A')+corruptedExport.ciphertext.slice(1);
+ const corruptedBytes=Buffer.from(JSON.stringify(corruptedExport),'utf8');
+ await page.locator('#lock').click();
+ await page.setInputFiles('#backup-file',{
+   name:'deliberately-corrupted-export.shieldvault',
+   mimeType:'application/json',buffer:corruptedBytes
+ });
+ await page.locator('#pass').fill(pass);
+ await page.locator('#restore-selected').click();
+ await page.getByText('Incorrect passphrase or encrypted pack was altered.').waitFor({timeout:15000});
+ const originalAfterFailedRestore=await page.evaluate(async()=>{
+   const database=await new Promise((resolve,reject)=>{
+     const request=indexedDB.open('the-shield-local-vault-review',1);
+     request.onsuccess=()=>resolve(request.result);
+     request.onerror=()=>reject(request.error);
+   });
+   return await new Promise((resolve,reject)=>{
+     const tx=database.transaction('packs','readonly');
+     const request=tx.objectStore('packs').get('primary');
+     request.onsuccess=()=>resolve(JSON.stringify(request.result));
+     request.onerror=()=>reject(request.error);
+   });
+ });
+ assert.equal(originalAfterFailedRestore,originalBeforeFailedRestore,'Rejected corrupted backup must leave original encrypted package byte-identical.');
+ await page.locator('#pass').fill(pass);
+ await clickAndCheck(page,'#open','#vault-pane');
+ await page.waitForFunction(()=>document.querySelector('#case-count').textContent==='2 case(s)');
+ await page.locator('#case-select').selectOption({label:'Fictional Supervisor Dispute'});
+ await page.locator('#events').getByText('Imaginary meeting').waitFor();
+ await page.locator('#foias').getByText('Fictional City Records Office').waitFor();
  // Delete only the browser's encrypted copy and restore using authenticated backup.
  await page.locator('#lock').click();
  page.once('dialog',async dialog=>{await dialog.accept('DELETE');});
@@ -130,7 +180,7 @@ try{
  await page.setViewportSize({width:390,height:844});
  assert(await page.evaluate('document.documentElement.scrollWidth<=innerWidth+2'),'Mobile page overflow');
  assert.deepEqual(errors,[]);
- console.log('PASS: Chromium e2e encrypts records, rejects stale tab, recovers damaged local storage, restores in an isolated browser profile, and checks mobile layout');
+ console.log('PASS: Chromium e2e encrypts records, rejects stale tab and corrupted exported backup without overwriting existing case, recovers damaged local storage, restores in isolated profile, checks mobile layout');
 } finally {
  if(browser)await browser.close();
  server.kill('SIGTERM');
