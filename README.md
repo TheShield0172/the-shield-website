@@ -19,6 +19,14 @@ No analytics SDKs, external AI endpoints, or outbound application API calls are 
 ## Release controls
 Do not enable Stripe checkout or public real-evidence uploads without: independent security assessment, complete terms and privacy policy, lawyer-validated legal content and deadlines, authenticated data access controls, disaster recovery and restore tests, incident response, and tax/consumer-subscription compliance review.
 
+## Source visibility and permissions
+
+**This repository is publicly readable but has no open-source license.** Its publication is not permission to freely reuse, resell, distribute or create derivatives of any protectable source material. GitHub's Terms allow users to view and fork public repositories; copyright exceptions and ownership of particular human-authored or AI-assisted contributions may vary. The underlying idea and general features are not protected simply because they appear in this repository.
+
+The public website, Michigan FOIA pilot and blank starter kit are free to access and use as provided. No commercial software rights or rights to THE SHIELD brand are granted by this README. Brand availability and any trademark rights have not been legally cleared.
+
+**Security/release boundary:** Never commit credentials, private operational plans, identifiable case records, regulated data or proprietary future features to this repository. The review-only `security-vault-lab` branch is also public. Future confidential product development should move to a separately controlled private repository; switching repositories does not undo prior public disclosures. The vault remains forbidden for real sensitive data pending independent review.
+
 ## Deployment
 Render static site from GitHub `main`, publish path `./`, build command `echo 'Static preview: no build required'`. The HTML includes restrictive CSP meta tags. **Meta CSP does not substitute for HTTP security headers** such as frame-ancestors; validate and configure host response headers before handling sensitive data.
 
