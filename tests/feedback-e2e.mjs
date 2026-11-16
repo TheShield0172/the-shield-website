@@ -47,7 +47,7 @@ try{
  assert.equal(requests[0].method,'POST');
  assert.match(requests[0].postData,/agency-specific FOIA checklist/);
  assert(!requests[0].postData.includes('tquimby'),'The form must never add the owner\'s personal name.');
- assert(await page.locator('#feedback-fields').isDisabled(),'Successful form must be locked to prevent duplicate posting.');
+ assert(await page.locator('#feedback-fields').evaluate(el=>el.disabled),'Successful form must be locked to prevent duplicate posting.');
  assert.deepEqual(errors,[],'No JavaScript errors allowed');
  // A failed or limited request must not show a successful thank-you.
  const {page:limited,requests:failed,errors:errorEvents}=await configuredPage(context,429);
@@ -59,7 +59,7 @@ try{
  await limited.getByText('We are receiving too many suggestions right now.').waitFor({timeout:12000});
  assert.equal(failed.length,1);
  assert(await limited.locator('#feedback-submit').isEnabled(),'Retry button should be enabled after a rate limit.');
- assert(!(await limited.locator('#feedback-fields').isDisabled()),'Failed submission must not clear answers.');
+ assert(!(await limited.locator('#feedback-fields').evaluate(el=>el.disabled)),'Failed submission must not clear answers.');
  assert.deepEqual(errorEvents,[],'No JavaScript errors in failure flow');
  await context.close();
  console.log('PASS: Anonymous form remains disabled until connected, sends one mocked submission, honors success, handles 429 without false confirmation, and works at mobile width.');
