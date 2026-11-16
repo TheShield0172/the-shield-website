@@ -30,22 +30,22 @@ The public [Policy Center](https://the-shield-public-preview.onrender.com/legal.
 
 These pages are **not active paid customer contracts** and have not been independently cleared by legal counsel. No merchant identity, verified private support or cancellation channel, account service, paid processing, or independently reviewed evidence vault is yet in place. Until all are implemented and reviewed, **never enable live checkout or imply purchase rights exist**.
 
-## No-login suggestion form (awaiting free inbox connection)
+## No-login suggestion form — connected, delivery verification required
 
-The mobile-friendly [Feedback page](https://the-shield-public-preview.onrender.com/feedback.html) is designed for visitors to submit general feature suggestions without a GitHub login or required name/email. The **button is disabled by default** until a real, verified receiving form is configured, so visitors never see a false success screen.
+The mobile-friendly [Feedback page](https://the-shield-public-preview.onrender.com/feedback.html) accepts brief general feature suggestions without a GitHub account, required name/email, payment or file uploads. The owner supplied the public endpoint `https://formspree.io/f/mdegepdb` on November 16, 2026, and it is configured in `feedback-config.js`. This identifier is not a secret; never commit the recipient's private address, password or API key.
 
-**One-time $0 Formspree configuration required by the owner:**
+**Delivery acceptance checklist:**
+- [x] Build responsive form, privacy notice, consent acknowledgment and anti-spam honeypot
+- [x] Configure exact owner-provided Formspree HTTPS endpoint
+- [x] Test anonymous submission behavior in Chrome using mocked successful and failed Formspree responses
+- [ ] After the public site deploys, submit one **fictional test** suggestion to the real endpoint
+- [ ] Ask the owner to verify the message arrives in the Outlook receiving inbox or Formspree dashboard
+- [ ] Confirm Formspree email notifications are enabled; if needed, verify its sender/domain settings
+- [ ] Confirm the no-cost Formspree allowance remains sufficient; do not upgrade without permission
 
-1. Create a free Formspree account at https://formspree.io/ and verify the email address for a receiving inbox the owner controls. The free plan currently allows up to 50 submissions per month and keeps a 30-day archive; it is not unlimited.
-2. Create a form named `THE SHIELD Suggestions`. Enable email delivery. When available, restrict submissions to `the-shield-public-preview.onrender.com`, use default spam controls, and do **not** enable file uploads, payments, webhooks or paid upgrades.
-3. Copy only the **public endpoint** shown by Formspree, like `https://formspree.io/f/abcdefgh`. **Do not share an API key, personal email address, password or billing information.**
-4. Place that endpoint between the quotes in `feedback-config.js` (`window.SHIELD_FEEDBACK_ENDPOINT = '...';`). The endpoint is a public form identifier, not a secret. The client only accepts an exact `https://formspree.io/f/<form_id>` endpoint.
-5. Run `node --test tests/feedback.test.cjs`, deploy the public site, then send one fictional test suggestion. **Only call the form operational after a real submission was accepted and its notification arrived.**
-6. Update the feedback setup and privacy notice from pending to active once delivery has been verified. Never claim unique testers or purchase intent from anonymous responses alone.
+**Security and retention:** Only explicit user-initiated submissions contact Formspree. The static website does not itself persist or email feedback. Formspree handles responses and technical anti-spam metadata under its privacy policy. Never submit actual employment disputes, protected records, passwords, court evidence, or agency data. The free service's limits and archive-retention schedule can change and should be reviewed periodically.
 
-The website's security policy permits outbound requests only to Formspree from this client-side flow. Visitors' suggestions and optional email go to Formspree; THE SHIELD's static website does not store the response. Do not collect real case details, confidential employment information, evidence, financial data or other restricted records.
-
-The user's scheduled demand review can inspect receiving-mailbox notifications after configuration. Note that Formspree's free form-submissions API is not available; email notifications are the practical free workflow.
+**Demand assessment:** Group responses by features and willingness to test; exclude internal test messages. Anonymous submissions are suggestions, not unique verified customers or purchases. The November 25 demand review should consider responses if recipient access is available.
 
 ## Source visibility and permissions
 
