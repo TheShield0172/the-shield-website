@@ -11,6 +11,7 @@ on:
       - 'privacy.html'
       - 'render.yaml'
       - 'tests/feedback.test.cjs'
+      - 'tests/feedback-e2e.mjs'
       - '.github/workflows/feedback-checks.yml'
 permissions:
   contents: read
@@ -32,3 +33,9 @@ jobs:
           node --check feedback-config.js
       - name: Run offline form acceptance and safety checks
         run: node --test tests/feedback.test.cjs
+      - name: Install Chromium test tools
+        run: |
+          npm install --no-save playwright@1.56.1
+          command -v google-chrome || command -v google-chrome-stable
+      - name: Simulate mobile form submission without sending real data
+        run: node tests/feedback-e2e.mjs
