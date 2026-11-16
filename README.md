@@ -30,6 +30,23 @@ The public [Policy Center](https://the-shield-public-preview.onrender.com/legal.
 
 These pages are **not active paid customer contracts** and have not been independently cleared by legal counsel. No merchant identity, verified private support or cancellation channel, account service, paid processing, or independently reviewed evidence vault is yet in place. Until all are implemented and reviewed, **never enable live checkout or imply purchase rights exist**.
 
+## No-login suggestion form (awaiting free inbox connection)
+
+The mobile-friendly [Feedback page](https://the-shield-public-preview.onrender.com/feedback.html) is designed for visitors to submit general feature suggestions without a GitHub login or required name/email. The **button is disabled by default** until a real, verified receiving form is configured, so visitors never see a false success screen.
+
+**One-time $0 Formspree configuration required by the owner:**
+
+1. Create a free Formspree account at https://formspree.io/ and verify the email address for a receiving inbox the owner controls. The free plan currently allows up to 50 submissions per month and keeps a 30-day archive; it is not unlimited.
+2. Create a form named `THE SHIELD Suggestions`. Enable email delivery. When available, restrict submissions to `the-shield-public-preview.onrender.com`, use default spam controls, and do **not** enable file uploads, payments, webhooks or paid upgrades.
+3. Copy only the **public endpoint** shown by Formspree, like `https://formspree.io/f/abcdefgh`. **Do not share an API key, personal email address, password or billing information.**
+4. Place that endpoint between the quotes in `feedback-config.js` (`window.SHIELD_FEEDBACK_ENDPOINT = '...';`). The endpoint is a public form identifier, not a secret. The client only accepts an exact `https://formspree.io/f/<form_id>` endpoint.
+5. Run `node --test tests/feedback.test.cjs`, deploy the public site, then send one fictional test suggestion. **Only call the form operational after a real submission was accepted and its notification arrived.**
+6. Update the feedback setup and privacy notice from pending to active once delivery has been verified. Never claim unique testers or purchase intent from anonymous responses alone.
+
+The website's security policy permits outbound requests only to Formspree from this client-side flow. Visitors' suggestions and optional email go to Formspree; THE SHIELD's static website does not store the response. Do not collect real case details, confidential employment information, evidence, financial data or other restricted records.
+
+The user's scheduled demand review can inspect receiving-mailbox notifications after configuration. Note that Formspree's free form-submissions API is not available; email notifications are the practical free workflow.
+
 ## Source visibility and permissions
 
 **This repository is publicly readable but has no open-source license.** Its publication is not permission to freely reuse, resell, distribute or create derivatives of any protectable source material. GitHub's Terms allow users to view and fork public repositories; copyright exceptions and ownership of particular human-authored or AI-assisted contributions may vary. The underlying idea and general features are not protected simply because they appear in this repository.
