@@ -29,6 +29,9 @@ try{
  browser=await chromium.launch({channel:'chrome',headless:true,args:['--no-sandbox']});
  const context=await browser.newContext({viewport:{width:390,height:844}});
  const pending=await context.newPage();
+ // Simulate a newly installed site without a receiver even though this deployment
+ // has the owner-provided endpoint configured. Never silently remove this safeguard.
+ await pending.route('**/feedback-config.js',route=>route.fulfill({status:200,contentType:'application/javascript',body:"window.SHIELD_FEEDBACK_ENDPOINT = '';"}));
  await pending.goto(base,{waitUntil:'load'});
  await pending.getByText('Feedback collection is being connected.').waitFor();
  assert(await pending.locator('#feedback-submit').isDisabled(),'A new site must not claim a submission inbox without a verified endpoint.');
