@@ -30,6 +30,23 @@ The public [Policy Center](https://the-shield-public-preview.onrender.com/legal.
 
 These pages are **not active paid customer contracts** and have not been independently cleared by legal counsel. No merchant identity, verified private support or cancellation channel, account service, paid processing, or independently reviewed evidence vault is yet in place. Until all are implemented and reviewed, **never enable live checkout or imply purchase rights exist**.
 
+## No-login suggestion form — connected, delivery verification required
+
+The mobile-friendly [Feedback page](https://the-shield-public-preview.onrender.com/feedback.html) accepts brief general feature suggestions without a GitHub account, required name/email, payment or file uploads. The owner supplied the public endpoint `https://formspree.io/f/mdegepdb` on November 16, 2026, and it is configured in `feedback-config.js`. This identifier is not a secret; never commit the recipient's private address, password or API key.
+
+**Delivery acceptance checklist:**
+- [x] Build responsive form, privacy notice, consent acknowledgment and anti-spam honeypot
+- [x] Configure exact owner-provided Formspree HTTPS endpoint
+- [x] Test anonymous submission behavior in Chrome using mocked successful and failed Formspree responses
+- [ ] After the public site deploys, submit one **fictional test** suggestion to the real endpoint
+- [ ] Ask the owner to verify the message arrives in the Outlook receiving inbox or Formspree dashboard
+- [ ] Confirm Formspree email notifications are enabled; if needed, verify its sender/domain settings
+- [ ] Confirm the no-cost Formspree allowance remains sufficient; do not upgrade without permission
+
+**Security and retention:** Only explicit user-initiated submissions contact Formspree. The static website does not itself persist or email feedback. Formspree handles responses and technical anti-spam metadata under its privacy policy. Never submit actual employment disputes, protected records, passwords, court evidence, or agency data. The free service's limits and archive-retention schedule can change and should be reviewed periodically.
+
+**Demand assessment:** Group responses by features and willingness to test; exclude internal test messages. Anonymous submissions are suggestions, not unique verified customers or purchases. The November 25 demand review should consider responses if recipient access is available.
+
 ## Source visibility and permissions
 
 **This repository is publicly readable but has no open-source license.** Its publication is not permission to freely reuse, resell, distribute or create derivatives of any protectable source material. GitHub's Terms allow users to view and fork public repositories; copyright exceptions and ownership of particular human-authored or AI-assisted contributions may vary. The underlying idea and general features are not protected simply because they appear in this repository.
