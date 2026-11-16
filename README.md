@@ -30,7 +30,7 @@ The public [Policy Center](https://the-shield-public-preview.onrender.com/legal.
 
 These pages are **not active paid customer contracts** and have not been independently cleared by legal counsel. No merchant identity, verified private support or cancellation channel, account service, paid processing, or independently reviewed evidence vault is yet in place. Until all are implemented and reviewed, **never enable live checkout or imply purchase rights exist**.
 
-## No-login suggestion form — connected, delivery verification required
+## No-login suggestion form — live and owner-confirmed delivery
 
 The mobile-friendly [Feedback page](https://the-shield-public-preview.onrender.com/feedback.html) accepts brief general feature suggestions without a GitHub account, required name/email, payment or file uploads. The owner supplied the public endpoint `https://formspree.io/f/mdegepdb` on November 16, 2026, and it is configured in `feedback-config.js`. This identifier is not a secret; never commit the recipient's private address, password or API key.
 
@@ -38,9 +38,9 @@ The mobile-friendly [Feedback page](https://the-shield-public-preview.onrender.c
 - [x] Build responsive form, privacy notice, consent acknowledgment and anti-spam honeypot
 - [x] Configure exact owner-provided Formspree HTTPS endpoint
 - [x] Test anonymous submission behavior in Chrome using mocked successful and failed Formspree responses
-- [ ] After the public site deploys, submit one **fictional test** suggestion to the real endpoint
-- [ ] Ask the owner to verify the message arrives in the Outlook receiving inbox or Formspree dashboard
-- [ ] Confirm Formspree email notifications are enabled; if needed, verify its sender/domain settings
+- [x] Submit one **fictional test** suggestion to the real endpoint after public deployment; owner reported successful delivery on November 16, 2026
+- [x] Owner confirmed receipt in the Outlook receiving inbox on November 16, 2026
+- [x] Confirm Formspree email delivery works for a real fictional form submission (recipient confirmation)
 - [ ] Confirm the no-cost Formspree allowance remains sufficient; do not upgrade without permission
 
 **Security and retention:** Only explicit user-initiated submissions contact Formspree. The static website does not itself persist or email feedback. Formspree handles responses and technical anti-spam metadata under its privacy policy. Never submit actual employment disputes, protected records, passwords, court evidence, or agency data. The free service's limits and archive-retention schedule can change and should be reviewed periodically.
