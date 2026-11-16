@@ -25,4 +25,4 @@ services:
         value: same-origin
       - path: /*
         name: Content-Security-Policy
-        value: "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'none'; img-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+        value: "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'none'; img-src 'self'; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
