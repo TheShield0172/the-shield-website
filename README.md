@@ -19,6 +19,17 @@ No analytics SDKs, external AI endpoints, or outbound application API calls are 
 ## Release controls
 Do not enable Stripe checkout or public real-evidence uploads without: independent security assessment, complete terms and privacy policy, lawyer-validated legal content and deadlines, authenticated data access controls, disaster recovery and restore tests, incident response, and tax/consumer-subscription compliance review.
 
+## Customer policy documents (prelaunch only)
+
+The public [Policy Center](https://the-shield-public-preview.onrender.com/legal.html) links to:
+- [Proposed Subscription, Renewal & Cancellation Policy](https://the-shield-public-preview.onrender.com/subscriptions.html)
+- [Proposed Refund & Payment Correction Policy](https://the-shield-public-preview.onrender.com/refunds.html)
+- [Proposed Terms of Use](https://the-shield-public-preview.onrender.com/terms.html)
+- [Acceptable Use and Legal Disclaimer](https://the-shield-public-preview.onrender.com/use-policy.html)
+- [Current Free-Pilot Privacy Notice](https://the-shield-public-preview.onrender.com/privacy.html)
+
+These pages are **not active paid customer contracts** and have not been independently cleared by legal counsel. No merchant identity, verified private support or cancellation channel, account service, paid processing, or independently reviewed evidence vault is yet in place. Until all are implemented and reviewed, **never enable live checkout or imply purchase rights exist**.
+
 ## Source visibility and permissions
 
 **This repository is publicly readable but has no open-source license.** Its publication is not permission to freely reuse, resell, distribute or create derivatives of any protectable source material. GitHub's Terms allow users to view and fork public repositories; copyright exceptions and ownership of particular human-authored or AI-assisted contributions may vary. The underlying idea and general features are not protected simply because they appear in this repository.

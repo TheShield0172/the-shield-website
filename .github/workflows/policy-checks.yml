@@ -1,0 +1,33 @@
+name: Customer Policy Publication Checks
+on:
+  push:
+    branches:
+      - main
+      - prelaunch-customer-policies
+    paths:
+      - 'legal.html'
+      - 'subscriptions.html'
+      - 'refunds.html'
+      - 'terms.html'
+      - 'use-policy.html'
+      - 'privacy.html'
+      - 'policies.css'
+      - 'index.html'
+      - 'tests/policies.test.cjs'
+      - '.github/workflows/policy-checks.yml'
+permissions:
+  contents: read
+concurrency:
+  group: customer-policies-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  policy-consistency:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Run public policy integrity checks
+        run: node --test tests/policies.test.cjs
