@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'none'; connect-src https://formspree.io; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="description" content="Help shape THE SHIELD. Quick no-login feedback for public safety staff and other workers. No sensitive records, uploads, or payment required.">
+<title>Send Feedback | THE SHIELD</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="feedback.css">
+<script defer src="feedback-config.js"></script><script defer src="feedback.js"></script></head>
+<body><header class="nav"><div class="container navinner"><a class="logo" href="index.html"><span class="logomark" aria-hidden="true">✦</span> THE SHIELD</a><nav class="navlinks"><a href="starter-kit.html">Free starter kit</a><a href="guide.html">FOIA guide</a><a href="legal.html">Privacy &amp; policies</a><a class="button secondary" href="index.html">Home</a></nav></div></header>
+<main class="container feedback-wrap">
+<section class="feedback-hero"><div class="eyebrow">HELP BUILD SOMETHING USEFUL • ONE-MINUTE FEEDBACK</div><h1>What would make <span class="inline">THE SHIELD</span> better?</h1>
+<p class="lead">Tell us which tools matter most. No GitHub login, purchase, or subscription needed. You can leave your name and email out completely.</p>
+<div class="feedback-safety"><strong>Keep it general.</strong> Please don't enter names, case numbers, employer disputes, passwords, confidential information, investigative details, privileged material, or agency records. This is product feedback, not a secure evidence or legal-support channel.</div>
+</section>
+<div class="feedback-grid">
+<section class="feedback-panel" aria-labelledby="form-heading">
+<h2 id="form-heading">Share a suggestion</h2><p class="feedback-sub">Only fields marked * are required. Contact details are optional.</p>
+<p id="feedback-connection" role="status" aria-live="polite" class="feedback-connection">Checking feedback availability…</p>
+<form id="feedback-form" method="POST" action="#" novalidate>
+<fieldset id="feedback-fields" disabled>
+<div class="feedback-fields">
+<label for="role">Your general field (optional)</label>
+<select id="role" name="field"><option value="">Select or skip</option><option>Police / law enforcement</option><option>Fire / EMS</option><option>911 dispatch / communications</option><option>Corrections</option><option>Private security</option><option>Military / veteran</option><option>Public administration / code enforcement</option><option>Other profession</option><option>Prefer not to say</option></select>
+<label for="tried">Have you tried a THE SHIELD tool? *</label>
+<select id="tried" name="tool_tried" required><option value="">Choose one</option><option value="foia-guide">Yes — Michigan FOIA Guide</option><option value="foia-desk">Yes — Free FOIA Desk</option><option value="starter-kit">Yes — Printable Starter Kit</option><option value="demo">Yes — Fictional Demo</option><option value="multiple">Yes — More than one</option><option value="not-yet">Not yet — Just exploring</option></select>
+<label for="priority">What should we prioritize? *</label>
+<select id="priority" name="priority" required><option value="">Choose one</option><option value="better-foia">Easier FOIA requests and tracking</option><option value="timelines">Incident timelines and notes</option><option value="records">Organizing documents and correspondence</option><option value="privacy">Private storage, security and backup</option><option value="policy">Policy and law references</option><option value="ai">Optional AI assistance</option><option value="mobile">Mobile usability and accessibility</option><option value="other">Something else</option></select>
+<label for="suggestion">Your suggestion or biggest frustration *</label>
+<textarea id="suggestion" name="suggestion" required minlength="8" maxlength="750" rows="5" placeholder="What would make your work easier? Please describe a feature, not an actual case."></textarea>
+<p class="feedback-hint"><span id="character-count">0 / 750</span> characters • No sensitive details, please.</p>
+<label for="interest">Would you consider a future paid plan? (optional)</label>
+<select id="interest" name="paid_interest"><option value="">Not sure / skip</option><option value="free-only">I would only use free tools</option><option value="plus-monthly">Maybe Shield Plus — $6.99/month</option><option value="plus-annual">Maybe Shield Plus — $69.90/year</option><option value="ai-monthly">Maybe Shield AI — $12.99/month</option><option value="ai-annual">Maybe Shield AI — $129.90/year</option><option value="unknown">Interested, but need to see it working first</option></select>
+<label for="email">Email for follow-up (optional)</label>
+<input id="email" name="email" type="email" maxlength="160" autocomplete="email" placeholder="Only if you want a reply">
+<p class="feedback-hint">Leave this blank to stay anonymous. No mailing list or marketing subscription is created.</p>
+<label class="feedback-consent" for="consent"><input id="consent" type="checkbox" name="consent" value="I agree to share general product feedback" required><span>I understand my response will be sent to an external form provider for THE SHIELD to review, and I have not included confidential or restricted information. *</span></label>
+<div class="feedback-hp" aria-hidden="true"><label for="website">Leave empty<input id="website" type="text" name="_gotcha" value="" tabindex="-1" autocomplete="off"></label></div>
+<input type="hidden" name="_subject" value="THE SHIELD founding tester suggestion"><input type="hidden" name="source" value="THE SHIELD feedback page v1">
+</div>
+<button type="submit" class="button primary feedback-submit" id="feedback-submit" disabled>Send my feedback</button>
+</fieldset>
+</form>
+<div id="feedback-result" class="feedback-result" role="status" aria-live="polite" hidden></div>
+<noscript><p class="feedback-alert">JavaScript is required to submit this form; no feedback has been sent.</p></noscript>
+</section>
+<aside class="feedback-aside">
+<h2>Try the free tools first</h2><p>You can give feedback even if you haven't tried them yet.</p>
+<div class="feedback-tools"><a href="starter-kit.html"><strong>Career Documentation Starter Kit</strong><span>Printable facts, chronology and FOIA tracking</span></a>
+<a href="guide.html"><strong>Michigan FOIA Next-Step Guide</strong><span>Understand possible next steps</span></a>
+<a href="desk.html"><strong>Free FOIA Desk</strong><span>Draft letters locally in your browser</span></a>
+<a href="demo.html"><strong>Fictional Case Demo</strong><span>See what we're designing</span></a></div>
+<div class="feedback-privacy"><h3>How feedback will work</h3><p>When enabled, responses are transmitted to Formspree, a third-party service, and forwarded to THE SHIELD's receiving inbox. It may process technical submission metadata for spam prevention. We don't ask for your name, an account or payment details.</p><p>We won't publicly post responses without permission. Please read our <a href="privacy.html">privacy notice</a>.</p></div>
+<p class="feedback-hint">Prefer GitHub? You can still <a href="https://github.com/TheShield0172/the-shield-website/issues/6" target="_blank" rel="noopener noreferrer">give public feedback</a> there with a GitHub account.</p>
+</aside>
+</div></main>
+<footer><div class="container inner"><span>© 2026 THE SHIELD • Free pilot feedback, no payments</span><div class="footerlinks"><a href="privacy.html">Privacy</a><a href="legal.html">Policies</a><a href="index.html">Home</a></div></div></footer></body></html>
