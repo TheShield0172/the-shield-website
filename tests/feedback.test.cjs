@@ -37,7 +37,9 @@ test('short mobile form avoids required PII and never collects files or password
 });
 test('delivery is disabled until owner provides an actual verified endpoint',()=>{
  const c=read('feedback-config.js');
- assert(/SHIELD_FEEDBACK_ENDPOINT\s*=\s*''/.test(c),'endpoint must not be invented');
+ const match=c.match(/SHIELD_FEEDBACK_ENDPOINT\s*=\s*['\"]([^'\"]*)['\"]/);
+ assert(match,'a clear configured or disabled endpoint is required');
+ assert(match[1]===''||allowedEndpoint(match[1]),'a configured endpoint must be an exact Formspree form URL');
  assert(!c.includes('@gmail.com'),'no personal receiver email in public source');
  const js=read('feedback.js');
  assert(js.includes('fields.disabled=!active'));assert(js.includes('button.disabled=!active'));assert(js.includes('not connected yet; nothing has been sent.'));
