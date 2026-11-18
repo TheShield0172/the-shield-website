@@ -2,6 +2,14 @@
 
 This repository powers [THE SHIELD's public website](https://the-shield-public-preview.onrender.com/) and [FOIA Desk](https://the-shield-public-preview.onrender.com/desk.html).
 
+## Tester links — use the deployed Render host
+
+- **Public test site:** https://the-shield-public-preview.onrender.com/
+- **Free FOIA Desk:** https://the-shield-public-preview.onrender.com/desk.html
+- **No-login feedback:** https://the-shield-public-preview.onrender.com/feedback.html
+
+**Do not distribute `https://theshield0172.github.io/the-shield-website/` as a test link.** That GitHub Pages URL is not the documented deployment. Before inviting testers, open the live Render URLs in a private browser window and confirm they respond; a repository link or successful source commit alone does not establish deployment availability. The free Render host may need to wake from inactivity. Only fictional/nonconfidential test inputs are permitted.
+
 ## What is actually released
 - Free, browser-only Michigan FOIA request, disclosure-denial appeal, fee-dispute and follow-up drafting.
 - Copy, edit, print and download a letter. No automatic filing.
