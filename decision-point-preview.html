@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="description" content="THE SHIELD Decision Point: a free, fictional Fourth Amendment scenario-training prototype.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Play Decision Point | THE SHIELD — Experimental Owner Preview</title>
+  <link rel="stylesheet" href="decision-point-preview.css">
+</head>
+<body>
+<div class="shell">
+<div class="preview-banner" role="note">OWNER PREVIEW · EXPERIMENTAL &amp; NOT CERTIFIED TRAINING · DO NOT USE FOR REAL INCIDENTS</div>
+<header class="bar">
+  <div class="brand"><div class="crest" aria-hidden="true">S</div><div>THE SHIELD <span>DECISION POINT · LAB BUILD 0.3</span></div></div>
+  <div class="utilities">
+    <button type="button" id="narration" class="pill" aria-pressed="false">Narration: off</button>
+    <button type="button" id="cinema" class="pill" aria-pressed="false" aria-controls="cinema-controls">Scene playback: off</button>
+    <button type="button" id="pressure" class="pill" aria-pressed="false">Pressure: off</button>
+    <button type="button" id="restart-top" class="subtle-btn" hidden>Start over</button>
+  </div>
+</header>
+
+<main>
+  <section id="intro" class="intro" aria-labelledby="intro-title">
+    <div class="intro-wrap">
+      <div>
+        <div class="eyebrow">Constitutional judgment simulator · Scenario 001</div>
+        <h1 id="intro-title">THE EIGHT<br><span>MINUTE WAIT</span></h1>
+        <p class="lead">11:42 PM. A traffic stop. Refused consent. A dog eight minutes away. Then a vague bulletin changes—or doesn't change—the facts. Your choices determine what information you uncover and how the night ends.</p>
+        <p class="lead">A playable branching story with radio dialogue, missing-facts investigation, and sourced decisions. Fictional preview only: legal review is pending and this is not live field guidance or accredited training.</p>
+        <button class="primary" type="button" id="start">Begin the scenario <span aria-hidden="true">→</span></button>
+        <div class="metrics"><span>Multi-route story</span><span>6 endings</span><span>No signup</span><span>No app uploads</span></div>
+      </div>
+      <div class="scene" data-scene="1" role="img" aria-label="Stylized rainy road at night, a stopped sedan seen ahead through an officer's windshield.">
+        <svg viewBox="0 0 640 400" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#14263b"/><stop offset=".75" stop-color="#090d18"/><stop offset="1" stop-color="#060910"/></linearGradient>
+            <linearGradient id="road" x2="0" y2="1"><stop stop-color="#172337"/><stop offset="1" stop-color="#060b13"/></linearGradient>
+            <radialGradient id="blueglow"><stop stop-color="#1da8f8" stop-opacity=".7"/><stop offset="1" stop-color="#1da8f8" stop-opacity="0"/></radialGradient>
+            <radialGradient id="redglow"><stop stop-color="#ed4257" stop-opacity=".72"/><stop offset="1" stop-color="#ed4257" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect width="640" height="400" fill="url(#sky)"/>
+          <path d="M0 220 L145 180 L210 184 L270 190 L353 182 L433 168 L640 205 V300 H0Z" fill="#0b1523"/>
+          <g fill="#13263b"><rect x="0" y="120" width="92" height="114"/><rect x="101" y="143" width="70" height="90"/><rect x="472" y="137" width="94" height="94"/><rect x="580" y="102" width="60" height="131"/></g>
+          <g fill="#b0b06d" opacity=".23"><rect x="22" y="153" width="11" height="14"/><rect x="54" y="187" width="14" height="15"/><rect x="123" y="169" width="10" height="14"/><rect x="491" y="160" width="13" height="18"/><rect x="528" y="187" width="12" height="16"/><rect x="603" y="135" width="10" height="19"/></g>
+          <path d="M225 212H405L640 400H0Z" fill="url(#road)"/>
+          <path d="M310 230L275 400" stroke="#e3c796" stroke-width="4" opacity=".3" stroke-dasharray="21 30"/>
+          <path d="M346 230L390 400" stroke="#e3c796" stroke-width="4" opacity=".3" stroke-dasharray="20 32"/>
+          <ellipse cx="309" cy="270" rx="220" ry="105" fill="url(#redglow)" class="flash-red"/>
+          <ellipse cx="402" cy="276" rx="200" ry="115" fill="url(#blueglow)" class="flash-blue"/>
+          <g transform="translate(238 185)">
+            <path d="M12 65L25 31Q29 19 48 18H119Q133 18 139 33L151 64 156 75V91H5V75Z" fill="#273f50" stroke="#7890a1" stroke-width="2"/>
+            <path d="M32 36L42 27H121L132 37 139 57H23Z" fill="#0a1523"/>
+            <path d="M5 78H156" stroke="#152b39" stroke-width="5"/>
+            <rect x="13" y="66" width="32" height="13" rx="3" fill="#e5b44c"/><rect x="115" y="66" width="32" height="13" rx="3" fill="#e5b44c"/>
+            <rect x="58" y="78" width="44" height="10" rx="2" fill="#9aa9b3"/>
+            <circle cx="34" cy="92" r="10" fill="#060b12"/><circle cx="129" cy="92" r="10" fill="#060b12"/>
+          </g>
+          <g class="flash-red"><ellipse cx="187" cy="336" rx="150" ry="75" fill="url(#redglow)" opacity=".9"/></g>
+          <g class="flash-blue"><ellipse cx="458" cy="353" rx="160" ry="85" fill="url(#blueglow)" opacity=".9"/></g>
+          <g opacity=".25" stroke="#9eb7cf" stroke-width="1.7">
+            <path class="rainline" d="M40 30l-17 56 M139 70l-20 72 M270 8l-18 65 M380 58l-17 73 M552 8l-20 72 M621 58l-20 72 M81 199l-18 63 M475 184l-16 65"/>
+          </g>
+          <path d="M0 383 Q320 298 640 383V400H0Z" fill="#050911" opacity=".94"/>
+        </svg>
+        <div class="hud"><span class="record">● TRAINING SIMULATION</span><span>FICTIONAL INCIDENT • 23:42</span></div>
+        <div class="lower-third">YOUR NEXT DECISION CHANGES THE STORY</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="game" hidden aria-labelledby="game-title">
+    <div class="game-top">
+      <div><div class="eyebrow">Incident 001 · Training scenario</div><h2 id="game-title">The Eight Minute Wait</h2><div class="stepbar" id="steps" aria-label="Scenario progress"><span></span><span></span><span></span></div></div>
+      <div class="chips"><span class="pill" id="stage-label">Branching decisions</span><span class="pill">No real case data</span></div>
+    </div>
+    <div class="game-layout">
+      <section class="story" aria-label="Cinematic scene">
+        <div class="scene scene-small" id="main-scene" data-scene="1" role="img" aria-label="Stylized rainy nighttime traffic stop, stopped vehicle ahead."></div>
+        <div class="story-text">
+          <div class="caption-line" id="radio-line"><strong>Dispatch</strong><span id="dispatch"></span></div>
+          <div class="caption-line" id="driver-line"><strong id="speaker">Driver</strong><span id="dialogue"></span></div>
+          <p class="copy" id="narrative"></p>
+          <div id="cinema-controls" class="cinema-controls" hidden aria-label="Optional scene playback controls">
+            <div id="beat-status" class="cinema-beat" role="status" aria-live="polite"></div>
+            <div class="cinema-actions">
+              <button id="beat-next" type="button" class="dark-btn">Next scene beat</button>
+              <button id="beat-skip" type="button" class="subtle-btn">Skip to decisions</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="choice-panel" aria-labelledby="decision-title">
+        <div class="eyebrow" id="phase-title">Decision point</div>
+        <h2 id="decision-title">Make your call</h2>
+        <p class="prompt" id="prompt"></p>
+        <p id="cinema-gate" class="cinema-gate" hidden>Scene playback is on. Read each beat or choose Skip to decisions. The decision clock starts only when choices appear.</p>
+        <div id="timer-wrap" hidden><div class="speed"><span>Optional pressure mode</span><span id="seconds">20 seconds</span></div><div class="timer" id="timer"><span id="timer-progress"></span></div></div>
+        <div id="choices"></div>
+        <div id="consequence" hidden class="result" aria-live="polite"></div>
+        <button id="next" class="primary" hidden type="button">Continue incident <span aria-hidden="true">→</span></button>
+        <p class="footer-note">Time pressure is optional and never chooses for you. Pausing to establish missing facts can be the sounder decision.</p>
+      </section>
+    </div>
+  </section>
+
+  <section id="debrief" class="debrief" hidden aria-labelledby="debrief-title">
+    <div class="eyebrow">After-action review · Constitutional law</div>
+    <h1 id="debrief-title" tabindex="-1">THE DEBRIEF</h1>
+    <div class="score" id="score" aria-live="polite">0 / 3</div>
+    <h2 id="summary"></h2>
+    <p id="evaluation" class="lead"></p>
+    <div id="reviews"></div>
+    <p class="footer-note"><strong>Scope:</strong> Fictional U.S. federal constitutional-law teaching example, not a state-specific legal ruling, agency policy, legal advice, or operational instruction. Facts are intentionally simplified. Law can change; verify current controlling authority, statutes, and policy with qualified reviewers. No training credit or competency certification is awarded.</p>
+    <section class="pilot-panel" aria-labelledby="pilot-title">
+      <div class="eyebrow">Optional pilot feedback · No automatic submission</div>
+      <h2 id="pilot-title">Help improve Decision Point</h2>
+      <p class="pilot-intro">The pilot does not record answers or scores. No names, employers, actual incidents, case numbers or confidential information. General educational comments only.</p>
+      <div class="pilot-fields">
+        <label for="tester-role">Your general field</label>
+        <select id="tester-role"><option>Prefer not to say</option><option>Law enforcement</option><option>Fire service</option><option>EMS</option><option>911 communications</option><option>Public safety educator</option><option>Other</option></select>
+        <label for="tester-clear">Were the legal explanations clear?</label>
+        <select id="tester-clear"><option>Not rated</option><option>1 — Not clear</option><option>2 — Slightly clear</option><option>3 — Mostly clear</option><option>4 — Very clear</option><option>5 — Extremely clear</option></select>
+        <label for="tester-real">Did the decisions feel realistic?</label>
+        <select id="tester-real"><option>Not rated</option><option>1 — Not realistic</option><option>2 — Slightly realistic</option><option>3 — Moderately realistic</option><option>4 — Very realistic</option><option>5 — Extremely realistic</option></select>
+        <label for="tester-learn">Did the scenario change or reinforce your understanding?</label>
+        <select id="tester-learn"><option>Not rated</option><option>Changed my understanding</option><option>Reinforced what I knew</option><option>Did not help</option><option>Not sure</option></select>
+        <label for="tester-feedback">What detail, legal explanation or decision was confusing or unrealistic?</label>
+        <textarea id="tester-feedback" rows="4" maxlength="1000" placeholder="Fictional training feedback only. No real cases."></textarea>
+        <button id="prepare-feedback" type="button" class="dark-btn">Prepare feedback to copy</button>
+        <div id="feedback-result" hidden>
+          <label for="tester-export">Copy these notes to submit manually</label>
+          <textarea id="tester-export" readonly rows="8"></textarea>
+          <p class="footer-note">Nothing was sent. Copy the text and paste it into THE SHIELD's existing no-login feedback form. Contact details are optional.</p>
+          <a href="https://the-shield-public-preview.onrender.com/feedback.html" target="_blank" rel="noopener noreferrer">Open optional feedback page</a>
+        </div>
+      </div>
+    </section>
+    <button type="button" class="primary" id="replay">Replay scenario <span aria-hidden="true">↻</span></button>
+  </section>
+</main>
+<footer class="foot">
+  <span>© 2026 THE SHIELD · Owner preview build 0.3 · No accounts, analytics, cookies, backend, or outbound application requests. Optional narration uses your browser's speech system, if supported; browser voice data practices may vary.</span>
+  <span>Educational demonstration only · Fictional characters and events · Source review: Nov. 22, 2026</span>
+</footer>
+</div>
+<script defer src="decision-point-preview.js"></script>
+</body>
+</html>
