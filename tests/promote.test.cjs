@@ -107,3 +107,13 @@ test("PROMOTE review displays the chosen consequence for every decision, includi
  assert.match(source,/Fictional development:/);
  assert.match(source,/card\.append\(heading, choice, outcome, explanation, review\)/);
 });
+
+test("PROMOTE announces decision progress to assistive technology", () => {
+ const html=load("promote.html"), js=load("promote.js");
+ assert.match(html, /id="scenario-progress" role="progressbar"/);
+ assert.match(html, /aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"/);
+ assert.match(js, /setAttribute\("aria-valuenow", String\(percent\)\)/);
+ assert.match(js, /setAttribute\("aria-valuetext", "Decision "/);
+ assert.match(js, /setAttribute\("aria-valuetext", "Exercise complete"\)/);
+ new vm.Script(js, {filename:"promote.js"});
+});
