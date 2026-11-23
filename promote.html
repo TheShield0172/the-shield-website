@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'none'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
-  <meta name="description" content="Explore THE SHIELD PROMOTE, a proposed public safety promotional assessment platform using structured leadership scenarios and documented human evaluation. Free fictional preview; not a validated selection test.">
+  <meta name="description" content="Explore THE SHIELD PROMOTE's fictional Police Sergeant, Fire Officer, and EMS Supervisor interactive assessment previews. Concept only; not validated for employment decisions.">
   <title>SHIELD PROMOTE | Leadership beyond the written test</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="promote.css">
@@ -18,7 +18,7 @@
       <nav class="promote-nav" aria-label="PROMOTE navigation">
         <a href="index.html">Main site</a>
         <a href="#process">The process</a>
-        <a href="#demo">Sample exercise</a>
+        <a href="#tracks">Choose a track</a>
         <a class="button secondary" href="feedback.html">Agency feedback</a>
       </nav>
     </div>
@@ -32,13 +32,13 @@
           <h1>Promote the leader.<br><span class="promote-accent">Not just the test taker.</span></h1>
           <p class="lead">A proposed digital promotional assessment center for public safety agencies. Realistic, branching supervisory situations. Consistent job-related competencies. Structured evidence for trained human assessors.</p>
           <div class="promote-actions">
-            <a class="button primary" href="#demo">Experience a sample decision <span aria-hidden="true">→</span></a>
+            <a class="button primary" href="#tracks">Explore three assessment tracks <span aria-hidden="true">→</span></a>
             <a class="button secondary" href="#process">See the assessment model</a>
           </div>
           <p class="promote-caution">Concept-stage demonstration only. Not validated, certified, or authorized for hiring, promotion, or adverse employment decisions. No candidate information is collected.</p>
         </div>
         <div class="hero-console" aria-label="Concept visualization of an agency assessment">
-          <div class="console-top"><span class="console-live"><span class="console-dot"></span> CONCEPT ASSESSMENT CENTER</span><span>SUPERVISOR TRACK / 01</span></div>
+          <div class="console-top"><span class="console-live"><span class="console-dot"></span> CONCEPT ASSESSMENT CENTER</span><span id="program-name">POLICE / FIRE / EMS</span></div>
           <div class="cinema-card">
             <div class="cinema-glow"></div><div class="cinema-building" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
             <div class="cinema-title"><small>SIMULATION • 23:47</small><strong>A decision with consequences.</strong><span>Officers are looking to you. Two incidents are unfolding. What matters first?</span></div>
@@ -63,16 +63,51 @@
       </div>
     </section>
 
+
+    <section class="section alt" id="tracks">
+      <div class="container">
+        <div class="sectionintro"><div class="eyebrow">Three interactive promotional previews</div><h2>Different professions. Different leadership challenges.</h2><p>Select an assessment track. These are fictional, unscored demonstrations of the proposed candidate experience—not validated promotional tests.</p></div>
+        <div class="track-grid" aria-label="Assessment tracks">
+          <article class="track-card track-police">
+            <div class="track-mark" aria-hidden="true">01 / POLICE</div>
+            <h3>Police Sergeant</h3>
+            <p>Competing calls, a possible force-policy violation, and command decisions under scrutiny.</p>
+            <a class="button secondary" href="promote.html?track=police#demo">Try police assessment →</a>
+          </article>
+          <article class="track-card track-fire">
+            <div class="track-mark" aria-hidden="true">02 / FIRE</div>
+            <h3>Fire Company Officer</h3>
+            <p>Fireground resource limitations, crew accountability, changing conditions, and supervisory judgment.</p>
+            <a class="button secondary" href="promote.html?track=fire#demo">Try fire assessment →</a>
+          </article>
+          <article class="track-card track-ems">
+            <div class="track-mark" aria-hidden="true">03 / EMS</div>
+            <h3>EMS Field Supervisor</h3>
+            <p>Simultaneous patient demands, crew performance concerns, and coordination with medical control.</p>
+            <a class="button secondary" href="promote.html?track=ems#demo">Try EMS assessment →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section alt" id="demo">
       <div class="container">
-        <div class="sectionintro"><div class="eyebrow">Interactive pilot · police sergeant</div><h2>Walk into the supervisor's seat.</h2><p>This short fictional exercise demonstrates decision flow, not an official assessment. There is no score, grade, timer, account, video upload or data transmission.</p></div>
+        <div class="sectionintro"><div class="eyebrow">Interactive preview · three professions</div><h2 id="track-title">Police Sergeant assessment</h2><p id="track-intro">Choose a track to explore difficult supervisory decisions. No score, grade, timer, account, video upload or data transmission.</p></div>
+        <div class="track-switch" role="group" aria-label="Choose public safety assessment">
+          <button type="button" class="track-choice" data-track="police" aria-pressed="true">Police Sergeant</button>
+          <button type="button" class="track-choice" data-track="fire" aria-pressed="false">Fire Company Officer</button>
+          <button type="button" class="track-choice" data-track="ems" aria-pressed="false">EMS Field Supervisor</button>
+        </div>
         <div class="promote-lab">
-          <div class="lab-scene"><div class="lab-signal"><span class="console-dot"></span> SCENE 001 / INTERNAL REVIEW</div><div class="lab-scene-overlay"><span>SHIFT COMMAND</span><strong>Two urgent calls. One difficult question.</strong><p>Night shift • Operational decision exercise</p></div></div>
+          <div class="lab-scene"><div class="lab-signal"><span class="console-dot"></span> <span id="scene-designator">SCENE 001 / INTERNAL REVIEW</span></div><div class="lab-scene-overlay"><span id="scene-tag">SHIFT COMMAND</span><strong id="scene-caption">Two urgent calls. One difficult question.</strong><p id="scene-summary">Night shift • Operational decision exercise</p></div></div>
           <div class="lab-controls">
             <div class="lab-progress"><span id="scenario-step" aria-live="polite">Decision 1 of 3</span><div class="lab-progress-track"><div id="progress-fill"></div></div></div>
             <h3 id="scenario-title">Responding to the incident</h3>
             <p id="scenario-story"></p>
             <div id="scenario-options" class="scenario-options" role="group" aria-label="Select a response"></div>
+            <label class="rationale-label" for="scenario-rationale">Explain your reasoning (optional, fictional exercise only)</label>
+            <textarea id="scenario-rationale" rows="3" maxlength="700" placeholder="What competing responsibilities, missing facts, or policy considerations shaped your choice?"></textarea>
+            <p class="rationale-privacy">Your explanation stays on this page and is discarded on refresh. Do not enter real candidate, patient, incident or agency information.</p>
             <p id="scenario-reason" class="scenario-reason" aria-live="polite" hidden></p>
             <div class="lab-actions"><button class="button primary" id="scenario-next" type="button" disabled>Continue</button><button class="button secondary" id="scenario-reset" type="button">Restart</button></div>
             <p class="lab-disclaimer">Demonstration choices are simplified. A real examination requires validated competencies, equivalent paths and qualified human review; the browser must never be the authoritative scoring engine.</p>
