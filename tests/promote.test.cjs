@@ -135,3 +135,12 @@ test("PROMOTE carries the last two chosen fictional consequences into later deci
  assert.match(source, /trail\.join/);
  new vm.Script(source,{filename:"promote.js"});
 });
+
+test("PROMOTE fictional decision trail uses real newline escapes, not literal backslash-n", () => {
+ const source=load("promote.js");
+ const expected = 'trail.join("' + String.fromCharCode(92) + 'n") + "' + String.fromCharCode(92) + 'n' + String.fromCharCode(92) + 'n"';
+ const wrong = 'trail.join("' + String.fromCharCode(92,92) + 'n")';
+ assert.ok(source.includes(expected), "decision trail should separate developments into readable lines");
+ assert.ok(!source.includes(wrong), "literal slash-n would appear to users");
+ new vm.Script(source,{filename:"promote.js"});
+});
