@@ -91,6 +91,22 @@
             "A witness reports feeling isolated.",
             "Command requests a documented plan for supervisor follow-up."
           ]
+        },
+        {
+          "title": "Shift handoff under contradictory reports",
+          "story": "06:42. The incoming supervisor finds two contradictory dispatch timestamps, a pending witness interview and an unresolved unit-coverage request. Your shift ends in ten minutes. Which responsibility do you personally retain, and what do you delegate?",
+          "options": [
+            "Remain to reconcile the timestamps before handing off, accepting a delayed shift transition and possible loss of timely witness contact.",
+            "Transfer the verified timeline and unresolved discrepancies to incoming command, explicitly assign the witness and coverage follow-ups, and remain available for clarification.",
+            "Prioritize the time-sensitive witness contact while assigning the timeline reconciliation to an uninvolved qualified supervisor, documenting the split responsibilities."
+          ],
+          "dimension": "Handoff, prioritization and accountability",
+          "notes": "Review assignment ownership, facts versus uncertainty, time-sensitive tasks and quality of the transition.",
+          "consequences": [
+            "The incoming commander asks for a named owner for the witness follow-up.",
+            "A new dispatch log clarifies one timestamp but not the other.",
+            "The witness becomes unavailable until the following day."
+          ]
         }
       ]
     },
@@ -177,6 +193,22 @@
             "Dispatch requests the unit's availability status.",
             "A crew member asks whether reporting the near miss will affect discipline."
           ]
+        },
+        {
+          "title": "Disputed accountability after command transfer",
+          "story": "04:10. A crew member disputes the personnel accountability record from the earlier operation. The chief officer is handling another incident, and the disputed record may affect the near-miss review. What do you do before the shift ends?",
+          "options": [
+            "Correct the record after comparing available logs, clearly documenting uncertainty and preserving the original entry.",
+            "Request an independent reconciliation with the accountability officer while keeping the original record intact and advising command of the discrepancy.",
+            "Conduct a focused crew debrief to identify the missing assignment details, while protecting individual accounts for any formal review."
+          ],
+          "dimension": "Documentation integrity and command accountability",
+          "notes": "Review record preservation, impartiality, command notification and distinction between operational correction and investigative fact-finding.",
+          "consequences": [
+            "A radio log conflicts with a handwritten entry.",
+            "A member asks whether the discrepancy implies misconduct.",
+            "The chief requests an immediate status update before the reconciliation is complete."
+          ]
         }
       ]
     },
@@ -262,6 +294,22 @@
             "Coverage remains tight while relief is arranged.",
             "A crew member questions whether they can safely continue.",
             "Management requests a written readiness rationale."
+          ]
+        },
+        {
+          "title": "Contradictory records at shift change",
+          "story": "20:15. Dispatch's transport timeline conflicts with a unit status entry. A hospital liaison wants an explanation for delayed arrival, and a confidential clinical review remains pending. How do you structure the handoff?",
+          "options": [
+            "Give the incoming supervisor a verified operational timeline and explicitly flag unresolved timestamps, while separating confidential review information.",
+            "Ask dispatch to reconcile the records before responding to the hospital, accepting a delayed explanation and documenting the request.",
+            "Assign a qualified operations reviewer to the timeline discrepancy and provide only authorized confirmed information to the liaison."
+          ],
+          "dimension": "Documentation, privacy and shift accountability",
+          "notes": "Review separation of operational and confidential information, evidence quality, ownership and timely communication.",
+          "consequences": [
+            "The incoming supervisor requests a deadline for reconciliation.",
+            "Dispatch cannot verify one of the timestamps.",
+            "The liaison asks whether a named clinician caused the delay."
           ]
         }
       ]
