@@ -92,3 +92,10 @@ test("All three fictional tracks include a fourth supervisory tradeoff decision"
  assert.match(source, /current\(\)\.stages\.length/);
  assert.match(source, /stage\.options\[picks\[i\]\]/);
 });
+
+test("PROMOTE contains five fictional decision stages in each track", () => {
+ const source=load("promote.js");
+ for (const title of ["Supervisory coaching after the incident","A near miss during demobilization","Supporting a crew after a difficult call"]) assert.ok(source.includes(title));
+ new vm.Script(source, {filename:"promote.js"});
+ assert.match(source, /current\(\)\.stages\.length/);
+});
