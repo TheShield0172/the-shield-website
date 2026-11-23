@@ -356,7 +356,7 @@
       const priorIndex = trailStart + offset;
       return "Earlier development " + (priorIndex + 1) + ": " + prior.consequences[picks[priorIndex]];
     });
-    story.textContent = (trail.length ? trail.join("\\n") + "\\n\\n" : "") + stage.story;
+    story.textContent = (trail.length ? trail.join("\n") + "\n\n" : "") + stage.story;
     step.textContent = "Decision " + (index + 1) + " of " + current().stages.length;
     const percent = Math.round((index + 1) / current().stages.length * 100);
     progress.style.width = percent + "%";
