@@ -349,8 +349,14 @@
     title.textContent = stage.title;
     // Move keyboard/screen-reader focus to the newly presented decision.
     title.setAttribute("tabindex", "-1");
-    const inherited = index ? current().stages[index - 1].consequences[picks[index - 1]] : "";
-    story.textContent = (inherited ? inherited + "\n\n" : "") + stage.story;
+    // Keep a short fictional decision trail so earlier choices still matter later.
+    // The same core question remains for every participant; no scoring or persistence.
+    const trailStart = Math.max(0, index - 2);
+    const trail = current().stages.slice(trailStart, index).map((prior, offset) => {
+      const priorIndex = trailStart + offset;
+      return "Earlier development " + (priorIndex + 1) + ": " + prior.consequences[picks[priorIndex]];
+    });
+    story.textContent = (trail.length ? trail.join("\\n") + "\\n\\n" : "") + stage.story;
     step.textContent = "Decision " + (index + 1) + " of " + current().stages.length;
     const percent = Math.round((index + 1) / current().stages.length * 100);
     progress.style.width = percent + "%";
