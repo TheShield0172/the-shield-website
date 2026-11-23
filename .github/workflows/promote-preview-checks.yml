@@ -2,6 +2,10 @@ name: SHIELD PROMOTE preview checks
 on:
   push:
     paths:
+      - 'agency-training.html'
+      - 'agency-training.css'
+      - 'agency-training.js'
+      - 'tests/agency-training.test.cjs'
       - 'promote.html'
       - 'promote.js'
       - 'promote.css'
@@ -29,6 +33,8 @@ jobs:
         with:
           node-version: '22'
       - name: Check JavaScript syntax
-        run: node --check promote.js
+        run: |
+          node --check promote.js
+          node --check agency-training.js
       - name: Run PROMOTE safety, accessibility and track structure tests
-        run: node --test tests/promote.test.cjs
+        run: node --test tests/promote.test.cjs tests/agency-training.test.cjs
