@@ -35,6 +35,8 @@
         {
           "title": "Staffing conflict after the first call",
           "followUpByPriorChoice": ["Your earlier approach prioritized broad triage; command now asks which qualified person owns each scene and how you will confirm assignments.","You previously delegated arrest-scene preservation; the assigned officer reports uncertainty about the required handoff.","You previously remained at the arrest; dispatch asks who is responsible for confirming the second call's immediate safety."],
+          "followUpOptionsByPriorChoice": [["Assign named qualified owners to both incidents and require explicit acknowledgments, accepting verification time.","Prioritize immediate caller-safety verification while a designated custodian maintains evidence security.","Recommend a specific coverage plan to command and document any gap before relief arrives."],["Pause the handoff until a qualified custodian confirms the evidence inventory, arranging another response.","Transfer custody with an itemized acknowledgment and send relief to the new call.","Request staffing while personally verifying the disputed custody handoff and arranging caller-safety checks."],["Confirm who is handling the new call, then transfer arrest-scene duties to qualified relief.","Remain at the arrest and request mutual aid for the new call, documenting the delay.","Seek an immediate command decision while maintaining explicit scene ownership and dispatch updates."]],
+          "followUpConsequencesByPriorChoice": [["Both assignments are acknowledged, but dispatch reports a possible delay.","The caller disconnects before the safety check finishes.","Command asks you to implement your recommended plan before relief arrives."],["An inventory discrepancy is documented while a second unit handles the caller.","The receiving custodian flags an item for reconciliation.","Staffing is unavailable and command requests an interim plan."],["Relief asks which arrest-scene tasks remain unresolved.","Mutual aid reports an extended response time.","Dispatch confirms a new threat requiring reassessment."]],
           "story": "00:21. Dispatch reports a domestic disturbance while your relief officer is securing evidence at the arrest. The caller's safety is unknown and no investigator has arrived. How do you manage the competing duties?",
           "options": [
             "Keep relief on evidence preservation while requesting outside assistance, accepting a possible delay to the new call.",
@@ -333,6 +335,8 @@
   let trackId = "police", index = 0, selection = -1;
   let picks = [], reasons = [];
   const current = () => tracks[trackId];
+  const stageOptions = (stage, prior) => stage.followUpOptionsByPriorChoice?.[prior] || stage.options;
+  const stageConsequences = (stage, prior) => stage.followUpConsequencesByPriorChoice?.[prior] || stage.consequences;
 
   function updateHero() {
     const track = current();
@@ -357,7 +361,7 @@
     const trailStart = Math.max(0, index - 2);
     const trail = current().stages.slice(trailStart, index).map((prior, offset) => {
       const priorIndex = trailStart + offset;
-      return "Earlier development " + (priorIndex + 1) + ": " + prior.consequences[picks[priorIndex]];
+      return "Earlier development " + (priorIndex + 1) + ": " + stageConsequences(prior, picks[priorIndex - 1])[picks[priorIndex]];
     });
     // Only the next decision gets a choice-specific supervisory complication.
     // The common decision and its options remain the same for every path.
@@ -384,9 +388,10 @@
     selection = -1;
     // Rotate presentation order across stages; keep canonical option IDs for branches.
     // This is presentation balancing, NOT psychometric validation or randomization.
-    const order = stage.options.map((_, i) => (i + index) % stage.options.length);
+    const availableOptions = stageOptions(stage, picks[index - 1]);
+    const order = availableOptions.map((_, i) => (i + index) % availableOptions.length);
     order.forEach((optionId, i) => {
-      const response = stage.options[optionId];
+      const response = availableOptions[optionId];
       const button = document.createElement("button");
       button.type = "button";
       button.className = "option-btn";
@@ -421,13 +426,13 @@
       const heading = document.createElement("strong");
       heading.textContent = (i + 1) + ". " + stage.dimension;
       const choice = document.createElement("p");
-      choice.textContent = "Your selection: " + stage.options[picks[i]];
+      choice.textContent = "Your selection: " + stageOptions(stage, picks[i - 1])[picks[i]];
       const explanation = document.createElement("p");
       explanation.textContent = "Your reasoning: " + (reasons[i] || "Not provided");
       const review = document.createElement("p");
       review.textContent = "Illustrative trained assessor considerations: " + stage.notes;
       const outcome = document.createElement("p");
-      outcome.textContent = "Fictional development: " + stage.consequences[picks[i]];
+      outcome.textContent = "Fictional development: " + stageConsequences(stage, picks[i - 1])[picks[i]];
       // Preserve the actual choice-dependent briefing in the final reflection.
       // This is descriptive context, not an assessor score or recommendation.
       const conditional = i > 0 && stage.followUpByPriorChoice
