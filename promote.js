@@ -358,7 +358,9 @@
       explanation.textContent = "Your reasoning: " + (reasons[i] || "Not provided");
       const review = document.createElement("p");
       review.textContent = "Illustrative trained assessor considerations: " + stage.notes;
-      card.append(heading, choice, explanation, review);
+      const outcome = document.createElement("p");
+      outcome.textContent = "Fictional development: " + stage.consequences[picks[i]];
+      card.append(heading, choice, outcome, explanation, review);
       options.appendChild(card);
     });
     note.hidden = false;
