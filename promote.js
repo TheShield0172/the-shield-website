@@ -304,7 +304,10 @@
     const inherited = index ? current().stages[index - 1].consequences[picks[index - 1]] : "";
     story.textContent = (inherited ? inherited + "\n\n" : "") + stage.story;
     step.textContent = "Decision " + (index + 1) + " of " + current().stages.length;
-    progress.style.width = ((index + 1) / current().stages.length * 100) + "%";
+    const percent = Math.round((index + 1) / current().stages.length * 100);
+    progress.style.width = percent + "%";
+    el("scenario-progress").setAttribute("aria-valuenow", String(percent));
+    el("scenario-progress").setAttribute("aria-valuetext", "Decision " + (index + 1) + " of " + current().stages.length);
     note.hidden = true;
     note.textContent = "";
     next.textContent = index === current().stages.length - 1 ? "Review your decisions" : "Continue";
@@ -343,6 +346,8 @@
     story.textContent = "The responses below are a personal reflection only. There is no numerical score, ranking or pass/fail. A real assessment would require agency job analysis, equivalent administration and trained assessors with validated evidence-based rubrics.";
     step.textContent = "Sample exercise complete";
     progress.style.width = "100%";
+    el("scenario-progress").setAttribute("aria-valuenow", "100");
+    el("scenario-progress").setAttribute("aria-valuetext", "Exercise complete");
     options.replaceChildren();
     rationale.hidden = true;
     const rationaleLabel = document.querySelector(".rationale-label");
