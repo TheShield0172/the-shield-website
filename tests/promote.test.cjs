@@ -192,9 +192,19 @@ test("Fire Officer second decision has distinct conditional response and consequ
 test("EMS second decision branches into distinct supervisory choices and consequences", () => {
  const source=load("promote.js");
  const ems=source.slice(source.indexOf('"title": "A transport decision strains system coverage"'));
- const match=ems.match(/"followUpOptionsByPriorChoice": (\[[\s\S]*?\]),\n\s*"followUpConsequencesByPriorChoice": (\[[\s\S]*?\]),/);
- assert.ok(match,"EMS choice-dependent branches must exist");
- const choices=JSON.parse(match[1]), outcomes=JSON.parse(match[2]);
+ function branchArray(key) {
+   const marker='"'+key+'": ';
+   const start=ems.indexOf(marker)+marker.length;
+   assert.ok(start>=marker.length,"missing "+key);
+   let depth=0,end=start;
+   for(;end<ems.length;end++) {
+     if(ems[end]==="[") depth++;
+     if(ems[end]==="]" && (depth-=1)===0) {end++;break;}
+   }
+   return JSON.parse(ems.slice(start,end));
+ }
+ const choices=branchArray("followUpOptionsByPriorChoice");
+ const outcomes=branchArray("followUpConsequencesByPriorChoice");
  assert.equal(choices.length,3);
  assert.equal(outcomes.length,3);
  for(let i=0;i<3;i++){assert.equal(choices[i].length,3);assert.equal(outcomes[i].length,3);}
