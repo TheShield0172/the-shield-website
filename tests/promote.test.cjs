@@ -117,3 +117,12 @@ test("PROMOTE announces decision progress to assistive technology", () => {
  assert.match(js, /setAttribute\("aria-valuetext", "Exercise complete"\)/);
  new vm.Script(js, {filename:"promote.js"});
 });
+
+test("Each track includes a sixth decision testing accountable handoff", () => {
+ const source=load("promote.js");
+ for (const heading of ["Shift handoff under contradictory reports","Disputed accountability after command transfer","Contradictory records at shift change"]) {
+   assert.ok(source.includes(heading), "missing sixth stage: "+heading);
+ }
+ new vm.Script(source,{filename:"promote.js"});
+ assert.match(source,/current\(\)\.stages\.length/);
+});
