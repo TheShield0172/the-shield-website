@@ -126,3 +126,12 @@ test("Each track includes a sixth decision testing accountable handoff", () => {
  new vm.Script(source,{filename:"promote.js"});
  assert.match(source,/current\(\)\.stages\.length/);
 });
+
+test("PROMOTE carries the last two chosen fictional consequences into later decisions", () => {
+ const source=load("promote.js");
+ assert.match(source, /Math\.max\(0, index - 2\)/);
+ assert.match(source, /stages\.slice\(trailStart, index\)/);
+ assert.match(source, /prior\.consequences\[picks\[priorIndex\]\]/);
+ assert.match(source, /trail\.join/);
+ new vm.Script(source,{filename:"promote.js"});
+});
