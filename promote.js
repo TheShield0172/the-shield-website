@@ -220,14 +220,18 @@
     const rationaleLabel = document.querySelector(".rationale-label");
     if (rationaleLabel) rationaleLabel.hidden = false;
     selection = -1;
-    stage.options.forEach((response, i) => {
+    // Rotate presentation order across stages; keep canonical option IDs for branches.
+    // This is presentation balancing, NOT psychometric validation or randomization.
+    const order = stage.options.map((_, i) => (i + index) % stage.options.length);
+    order.forEach((optionId, i) => {
+      const response = stage.options[optionId];
       const button = document.createElement("button");
       button.type = "button";
       button.className = "option-btn";
       button.textContent = String.fromCharCode(65 + i) + " · " + response;
       button.setAttribute("aria-pressed", "false");
       button.addEventListener("click", () => {
-        selection = i;
+        selection = optionId;
         options.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
         note.hidden = false;
         note.textContent = "Choice selected. Explain any assumptions or missing facts if you wish, then continue. No score is calculated.";
@@ -240,7 +244,7 @@
   function summary() {
     title.textContent = current().label + " — decision review";
     title.setAttribute("tabindex", "-1");
-    story.textContent = "The three responses below are a personal reflection only. There is no numerical score, ranking or pass/fail. A real assessment would require agency job analysis, equivalent administration and trained assessors with validated evidence-based rubrics.";
+    story.textContent = "The responses below are a personal reflection only. There is no numerical score, ranking or pass/fail. A real assessment would require agency job analysis, equivalent administration and trained assessors with validated evidence-based rubrics.";
     step.textContent = "Sample exercise complete";
     progress.style.width = "100%";
     options.replaceChildren();
