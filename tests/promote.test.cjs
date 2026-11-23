@@ -162,3 +162,16 @@ test("PROMOTE review includes the choice-dependent briefing from the prior selec
   assert.match(source, /card\.appendChild\(briefing\)/);
   assert.doesNotMatch(source, /finalScore|aiRank|passFail/);
 });
+
+test("Police stage two has three genuinely different choice-dependent follow-ups", () => {
+ const source=load("promote.js");
+ const match=source.match(/"followUpOptionsByPriorChoice": (\[.*?\]),\n\s*"followUpConsequencesByPriorChoice": (\[.*?\]),/);
+ assert.ok(match,"conditional options and outcomes must be present");
+ const options=JSON.parse(match[1]), outcomes=JSON.parse(match[2]);
+ assert.equal(options.length,3);
+ for(let i=0;i<3;i++){assert.equal(options[i].length,3);assert.equal(outcomes[i].length,3);}
+ assert.equal(new Set(options.map(x=>x[0])).size,3,"each prior decision must change follow-up");
+ assert.match(source,/stageOptions\(stage, picks\[index - 1\]\)/);
+ assert.match(source,/stageConsequences\(stage, picks\[i - 1\]\)/);
+ new vm.Script(source,{filename:"promote.js"});
+});
