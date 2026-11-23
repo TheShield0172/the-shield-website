@@ -175,3 +175,16 @@ test("Police stage two has three genuinely different choice-dependent follow-ups
  assert.match(source,/stageConsequences\(stage, picks\[i - 1\]\)/);
  new vm.Script(source,{filename:"promote.js"});
 });
+
+test("Fire Officer second decision has distinct conditional response and consequence paths", () => {
+ const source=load("promote.js");
+ const fire=source.slice(source.indexOf('"title": "Withdrawal threshold under uncertain rescue conditions"'));
+ const match=fire.match(/"followUpOptionsByPriorChoice": (\[[\s\S]*?\]),\n\s*"followUpConsequencesByPriorChoice": (\[[\s\S]*?\]),/);
+ assert.ok(match,"Fire branch options and outcomes should be defined");
+ const options=JSON.parse(match[1]), outcomes=JSON.parse(match[2]);
+ assert.equal(options.length,3);
+ assert.equal(outcomes.length,3);
+ for(let i=0;i<3;i++){assert.equal(options[i].length,3);assert.equal(outcomes[i].length,3);}
+ assert.equal(new Set(options.map(branch=>branch[0])).size,3);
+ new vm.Script(source,{filename:"promote.js"});
+});
