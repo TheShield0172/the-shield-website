@@ -144,3 +144,12 @@ test("PROMOTE fictional decision trail uses real newline escapes, not literal ba
  assert.ok(!source.includes(wrong), "literal slash-n would appear to users");
  new vm.Script(source,{filename:"promote.js"});
 });
+
+test("PROMOTE uses prior choice to tailor the next briefing in every profession", () => {
+ const source=load("promote.js");
+ assert.equal((source.match(/followUpByPriorChoice:/g)||[]).length,3);
+ assert.match(source,/stage\.followUpByPriorChoice\[picks\[index - 1\]\]/);
+ assert.match(source,/Your earlier decision changes this briefing:/);
+ assert.match(source,/stage\.story/);
+ new vm.Script(source,{filename:"promote.js"});
+});
