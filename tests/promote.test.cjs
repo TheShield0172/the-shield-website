@@ -62,3 +62,12 @@ test("Every assessment has scenario stages, non-scored reviews and illustrative 
   assert.match(source, /no numerical score/i);
   assert.doesNotMatch(source, /speechRecognition|face-api|sentiment|aiRank|finalScore|passFail/);
 });
+
+test("Keyboard users are directed to each new decision and the final review", () => {
+  const source = load("promote.js");
+  assert.match(source, /title\.setAttribute\("tabindex", "-1"\)/);
+  assert.match(source, /if \(index < current\(\)\.stages\.length\) render\(\);\s*else summary\(\);\s*title\.focus\(\)/);
+  assert.match(source, /setTrack\(button\.dataset\.track\);\s*title\.focus\(\)/);
+  assert.match(source, /button\.setAttribute\("aria-pressed", "false"\)/);
+  assert.match(source, /options\.querySelectorAll\("button"\)/);
+});
