@@ -83,3 +83,12 @@ test("PROMOTE rotates displayed choices but preserves canonical branching", () =
   assert.match(source, /stage\.options\[picks\[i\]\]/);
   assert.doesNotMatch(source, /Math\.random/);
 });
+
+test("All three fictional tracks include a fourth supervisory tradeoff decision", () => {
+ const source=load("promote.js");
+ for(const heading of ["Staffing conflict after the first call","Withdrawal threshold under uncertain rescue conditions","A transport decision strains system coverage"]) {
+  assert.ok(source.includes(heading), "missing expanded decision: "+heading);
+ }
+ assert.match(source, /current\(\)\.stages\.length/);
+ assert.match(source, /stage\.options\[picks\[i\]\]/);
+});
