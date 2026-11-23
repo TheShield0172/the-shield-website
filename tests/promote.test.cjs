@@ -211,3 +211,42 @@ test("EMS second decision branches into distinct supervisory choices and consequ
  assert.equal(new Set(choices.map(branch=>branch[0])).size,3);
  new vm.Script(source,{filename:"promote.js"});
 });
+
+ 
+// Inspect the actual scenario objects rather than matching only source fragments.
+// The stub exits the browser UI early; no candidate data or network is involved.
+test("All three tracks have coherent six-stage branch data and distinct follow-up choices", () => {
+ const source=load("promote.js");
+ const anchor="  const el = id => document.getElementById(id);";
+ assert.ok(source.includes(anchor),"scenario extraction anchor missing");
+ const instrumented=source.replace(anchor,"  globalThis.__promoteTracks = tracks;\n"+anchor);
+ const context={document:{getElementById:()=>null,querySelectorAll:()=>[]}};
+ vm.runInNewContext(instrumented,context,{filename:"promote.js"});
+ const tracks=context.__promoteTracks;
+ assert.deepEqual(Object.keys(tracks).sort(),["ems","fire","police"]);
+ for(const [id,track] of Object.entries(tracks)){
+   assert.equal(track.stages.length,6,id+" should contain six decisions");
+   for(const [index,stage] of track.stages.entries()){
+     assert.ok(stage.title && stage.story && stage.dimension && stage.notes,id+" stage "+index+" incomplete");
+     assert.equal(stage.options.length,3,id+" stage "+index+" base options");
+     assert.equal(stage.consequences.length,3,id+" stage "+index+" base outcomes");
+     if(index!==1) continue;
+     for(const key of ["followUpByPriorChoice","followUpOptionsByPriorChoice","followUpConsequencesByPriorChoice"]){
+       assert.equal(stage[key]?.length,3,id+" missing three paths for "+key);
+     }
+     const firstResponses=[];
+     for(let prior=0;prior<3;prior++){
+       const responses=stage.followUpOptionsByPriorChoice[prior];
+       const outcomes=stage.followUpConsequencesByPriorChoice[prior];
+       assert.equal(responses.length,3,id+" branch "+prior+" choices");
+       assert.equal(outcomes.length,3,id+" branch "+prior+" consequences");
+       for(const item of [...responses,...outcomes,stage.followUpByPriorChoice[prior]]){
+         assert.ok(typeof item==="string" && item.trim().length>15,id+" branch "+prior+" empty or trivial text");
+       }
+       assert.equal(new Set(responses).size,3,id+" branch "+prior+" repeats a response");
+       firstResponses.push(responses[0]);
+     }
+     assert.equal(new Set(firstResponses).size,3,id+" prior decisions must change the follow-up choices");
+   }
+ }
+});
