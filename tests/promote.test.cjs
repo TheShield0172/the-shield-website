@@ -188,3 +188,16 @@ test("Fire Officer second decision has distinct conditional response and consequ
  assert.equal(new Set(options.map(branch=>branch[0])).size,3);
  new vm.Script(source,{filename:"promote.js"});
 });
+
+test("EMS second decision branches into distinct supervisory choices and consequences", () => {
+ const source=load("promote.js");
+ const ems=source.slice(source.indexOf('"title": "A transport decision strains system coverage"'));
+ const match=ems.match(/"followUpOptionsByPriorChoice": (\[[\s\S]*?\]),\n\s*"followUpConsequencesByPriorChoice": (\[[\s\S]*?\]),/);
+ assert.ok(match,"EMS choice-dependent branches must exist");
+ const choices=JSON.parse(match[1]), outcomes=JSON.parse(match[2]);
+ assert.equal(choices.length,3);
+ assert.equal(outcomes.length,3);
+ for(let i=0;i<3;i++){assert.equal(choices[i].length,3);assert.equal(outcomes[i].length,3);}
+ assert.equal(new Set(choices.map(branch=>branch[0])).size,3);
+ new vm.Script(source,{filename:"promote.js"});
+});
