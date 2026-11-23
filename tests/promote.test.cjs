@@ -153,3 +153,12 @@ test("PROMOTE uses prior choice to tailor the next briefing in every profession"
  assert.match(source,/stage\.story/);
  new vm.Script(source,{filename:"promote.js"});
 });
+
+// The reflection must preserve the branch actually seen, without introducing scores.
+test("PROMOTE review includes the choice-dependent briefing from the prior selection", () => {
+  const source = load("promote.js");
+  assert.match(source, /stage\.followUpByPriorChoice\[picks\[i - 1\]\]/);
+  assert.match(source, /briefing\.textContent = "Choice-dependent briefing: " \+ conditional/);
+  assert.match(source, /card\.appendChild\(briefing\)/);
+  assert.doesNotMatch(source, /finalScore|aiRank|passFail/);
+});
