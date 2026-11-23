@@ -34,6 +34,7 @@
         },
         {
           "title": "Staffing conflict after the first call",
+          "followUpByPriorChoice": ["Your earlier approach prioritized broad triage; command now asks which qualified person owns each scene and how you will confirm assignments.","You previously delegated arrest-scene preservation; the assigned officer reports uncertainty about the required handoff.","You previously remained at the arrest; dispatch asks who is responsible for confirming the second call's immediate safety."],
           "story": "00:21. Dispatch reports a domestic disturbance while your relief officer is securing evidence at the arrest. The caller's safety is unknown and no investigator has arrived. How do you manage the competing duties?",
           "options": [
             "Keep relief on evidence preservation while requesting outside assistance, accepting a possible delay to the new call.",
@@ -136,6 +137,7 @@
         },
         {
           "title": "Withdrawal threshold under uncertain rescue conditions",
+          "followUpByPriorChoice": ["Your initial size-up left the rescue report unresolved; command requests your explicit risk threshold.","You initially directed a more conservative resource posture; an incoming crew asks when the search objective may be reconsidered.","You previously sought additional verification; a crew now requests a clear decision deadline."],
           "story": "02:31. Conditions worsen near a search crew. One firefighter reports hearing a possible occupant, but the location is unconfirmed. An incoming company is staged outside. What supervisory tradeoff do you make?",
           "options": [
             "Continue the search only within explicit reassessment and withdrawal criteria, accepting continued crew exposure.",
@@ -238,6 +240,7 @@
         },
         {
           "title": "A transport decision strains system coverage",
+          "followUpByPriorChoice": ["Your initial incident coordination requested mutual aid; dispatch now needs a specific contingency if aid is delayed.","You previously assigned triage coordination; the transport crew asks who can authorize reassignment.","You initially prioritized system coverage; medical direction requests your documented rationale for the next allocation."],
           "story": "18:04. A hospital reports temporary diversion. The only nearby ambulance is committed to a lower-acuity transport when dispatch receives an incomplete report of respiratory distress. Mutual aid has no confirmed ETA. How do you supervise the allocation?",
           "options": [
             "Maintain the scheduled transport while requesting mutual aid, acknowledging the unknown response delay.",
@@ -356,7 +359,13 @@
       const priorIndex = trailStart + offset;
       return "Earlier development " + (priorIndex + 1) + ": " + prior.consequences[picks[priorIndex]];
     });
-    story.textContent = (trail.length ? trail.join("\n") + "\n\n" : "") + stage.story;
+    // Only the next decision gets a choice-specific supervisory complication.
+    // The common decision and its options remain the same for every path.
+    const conditional = index > 0 && stage.followUpByPriorChoice
+      ? stage.followUpByPriorChoice[picks[index - 1]] : "";
+    story.textContent = (trail.length ? trail.join("\n") + "\n\n" : "")
+      + (conditional ? "Your earlier decision changes this briefing: " + conditional + "\n\n" : "")
+      + stage.story;
     step.textContent = "Decision " + (index + 1) + " of " + current().stages.length;
     const percent = Math.round((index + 1) / current().stages.length * 100);
     progress.style.width = percent + "%";
