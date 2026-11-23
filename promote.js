@@ -277,6 +277,16 @@
         {
           "title": "A transport decision strains system coverage",
           "followUpByPriorChoice": ["Your initial incident coordination requested mutual aid; dispatch now needs a specific contingency if aid is delayed.","You previously assigned triage coordination; the transport crew asks who can authorize reassignment.","You initially prioritized system coverage; medical direction requests your documented rationale for the next allocation."],
+          "followUpOptionsByPriorChoice": [
+            ["Confirm the mutual-aid delay with dispatch and establish an interim coverage threshold, preserving the current patient's handoff.", "Ask the transporting crew for an updated clinical and operational status before considering reassignment, while dispatch checks other units.", "Escalate the uncovered response area to system command with a concrete contingency and a named dispatcher to monitor new calls."],
+            ["Clarify the clinical versus operational authority for any reassignment, and require a documented transfer plan before changing the transport.", "Retain the assigned transport while directing dispatch to verify the respiratory-distress report and seek the nearest appropriate response.", "Arrange a time-limited coverage plan with the receiving facility and dispatch, subject to medical-direction approval where required."],
+            ["Explain the verified resource picture to medical direction and dispatch, identifying which patients and units remain unconfirmed.", "Request a system-level allocation decision while preserving continuity for the active transport and documenting response gaps.", "Assign a qualified coordinator to track diversion and mutual-aid status while you verify the new call's urgency and available coverage."]
+          ],
+          "followUpConsequencesByPriorChoice": [
+            ["Mutual aid remains delayed and dispatch requests a deadline for revisiting coverage.", "The crew reports that a safe handoff cannot be completed immediately.", "System command requests a named owner for the uncovered district."],
+            ["The transport team requests clarification on who may approve a change.", "Dispatch cannot yet verify the caller's reported acuity.", "The receiving facility advises that the proposed handoff window has changed."],
+            ["Medical direction asks which facts remain uncertain.", "The transport crew asks who will update the receiving facility.", "The coordinator identifies a second uncovered response zone."]
+          ],
           "story": "18:04. A hospital reports temporary diversion. The only nearby ambulance is committed to a lower-acuity transport when dispatch receives an incomplete report of respiratory distress. Mutual aid has no confirmed ETA. How do you supervise the allocation?",
           "options": [
             "Maintain the scheduled transport while requesting mutual aid, acknowledging the unknown response delay.",
