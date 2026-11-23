@@ -63,3 +63,31 @@
 .promote-review-card{padding:15px;margin-bottom:10px;border-radius:11px;background:#12283b;border:1px solid #385571}
 .promote-review-card strong{display:block;color:#ffbf90;font-size:.88rem;margin-bottom:8px}
 .promote-review-card p{font-size:.79rem;line-height:1.6;margin:7px 0;color:#c1d0df}
+
+/* Three public-safety promotional assessment tracks, no job-selection scoring. */
+.track-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.track-card{display:flex;flex-direction:column;align-items:flex-start;min-height:252px;border:1px solid #37546e;padding:26px;border-radius:17px;background:linear-gradient(155deg,#142b40,#091422)}
+.track-card .track-mark{font-size:.73rem;letter-spacing:.12em;font-weight:800;color:#f9bd84;margin-bottom:16px}
+.track-card h3{font-size:1.4rem;margin:0 0 12px}
+.track-card p{font-size:.88rem;line-height:1.65;flex:1}
+.track-card .button{margin-top:12px}
+.track-fire{border-top:3px solid #f59f5a}
+.track-ems{border-top:3px solid #43b5b9}
+.track-police{border-top:3px solid #51b9ff}
+.track-switch{display:flex;align-items:stretch;gap:8px;margin:3px 0 20px;flex-wrap:wrap}
+.track-choice{font:700 .88rem/1.4 system-ui;border:1px solid #34526b;color:#d2e1ec;background:#112538;border-radius:10px;padding:12px 19px;cursor:pointer;flex:1;min-width:160px}
+.track-choice:hover{background:#183c55}
+.track-choice[aria-pressed=true]{color:#061725;background:#49c2f5;border-color:#67d2ff}
+.track-choice:focus-visible{outline:3px solid #c3e9fa;outline-offset:3px}
+#scenario-story{white-space:pre-line}
+.rationale-label{display:block;font-weight:700;color:#d6e5ef;font-size:.85rem;margin:22px 0 8px}
+#scenario-rationale{display:block;width:100%;min-height:95px;max-width:100%;resize:vertical;box-sizing:border-box;background:#101f30;color:#eff7fc;border:1px solid #486078;border-radius:12px;padding:12px 14px;font:400 .91rem/1.5 system-ui}
+#scenario-rationale:focus-visible{outline:3px solid #49c2f5;outline-offset:2px}
+#scenario-rationale::placeholder{color:#9cb0c2}
+.rationale-privacy{color:#9bb0c1;font-size:.7rem!important;margin:9px 0 0!important}
+.promote-page[data-assessment-track=fire] .lab-scene{background:radial-gradient(circle at 70% 27%,#e65e2860,transparent 36%),linear-gradient(150deg,#54312e,#161b24 61%,#09111b)}
+.promote-page[data-assessment-track=ems] .lab-scene{background:radial-gradient(circle at 72% 32%,#28a4b75e,transparent 39%),linear-gradient(150deg,#27415a,#101e2d 62%,#09121b)}
+.promote-page[data-assessment-track=fire] .lab-scene-overlay{border-left-color:#f59f5a}
+.promote-page[data-assessment-track=ems] .lab-scene-overlay{border-left-color:#46c5bd}
+@media(max-width:830px){.track-grid{grid-template-columns:1fr}.track-card{min-height:auto}.track-card .button{margin-top:6px}}
+@media(max-width:500px){.track-choice{flex-basis:100%}.track-card{padding:22px}}

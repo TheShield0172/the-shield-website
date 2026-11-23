@@ -36,3 +36,29 @@ test("PROMOTE is discoverable from the public home page", () => {
   assert.match(html, /href="promote\.html"/);
   assert.match(html, /THE SHIELD PROMOTE/);
 });
+
+test("Police, Fire and EMS previews are visible with direct track links", () => {
+  const html = load("promote.html");
+  for (const track of ["police", "fire", "ems"]) {
+    assert.match(html, new RegExp('data-track="' + track + '"'));
+    assert.match(html, new RegExp('promote\\.html\\?track=' + track + '#demo'));
+  }
+  for (const id of ["track-title", "track-intro", "scene-designator", "scene-tag",
+                    "scene-caption", "scene-summary", "scenario-rationale"]) {
+    assert.ok(html.includes('id="' + id + '"'), "missing track UI " + id);
+  }
+  assert.match(html, /not a validated promotional test|not validated for selection|not validated for employment|not validated for actual personnel/i);
+});
+test("Every assessment has scenario stages, non-scored reviews and illustrative assessor dimensions", () => {
+  const source = load("promote.js");
+  for (const title of ["Police Sergeant", "Fire Company Officer", "EMS Field Supervisor"]) {
+    assert.ok(source.includes(title), "missing assessment " + title);
+  }
+  for (const dimension of ["Fireground size-up", "Clinical oversight", "Situational judgment and resource allocation"]) {
+    assert.ok(source.includes(dimension), "missing competency dimension " + dimension);
+  }
+  assert.match(source, /consequences\[picks\[index - 1\]\]/);
+  assert.match(source, /Your reasoning:/);
+  assert.match(source, /no numerical score/i);
+  assert.doesNotMatch(source, /speechRecognition|face-api|sentiment|aiRank|finalScore|passFail/);
+});
