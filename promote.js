@@ -17,6 +17,22 @@
       summary: "Night shift • Competing supervisory obligations",
       stages: [
         {
+          "title": "Staffing conflict after the first call",
+          "story": "00:21. Dispatch reports a domestic disturbance while your relief officer is securing evidence at the arrest. The caller's safety is unknown and no investigator has arrived. How do you manage the competing duties?",
+          "options": [
+            "Keep relief on evidence preservation while requesting outside assistance, accepting a possible delay to the new call.",
+            "Transfer preservation responsibility to a qualified custodian and reassign relief to the new call, documenting the coverage and evidence risks.",
+            "Escalate the coverage conflict to command, arrange immediate caller-safety checks, and revise assignments when risk is confirmed."
+          ],
+          "dimension": "Dynamic staffing and accountability",
+          "notes": "Examine explicit tradeoffs, duty transfers, urgency, uncertainty and the reasoning behind delayed or reassigned coverage.",
+          "consequences": [
+            "The caller disconnects before additional help arrives.",
+            "The replacement custodian discovers an inventory discrepancy.",
+            "Command asks for a concrete recommendation rather than a general escalation."
+          ]
+        },
+        {
           title: "Two incidents, one acting sergeant",
           story: "23:47. After a contentious arrest, one officer raises a concern about possible excessive force. Dispatch reports another high-priority call with no other supervisor immediately available. The subject's medical status, the second call's threat level and the availability of relief are not yet confirmed. What do you prioritize and how do you communicate it?",
           options: [
@@ -71,6 +87,22 @@
       summary: "Multi-unit residential building • Fireground leadership",
       stages: [
         {
+          "title": "Withdrawal threshold under uncertain rescue conditions",
+          "story": "02:31. Conditions worsen near a search crew. One firefighter reports hearing a possible occupant, but the location is unconfirmed. An incoming company is staged outside. What supervisory tradeoff do you make?",
+          "options": [
+            "Continue the search only within explicit reassessment and withdrawal criteria, accepting continued crew exposure.",
+            "Withdraw for a new exterior assessment, accepting delay in searching for a possible occupant.",
+            "Pause new commitments, seek an updated crew conditions report and clarify a time-limited reassessment with command."
+          ],
+          "dimension": "Risk-benefit judgment and crew welfare",
+          "notes": "Review recognition of uncertainty, rescue urgency, crew safety, accountability and communication. Fictional only, not field guidance.",
+          "consequences": [
+            "The reported voice cannot be located as conditions worsen.",
+            "An occupant disputes the reported location.",
+            "The crew reports a delay acknowledging the reassessment order."
+          ]
+        },
+        {
           title: "A rescue report with missing information",
           story: "02:16. Your engine arrives at a three-story multi-unit residence with smoke on the second floor. A bystander reports a resident may still be upstairs, but no one has confirmed the location. The next company is several minutes away, the water supply is not established and visible conditions are changing. How do you structure the first actions?",
           options: [
@@ -124,6 +156,22 @@
       caption: "Multiple patients. Competing priorities.",
       summary: "Regional EMS system • Resource and clinical oversight",
       stages: [
+        {
+          "title": "A transport decision strains system coverage",
+          "story": "18:04. A hospital reports temporary diversion. The only nearby ambulance is committed to a lower-acuity transport when dispatch receives an incomplete report of respiratory distress. Mutual aid has no confirmed ETA. How do you supervise the allocation?",
+          "options": [
+            "Maintain the scheduled transport while requesting mutual aid, acknowledging the unknown response delay.",
+            "Reconsider the existing assignment with dispatch and medical direction where appropriate, ensuring continuity and a documented handoff.",
+            "Seek system command's allocation decision while arranging interim coverage and confirming the new patient's acuity."
+          ],
+          "dimension": "System coverage and ethical resource allocation",
+          "notes": "Review acuity uncertainty, authority, continuity of care, resource tradeoffs and communication. Fictional only, not treatment guidance.",
+          "consequences": [
+            "Mutual aid cannot confirm an ETA.",
+            "The transport crew raises a continuity-of-care concern.",
+            "Dispatch asks who can authorize reassignment."
+          ]
+        },
         {
           title: "The resource shortage",
           story: "17:28. Two ambulances are transporting and one crew is already on a high-acuity call. Dispatch reports a multi-vehicle crash with several possible patients. A neighboring service may be available, but arrival time is uncertain. What is your immediate command-and-coordination response?",
