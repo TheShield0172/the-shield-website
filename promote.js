@@ -428,6 +428,15 @@
       review.textContent = "Illustrative trained assessor considerations: " + stage.notes;
       const outcome = document.createElement("p");
       outcome.textContent = "Fictional development: " + stage.consequences[picks[i]];
+      // Preserve the actual choice-dependent briefing in the final reflection.
+      // This is descriptive context, not an assessor score or recommendation.
+      const conditional = i > 0 && stage.followUpByPriorChoice
+        ? stage.followUpByPriorChoice[picks[i - 1]] : "";
+      if (conditional) {
+        const briefing = document.createElement("p");
+        briefing.textContent = "Choice-dependent briefing: " + conditional;
+        card.appendChild(briefing);
+      }
       card.append(heading, choice, outcome, explanation, review);
       options.appendChild(card);
     });
