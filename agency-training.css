@@ -1,0 +1,40 @@
+.agency-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center;padding-top:90px;padding-bottom:92px}
+.agency-hero h1{font-size:clamp(2.6rem,5.3vw,4.6rem)}
+.agency-hero .accent{color:#ff8b3d}
+.agency-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.agency-status{border-left:3px solid #e29853;padding-left:13px;color:#d9c5ae;font-size:.84rem}
+.agency-visual{background:linear-gradient(155deg,#163350,#07131f);border:1px solid #426080;border-radius:23px;padding:22px;min-height:360px;box-shadow:0 30px 80px #0006}
+.agency-visual-tag{color:#a8d8f1;letter-spacing:.12em;font-weight:800;font-size:.67rem}
+.agency-visual-screen{min-height:260px;display:flex;flex-direction:column;justify-content:flex-end;padding:27px 22px;background:radial-gradient(circle at 75% 20%,#1c5e7b 0%,#0a1b31 46%,#091321 100%);border-radius:15px;margin:18px 0}
+.agency-visual-screen h2{font-size:clamp(1.55rem,2.8vw,2.3rem);margin-top:17px}
+.agency-visual-screen p{margin:0}
+.agency-pulse{color:#ffa85d;font-size:.7rem;font-weight:800;letter-spacing:.1em}
+.agency-visual-footer{display:flex;gap:9px;flex-wrap:wrap}
+.agency-visual-footer span{font-size:.7rem;border:1px solid #477094;border-radius:20px;padding:7px 10px;color:#c8ddeb}
+.agency-cards,.agency-offer{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.agency-cards article,.agency-offer>div,.agency-form-panel,.agency-info{border:1px solid #2c4966;background:#101e30;border-radius:16px;padding:27px}
+.agency-cards article{display:flex;flex-direction:column}
+.agency-cards article span{color:#66c7ff;font-weight:800;font-size:.74rem;letter-spacing:.1em;margin-bottom:16px}
+.agency-cards article p{flex:1}
+.agency-cards article a{font-weight:750}
+.agency-offer strong{display:block;margin-bottom:12px}
+.agency-offer p{margin:0}
+.agency-disclaimer{margin-top:30px;padding:19px;border:1px solid #836a4c;border-radius:12px;background:#30291f;color:#f1d7b5;font-size:.88rem}
+.agency-inquiry-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.agency-info{margin-top:28px}
+.agency-info p{margin:8px 0 0}
+.agency-form-panel h3{font-size:1.4rem}
+.agency-form-panel fieldset{border:0;padding:0;margin:0;display:grid;gap:9px}
+.agency-form-panel label{font-weight:650;margin-top:10px}
+.agency-form-panel input:not([type=checkbox]),.agency-form-panel select,.agency-form-panel textarea{min-width:0;width:100%;background:#071423;color:#f5f9ff;border:1px solid #47627a;border-radius:9px;padding:12px;font:inherit}
+.agency-form-panel textarea{resize:vertical}
+.agency-form-panel input:focus-visible,.agency-form-panel select:focus-visible,.agency-form-panel textarea:focus-visible{outline:2px solid #38bbff;outline-offset:2px}
+.agency-consent{display:flex;align-items:flex-start;gap:11px;font-weight:400!important;font-size:.83rem;color:#d4deec;margin-top:15px!important}
+.agency-consent input{width:18px;height:18px;flex:0 0 18px;margin-top:3px}
+.agency-form-panel button{margin-top:13px;width:max-content}
+#agency-connection,.agency-privacy{font-size:.82rem}
+#agency-connection{color:#a8d8f1}
+#agency-result{border:1px solid #336b61;border-radius:10px;background:#10382e;padding:14px;margin-top:15px;color:#d3f6eb}
+#agency-result.error{border-color:#8f584f;background:#40211e;color:#ffddd7}
+.agency-honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+@media(max-width:800px){.agency-hero,.agency-inquiry-layout{grid-template-columns:1fr}.agency-hero{padding-top:55px;padding-bottom:65px}.agency-cards,.agency-offer{grid-template-columns:1fr}.agency-visual{min-height:250px}.agency-visual-screen{min-height:220px}}
