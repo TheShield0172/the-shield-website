@@ -54,7 +54,7 @@ test("Every assessment has scenario stages, non-scored reviews and illustrative 
   for (const title of ["Police Sergeant", "Fire Company Officer", "EMS Field Supervisor"]) {
     assert.ok(source.includes(title), "missing assessment " + title);
   }
-  for (const dimension of ["Fireground size-up", "Clinical oversight", "Resource allocation"]) {
+  for (const dimension of ["Fireground size-up", "Clinical oversight", "Situational judgment and resource allocation"]) {
     assert.ok(source.includes(dimension), "missing competency dimension " + dimension);
   }
   assert.match(source, /consequences\[picks\[index - 1\]\]/);
