@@ -99,3 +99,11 @@ test("PROMOTE contains five fictional decision stages in each track", () => {
  new vm.Script(source, {filename:"promote.js"});
  assert.match(source, /current\(\)\.stages\.length/);
 });
+
+test("PROMOTE review displays the chosen consequence for every decision, including the last", () => {
+ const source=load("promote.js");
+ new vm.Script(source,{filename:"promote.js"});
+ assert.match(source,/stage\.consequences\[picks\[i\]\]/);
+ assert.match(source,/Fictional development:/);
+ assert.match(source,/card\.append\(heading, choice, outcome, explanation, review\)/);
+});
