@@ -58,3 +58,8 @@
 @media(max-width:760px){.promote-hero-grid,.promote-lab{grid-template-columns:1fr}.promote-hero{padding:53px 0}.lab-scene{min-height:270px}.promote-benefits{grid-template-columns:1fr}.promote-bottom{align-items:flex-start;flex-direction:column}.promote-nav>a:not(.button){display:none}.promote-nav a.button{padding:10px 12px;font-size:.73rem}}
 @media(max-width:500px){.promote-steps{grid-template-columns:1fr}.console-top{font-size:.53rem}.cinema-card{height:270px}.lab-controls{padding:21px}.band-inner{justify-content:center;gap:12px}.band-inner span{font-size:.58rem}.promote-page h1{font-size:2.7rem}.promote-caution{font-size:.73rem}}
 @media(prefers-reduced-motion:reduce){#progress-fill{transition:none}}
+
+/* Concept-only evidence review, never a selection score. */
+.promote-review-card{padding:15px;margin-bottom:10px;border-radius:11px;background:#12283b;border:1px solid #385571}
+.promote-review-card strong{display:block;color:#ffbf90;font-size:.88rem;margin-bottom:8px}
+.promote-review-card p{font-size:.79rem;line-height:1.6;margin:7px 0;color:#c1d0df}
