@@ -139,6 +139,40 @@
         },
         {
           "title": "Withdrawal threshold under uncertain rescue conditions",
+          "followUpOptionsByPriorChoice": [
+            [
+              "Confirm the reported occupant location through command while setting explicit crew accountability and reassessment checkpoints.",
+              "Hold the current crew at its established limit while a qualified team verifies the unconfirmed report.",
+              "Request a time-bound command decision and communicate interim withdrawal triggers to all assigned crews."
+            ],
+            [
+              "Reconcile the staged company's assignment with command before changing the conservative operating posture.",
+              "Ask the incoming officer to verify personnel and communications while command reviews the uncertain rescue report.",
+              "Maintain the existing perimeter and obtain a new hazard assessment before requesting a change of objective."
+            ],
+            [
+              "Set a specific deadline for the outstanding verification and identify who can authorize a revised objective.",
+              "Keep the crew within its current assignment while a second source checks the report, documenting the uncertainty.",
+              "Escalate the unresolved rescue report to command and require an acknowledged interim crew-safety plan."
+            ]
+          ],
+          "followUpConsequencesByPriorChoice": [
+            [
+              "The reported location remains unverified and command asks who owns the next reassessment.",
+              "The verification team reports conflicting information as conditions change.",
+              "A crew reports that the interim withdrawal trigger was not acknowledged by every member."
+            ],
+            [
+              "The incoming company reports a staffing mismatch that requires a new assignment.",
+              "A radio problem delays confirmation of the accountability check.",
+              "The new assessment identifies a change in the operating area that command must review."
+            ],
+            [
+              "The verification deadline passes without an agreed source of information.",
+              "A second report contradicts the first and the crew requests direction.",
+              "Command requests an explicit owner and deadline for the next update."
+            ]
+          ],
           "followUpByPriorChoice": ["Your initial size-up left the rescue report unresolved; command requests your explicit risk threshold.","You initially directed a more conservative resource posture; an incoming crew asks when the search objective may be reconsidered.","You previously sought additional verification; a crew now requests a clear decision deadline."],
           "story": "02:31. Conditions worsen near a search crew. One firefighter reports hearing a possible occupant, but the location is unconfirmed. An incoming company is staged outside. What supervisory tradeoff do you make?",
           "options": [
