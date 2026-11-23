@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'none'; connect-src https://formspree.io; form-action 'none'; object-src 'none'; base-uri 'none'">
+  <meta name="description" content="Explore THE SHIELD's proposed police, fire and EMS interactive supervisory leadership training and request a no-obligation agency discovery conversation.">
+  <title>Agency Leadership Lab | THE SHIELD</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="agency-training.css">
+  <script defer src="feedback-config.js"></script>
+  <script defer src="agency-training.js"></script>
+</head>
+<body class="agency-lab">
+  <header class="nav">
+    <div class="container navinner">
+      <a class="logo" href="index.html"><img class="brand-logo" src="assets/tst-team-logo.webp" width="52" height="52" alt="" aria-hidden="true"> <span>THE SHIELD</span></a>
+      <nav class="navlinks"><a href="promote.html">PROMOTE preview</a><a href="#tracks">Training tracks</a><a class="button secondary" href="#agency-inquiry">Agency inquiry</a></nav>
+    </div>
+  </header>
+  <main>
+    <section class="agency-hero container">
+      <div class="agency-hero-copy">
+        <div class="eyebrow">THE SHIELD / AGENCY LEADERSHIP LAB · EXPLORATORY PILOT</div>
+        <h1>Better leadership starts <span class="accent">before</span> the promotion.</h1>
+        <p class="lead">Give your future public safety supervisors a place to practice the hard calls—competing priorities, crew safety, accountability, and communication—through realistic decision-making scenarios and guided debriefs.</p>
+        <div class="agency-actions"><a class="button primary" href="#agency-inquiry">Explore an agency pilot</a><a class="button secondary" href="promote.html#tracks">Try the free interactive previews</a></div>
+        <p class="agency-status">Research-stage offering. No assessments, paid training contracts, or custom packages are currently available for immediate purchase. Inquiries help us confirm scope, demand and safe delivery.</p>
+      </div>
+      <div class="agency-visual">
+        <div class="agency-visual-tag">DECISION LAB / THREE PROFESSIONS</div>
+        <div class="agency-visual-screen">
+          <div class="agency-pulse">● SIMULATED SHIFT</div>
+          <h2>A call for help. A second crisis. Your team is watching.</h2>
+          <p>What would you do—and why?</p>
+        </div>
+        <div class="agency-visual-footer"><span>Realistic choices</span><span>Human discussion</span><span>Actionable debrief</span></div>
+      </div>
+    </section>
+    <section class="section alt" id="tracks"><div class="container">
+      <div class="sectionintro"><div class="eyebrow">One purpose, profession-specific situations</div><h2>Three public safety leadership pathways</h2><p>Each public preview uses a fictional scenario and unscored decisions. Real-world training content would require agency-specific subject-matter review.</p></div>
+      <div class="agency-cards">
+        <article><span>01 / LAW ENFORCEMENT</span><h3>First-line police leaders</h3><p>Competing calls, misconduct disclosures, duty to intervene, operational oversight and honest command handoffs.</p><a href="promote.html?track=police#demo">Explore Police →</a></article>
+        <article><span>02 / FIRE SERVICE</span><h3>Company officers</h3><p>Fireground size-up, accountability, staffing limits and difficult decisions with incomplete information.</p><a href="promote.html?track=fire#demo">Explore Fire →</a></article>
+        <article><span>03 / EMS</span><h3>Field supervisors</h3><p>Resources, clinical escalation, crew supervision and interagency coordination.</p><a href="promote.html?track=ems#demo">Explore EMS →</a></article>
+      </div>
+    </div></section>
+    <section class="section"><div class="container">
+      <div class="sectionintro"><div class="eyebrow">The proposed agency pilot</div><h2>Training that starts conversations, not employee rankings.</h2><p>We're validating whether departments would benefit from a structured, low-overhead leadership-development package built around fictional decisions.</p></div>
+      <div class="agency-offer">
+        <div><strong>Scenario exercise</strong><p>Profession-specific, fictional supervisory decisions reviewed with qualified personnel.</p></div>
+        <div><strong>Discussion prompts</strong><p>Explore competing duties, decision rationales, uncertainty and alternatives.</p></div>
+        <div><strong>Facilitator debrief</strong><p>A proposed training guide for group learning, with no individual scores or promotion rankings.</p></div>
+      </div>
+      <p class="agency-disclaimer"><strong>Important distinction:</strong> This is a concept for voluntary training and professional development. It is not a validated employment-selection instrument. It must not be used to hire, promote, rank, discipline or make adverse decisions about employees. AI-generated cinematic video, individualized grading, agency logins and production assessment centers are not available in this pilot.</p>
+    </div></section>
+    <section class="section alt" id="agency-inquiry"><div class="container agency-inquiry-layout">
+      <div>
+        <div class="eyebrow">Request information / no purchase</div>
+        <h2>Could this help your agency?</h2>
+        <p>Tell us what training challenges your department wants to solve. We are collecting interest, preferred scope and budget expectations before finalizing deliverables or pricing.</p>
+        <p>This form does not request candidate names, employee evaluations, patient or incident records, agency policy files, or other restricted information.</p>
+        <div class="agency-info"><strong>What happens next</strong><p>Your inquiry goes to THE SHIELD's existing receiving inbox through Formspree. The team may contact you to clarify needs. There is no contract, deposit, sales subscription or automatic marketing enrollment.</p></div>
+      </div>
+      <section class="agency-form-panel" aria-labelledby="agency-form-title">
+        <h3 id="agency-form-title">Agency pilot interest</h3>
+        <p id="agency-connection" role="status" aria-live="polite">Checking inquiry availability…</p>
+        <form id="agency-form" novalidate method="post" action="#">
+          <fieldset id="agency-fields" disabled>
+            <label for="agency-name">Agency / organization *</label>
+            <input id="agency-name" name="agency" required maxlength="120" autocomplete="organization" placeholder="Organization name">
+            <label for="contact-name">Your name *</label>
+            <input id="contact-name" name="contact_name" required maxlength="90" autocomplete="name" placeholder="Contact name">
+            <label for="work-email">Work email *</label>
+            <input id="work-email" name="email" type="email" required maxlength="160" autocomplete="email" placeholder="name@agency.gov">
+            <label for="track">Field of interest *</label>
+            <select id="track" name="track" required><option value="">Select a field</option><option value="police">Law enforcement</option><option value="fire">Fire</option><option value="ems">EMS</option><option value="dispatch">911 dispatch</option><option value="corrections">Corrections</option><option value="multiple">Multiple disciplines</option></select>
+            <label for="agency-goal">Training priority *</label>
+            <select id="agency-goal" name="training_goal" required><option value="">Choose a goal</option><option value="new-supervisors">New supervisor readiness</option><option value="leadership-practice">Scenario-based leadership practice</option><option value="in-service">In-service / continuing education</option><option value="assessment-discovery">Future promotional assessment research only</option><option value="other">Other leadership-development need</option></select>
+            <label for="agency-size">Expected group size (optional)</label>
+            <select id="agency-size" name="group_size"><option value="">Undecided</option><option value="1-10">1–10 trainees</option><option value="11-25">11–25 trainees</option><option value="26-50">26–50 trainees</option><option value="51+">51+ trainees</option></select>
+            <label for="budget">Possible pilot budget (optional)</label>
+            <select id="budget" name="budget"><option value="">Not sure / exploring</option><option value="under-1000">Under $1,000</option><option value="1000-2499">$1,000–$2,499</option><option value="2500-4999">$2,500–$4,999</option><option value="5000-plus">$5,000+</option></select>
+            <label for="agency-note">Training needs (optional, general only)</label>
+            <textarea id="agency-note" name="training_needs" rows="3" maxlength="500" placeholder="Which supervisory skills or training needs matter most? No actual cases or personnel data."></textarea>
+            <label class="agency-consent" for="agency-consent"><input type="checkbox" id="agency-consent" name="contact_consent" value="Agreed to an individual reply" required><span>I agree to send these business contact details to Formspree for THE SHIELD to review and respond to this inquiry. This is not a marketing-list subscription. *</span></label>
+            <div class="agency-honeypot" aria-hidden="true"><label for="agency-web">Leave this blank</label><input id="agency-web" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
+            <input type="hidden" name="_subject" value="THE SHIELD — AGENCY TRAINING INQUIRY">
+            <input type="hidden" name="source" value="THE SHIELD agency leadership training interest v1">
+            <button class="button primary" id="agency-submit" type="submit" disabled>Send agency inquiry</button>
+          </fieldset>
+          <div id="agency-result" role="status" aria-live="polite" hidden></div>
+        </form>
+        <p class="agency-privacy">Your business contact data is only submitted when you press Send. Review the <a href="privacy.html">privacy notice</a> and Formspree's <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
+      </section>
+    </div></section>
+  </main>
+  <footer><div class="container inner"><span>© 2026 THE SHIELD • Exploratory agency leadership training, no purchases or employment decisions.</span><div class="footerlinks"><a href="promote.html">PROMOTE</a><a href="feedback.html">Feedback</a><a href="privacy.html">Privacy</a><a href="index.html">Home</a></div></div></footer>
+</body></html>
