@@ -75,6 +75,22 @@
           dimension: "Command communication, judgment and accountability",
           notes: "Review candor, handoff quality, limits on disclosure, time-sensitive tasks and the reasoned distinction between facts and speculation.",
           consequences: ["The incident moves to formal review.", "A documented handoff is completed.", "The event remains under investigation."]
+        },
+        {
+          "title": "Supervisory coaching after the incident",
+          "story": "01:05. An officer who was not involved says the shift is blaming the reporting witness. The officer asks you to address the team before morning briefing. An investigator cautions that witness accounts must remain independent. How do you lead without contaminating the inquiry?",
+          "options": [
+            "Hold a short standards-focused briefing without discussing allegations, while documenting and referring possible retaliation concerns.",
+            "Meet privately with the reporting officer first, accepting a delay in addressing team rumors while confirming appropriate support and protection.",
+            "Ask command and investigators to coordinate an immediate communication plan, accepting a slower response to the shift's concerns."
+          ],
+          "dimension": "Coaching, impartiality and organizational trust",
+          "notes": "Consider anti-retaliation safeguards, confidentiality, non-prejudgment, team leadership and timeliness.",
+          "consequences": [
+            "The shift requests clearer behavioral expectations.",
+            "A witness reports feeling isolated.",
+            "Command requests a documented plan for supervisor follow-up."
+          ]
         }
       ]
     },
@@ -145,6 +161,22 @@
           dimension: "Command transition and learning culture",
           notes: "Review factual completeness, crew welfare, hazard reporting and distinction between immediate operations and subsequent nonpunitive learning or formal investigation as required.",
           consequences: ["Command transitions with unresolved hazards documented.", "A formal safety follow-up is assigned.", "A supervisory debrief is scheduled."]
+        },
+        {
+          "title": "A near miss during demobilization",
+          "story": "03:02. After command transfer, a firefighter privately reports an equipment problem that may have contributed to a near miss. The apparatus is scheduled for another assignment. The crew is fatigued and the incident review is not yet complete. How do you balance readiness and accountability?",
+          "options": [
+            "Keep the apparatus available with a documented limitation and seek an authorized equipment assessment, accepting reduced operational flexibility.",
+            "Request the affected equipment be taken out of service pending authorized inspection, and coordinate replacement coverage despite staffing strain.",
+            "Elevate the safety report to command and logistics, document the risk and request an explicit service-status decision before redeployment."
+          ],
+          "dimension": "Safety culture, readiness and supervision",
+          "notes": "Consider immediate hazard control, authority, accurate reporting, crew welfare and system coverage.",
+          "consequences": [
+            "A replacement apparatus is delayed.",
+            "Dispatch requests the unit's availability status.",
+            "A crew member asks whether reporting the near miss will affect discipline."
+          ]
         }
       ]
     },
@@ -215,6 +247,22 @@
           dimension: "Confidentiality, systems leadership and communication",
           notes: "Review respect for patient privacy, accurate command reporting, cross-agency cooperation and a quality-improvement mindset without unsupported fault findings.",
           consequences: ["A structured operations review is initiated.", "The resource coordination plan is revisited.", "A quality-assurance follow-up is documented."]
+        },
+        {
+          "title": "Supporting a crew after a difficult call",
+          "story": "19:12. A crew reports fatigue and concern about an earlier clinical decision. The service is short staffed and a manager asks that the unit return immediately to service. No current patient is assigned. How do you handle welfare, coverage and quality review?",
+          "options": [
+            "Request a brief relief period and arrange temporary coverage, documenting the operational gap and referral route for the clinical concern.",
+            "Return the unit to service with a clear escalation pathway if fatigue impairs readiness, accepting the risk of reduced recovery time.",
+            "Seek an immediate supervisory readiness determination and alternative coverage options, separating crew support from confidential quality review."
+          ],
+          "dimension": "Staff welfare, operational readiness and accountability",
+          "notes": "Consider staff safety, medical-direction boundaries, continuity of service, confidentiality and nonretaliation.",
+          "consequences": [
+            "Coverage remains tight while relief is arranged.",
+            "A crew member questions whether they can safely continue.",
+            "Management requests a written readiness rationale."
+          ]
         }
       ]
     }
