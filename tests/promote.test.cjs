@@ -71,3 +71,15 @@ test("Keyboard users are directed to each new decision and the final review", ()
   assert.match(source, /button\.setAttribute\("aria-pressed", "false"\)/);
   assert.match(source, /options\.querySelectorAll\("button"\)/);
 });
+
+// Presentation order must not change the canonical branch selected or review text.
+test("PROMOTE rotates displayed choices but preserves canonical branching", () => {
+  const source = load("promote.js");
+  assert.match(source, /const order = stage\.options\.map\(\(_, i\) => \(i \+ index\) % stage\.options\.length\)/);
+  assert.match(source, /order\.forEach\(\(optionId, i\) =>/);
+  assert.match(source, /selection = optionId/);
+  assert.match(source, /picks\.push\(selection\)/);
+  assert.match(source, /consequences\[picks\[index - 1\]\]/);
+  assert.match(source, /stage\.options\[picks\[i\]\]/);
+  assert.doesNotMatch(source, /Math\.random/);
+});
