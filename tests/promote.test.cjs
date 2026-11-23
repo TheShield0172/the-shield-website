@@ -235,6 +235,8 @@ test("All three tracks have coherent six-stage branch data and distinct follow-u
        assert.equal(stage[key]?.length,3,id+" missing three paths for "+key);
      }
      const firstResponses=[];
+     const branchBriefings=[];
+     const branchOutcomes=[];
      for(let prior=0;prior<3;prior++){
        const responses=stage.followUpOptionsByPriorChoice[prior];
        const outcomes=stage.followUpConsequencesByPriorChoice[prior];
@@ -245,8 +247,13 @@ test("All three tracks have coherent six-stage branch data and distinct follow-u
        }
        assert.equal(new Set(responses).size,3,id+" branch "+prior+" repeats a response");
        firstResponses.push(responses[0]);
+       branchBriefings.push(stage.followUpByPriorChoice[prior]);
+       branchOutcomes.push(outcomes.join("\\u0000"));
+       assert.equal(new Set(outcomes).size,3,id+" branch "+prior+" repeats an outcome");
      }
      assert.equal(new Set(firstResponses).size,3,id+" prior decisions must change the follow-up choices");
+     assert.equal(new Set(branchBriefings).size,3,id+" prior decisions must change the briefing");
+     assert.equal(new Set(branchOutcomes).size,3,id+" prior decisions must change the consequence set");
    }
  }
 });
