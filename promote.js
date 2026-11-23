@@ -3,63 +3,220 @@
  * SHIELD PROMOTE public proof-of-concept.
  * No score, ranking, candidate account, persistence, telemetry or network calls.
  * This is a developmental exercise, NOT an employment selection instrument.
+ * Use fictional inputs only. Clinical and emergency response decisions are
+ * illustrative supervisory prompts, never field directions or treatment orders.
  */
 (() => {
-  const stages = [
-    {
-      title: "Two incidents, one acting sergeant",
-      story: "23:47. You arrive after a contentious arrest. One officer is asking you to review possible excessive force. Dispatch reports another high-priority call with limited supervisory coverage. Both situations may require immediate action. What do you do first, and what information do you need?",
-      options: [
-        "Stabilize both incidents through the available command structure, check immediate safety and medical needs, and identify who can preserve time-sensitive evidence.",
-        "Personally attend the second call while directing a designated qualified person to secure the arrest scene, evidence and required notifications.",
-        "Remain at the arrest, arrange a clear relief and response plan for the second call, and establish the immediate facts needed for appropriate escalation."
-      ],
-      dimension: "Resource prioritization and situational judgment",
-      notes: "An assessor would examine how the candidate establishes urgency, allocates available resources, maintains command accountability, identifies immediate medical needs and explains the tradeoffs. No single action can be graded fairly without relevant staffing and policy facts."
+  const tracks = {
+    police: {
+      label: "Police Sergeant",
+      intro: "You are an acting patrol sergeant. Evaluate competing legal, personnel and operational responsibilities across a fictional night shift.",
+      scene: "SCENE 001 / INTERNAL REVIEW",
+      tag: "SHIFT COMMAND",
+      caption: "Two urgent calls. One difficult question.",
+      summary: "Night shift • Competing supervisory obligations",
+      stages: [
+        {
+          title: "Two incidents, one acting sergeant",
+          story: "23:47. After a contentious arrest, one officer raises a concern about possible excessive force. Dispatch reports another high-priority call with no other supervisor immediately available. The subject's medical status, the second call's threat level and the availability of relief are not yet confirmed. What do you prioritize and how do you communicate it?",
+          options: [
+            "Clarify immediate threats and medical needs at both scenes, assign qualified coverage if available, and initiate evidence preservation and required command notifications.",
+            "Respond personally to the second call after assigning a designated supervisor or qualified unit to preserve the arrest scene and coordinate urgent care.",
+            "Remain at the arrest until its immediate risks are stabilized while seeking the nearest command relief and confirming who is responsible for the other incident."
+          ],
+          dimension: "Situational judgment and resource allocation",
+          notes: "Review the candidate's treatment of unknown risks, triage rationale, coverage, preservation and supervisory accountability; no single path is sufficient without agency facts.",
+          consequences: [
+            "Dispatch confirms the second incident involves a reported weapon. The arrest subject asks for medical care. Your assignments now require explicit confirmation.",
+            "Your relief officer reports they are newly trained and uncertain what evidence to secure. The arrest subject requests care.",
+            "The second scene now has conflicting radio reports. You must verify coverage while preserving the arrest investigation."
+          ]
+        },
+        {
+          title: "A witness describes possible misconduct",
+          story: "An uninvolved officer says force may have continued after the subject was restrained. The involved officer disputes the account; BWC footage is not yet reviewed. A ranking supervisor wants preliminary facts immediately. How do you preserve a fair process while addressing the operational risks?",
+          options: [
+            "Document the disclosure without prejudging it, ensure medical needs and scene security, arrange evidence preservation and initiate the notifications required by policy.",
+            "Use an uninvolved qualified supervisor for initial witness coordination and evidence security while maintaining operational command and following the agency's investigative separation requirements.",
+            "Request an appropriate investigative response, identify immediate preservation tasks and avoid informal group questioning that could affect independent accounts."
+          ],
+          dimension: "Integrity, evidence handling and procedural fairness",
+          notes: "Review impartiality, evidence preservation, separation of roles, affected persons' rights, applicable labor protections and whether the candidate recognizes when to elevate the inquiry.",
+          consequences: [
+            "Command asks whether you can confirm a violation. The available information is incomplete.",
+            "An investigator asks which evidence and accounts are already independently preserved, and where operational command resides.",
+            "A witness is preparing to leave; records-retention and timely witness contact require coordination under policy."
+          ]
+        },
+        {
+          title: "Command wants a public update",
+          story: "A supervisor suggests making an immediate public statement. The arrest video has not been reviewed; the second call is still developing. Your shift is transitioning and you must brief the incoming commander. What information do you communicate and what do you withhold?",
+          options: [
+            "Provide confirmed and unconfirmed information separately, explain outstanding safety and evidence issues, and refer public messaging to designated agency personnel.",
+            "Prepare a documented command handoff including command assignments, preservation status, notifications and unresolved leads, with communications routed through policy.",
+            "Give an operational update with a clear factual timeline, identify contradictory reports and recommend postponing unverified claims pending authorized review."
+          ],
+          dimension: "Command communication, judgment and accountability",
+          notes: "Review candor, handoff quality, limits on disclosure, time-sensitive tasks and the reasoned distinction between facts and speculation.",
+          consequences: ["The incident moves to formal review.", "A documented handoff is completed.", "The event remains under investigation."]
+        }
+      ]
     },
-    {
-      title: "A potential policy violation",
-      story: "A newer officer tells you that force may have continued after the subject was controlled. The veteran involved denies wrongdoing. Body-camera footage is not yet reviewed. A ranking supervisor has not arrived. What is your immediate supervisory approach?",
-      options: [
-        "Address safety and medical needs, protect evidence, obtain independent initial accounts as allowed by policy and make the required notifications without prejudging the incident.",
-        "Secure scene continuity and send immediate notifications, while assigning an uninvolved supervisor or investigator to conduct the required independent fact-gathering.",
-        "Escalate through the department's formal critical-incident protocol, document urgent preservation directions and separate operational supervision from any investigation as required."
-      ],
-      dimension: "Integrity, evidence preservation and procedural fairness",
-      notes: "A trained assessor would evaluate whether the candidate recognizes relevant policy thresholds, prevents contamination of accounts, preserves relevant footage and records, respects representation and due-process rights, and follows applicable investigative procedures."
+    fire: {
+      label: "Fire Company Officer",
+      intro: "You are first-arriving company officer at a residential fire, balancing rescue information, crew accountability and deteriorating conditions.",
+      scene: "SCENE 002 / FIREGROUND COMMAND",
+      tag: "FIRST-ARRIVING COMPANY",
+      caption: "A reported rescue. Limited resources.",
+      summary: "Multi-unit residential building • Fireground leadership",
+      stages: [
+        {
+          title: "A rescue report with missing information",
+          story: "02:16. Your engine arrives at a three-story multi-unit residence with smoke on the second floor. A bystander reports a resident may still be upstairs, but no one has confirmed the location. The next company is several minutes away, the water supply is not established and visible conditions are changing. How do you structure the first actions?",
+          options: [
+            "Give an initial size-up, declare the command and accountability plan, coordinate urgent rescue information and tactical priorities within current crew and resource limitations.",
+            "Establish immediate command and hazard assessment, request resources, and determine whether any proposed entry meets staffing, protective and operational requirements.",
+            "Delegate a rapid exterior information-gathering and utility/hazard check, communicate the known rescue report and set clear conditions for any tactical commitment."
+          ],
+          dimension: "Fireground size-up and risk management",
+          notes: "Evaluate the candidate's recognition of reported versus verified life risk, building hazards, staffing, accountability, resource requests and alignment with applicable procedures.",
+          consequences: [
+            "An occupant gives a conflicting report about the upstairs location, and smoke is pushing into a stairwell.",
+            "A second occupant states someone may be inside, but a company member identifies worsening structural indicators.",
+            "Dispatch adds an unverified report of a person at a rear window. Communication and accountability are now critical."
+          ]
+        },
+        {
+          title: "Crew accountability under pressure",
+          story: "A crew member reports intermittent radio problems. One member urges a rapid interior push to search for the reported occupant. Another identifies deteriorating conditions near the stairwell. An additional company has arrived, but the tactical plan and crew assignments are not yet fully reconciled. What is your supervisory response?",
+          options: [
+            "Reassess conditions, verify personnel and communications, explain a controlled plan with clear assignments and enforce the applicable entry and withdrawal criteria.",
+            "Direct an immediate accountability and resource check, establish communications redundancies and adjust objectives based on the current rescue profile.",
+            "Coordinate incoming crew roles with the incident commander or retain command as appropriate, clearly state hazards and confirm each team understands its limits."
+          ],
+          dimension: "Crew leadership, communication and accountability",
+          notes: "Look for command clarity, crew integrity, a dynamic hazard reassessment and recognition of applicable incident command and personnel safety standards.",
+          consequences: [
+            "The stairwell conditions shift again. A neighboring unit reports possible fire extension.",
+            "A crew cannot confirm receipt of its revised assignment, and a radio transmission is partially garbled.",
+            "An incoming officer questions the revised objective and asks who is responsible for accountability."
+          ]
+        },
+        {
+          title: "Changing conditions and command transfer",
+          story: "A chief officer arrives and requests a concise transfer-of-command briefing. A firefighter reports a possible near miss during the operation. The civilian rescue report remains unconfirmed. What do you address, and how will you protect both operational continuity and learning?",
+          options: [
+            "Present confirmed observations, life-safety priorities, actions taken, staffing, accountability and unresolved hazards, and flag the near miss through appropriate channels.",
+            "Use a structured transfer of command with current objectives and resource assignments, noting outstanding rescue information and the need for a separate safety review.",
+            "Provide a time-stamped command summary, preserve factual accounts of the near miss and direct ongoing tactical decisions through the established command system."
+          ],
+          dimension: "Command transition and learning culture",
+          notes: "Review factual completeness, crew welfare, hazard reporting and distinction between immediate operations and subsequent nonpunitive learning or formal investigation as required.",
+          consequences: ["Command transitions with unresolved hazards documented.", "A formal safety follow-up is assigned.", "A supervisory debrief is scheduled."]
+        }
+      ]
     },
-    {
-      title: "Pressure from command",
-      story: "The incident is attracting public attention. A command officer asks for an immediate status update, and another supervisor wants to release a short statement. You have incomplete information and must hand off portions of the incident. What is your response?",
-      options: [
-        "Give command a time-stamped summary separating confirmed facts from unknowns, recommend approved public-information channels and document the handoff.",
-        "Prepare a concise incident briefing with outstanding investigative needs and route public communication through the agency's designated authority.",
-        "Coordinate a documented transfer of command, confirm the evidence and notification status, and advise what can be accurately disclosed at this stage."
-      ],
-      dimension: "Communication, leadership and accountability",
-      notes: "A trained assessor would consider accuracy, public trust, confidentiality, handoff quality and adherence to agency communications policy. Justification matters; these sample options are not validated or ordered by correctness."
+    ems: {
+      label: "EMS Field Supervisor",
+      intro: "You are the on-duty field supervisor managing simultaneous patient care demands, unit limitations and clinical oversight.",
+      scene: "SCENE 003 / EMS OPERATIONS",
+      tag: "FIELD SUPERVISION",
+      caption: "Multiple patients. Competing priorities.",
+      summary: "Regional EMS system • Resource and clinical oversight",
+      stages: [
+        {
+          title: "The resource shortage",
+          story: "17:28. Two ambulances are transporting and one crew is already on a high-acuity call. Dispatch reports a multi-vehicle crash with several possible patients. A neighboring service may be available, but arrival time is uncertain. What is your immediate command-and-coordination response?",
+          options: [
+            "Confirm scene safety and patient numbers as they become known, request appropriate mutual aid and advise dispatch of a clear escalation and resource-coverage plan.",
+            "Direct an initial incident assessment within available response protocols, establish who coordinates patient triage and transport, and request additional resources based on evolving facts.",
+            "Coordinate with dispatch and partner agencies to protect system coverage while assigning the most appropriate available units to immediate life threats."
+          ],
+          dimension: "System-level prioritization and incident coordination",
+          notes: "Examine the candidate's triage of uncertainties, local MCI activation criteria, dispatch communication, mutual-aid requests and avoidance of unsupported assumptions.",
+          consequences: [
+            "Dispatch advises one caller now reports a person trapped, while reliable patient counts remain unavailable.",
+            "The first unit reports a confusing scene perimeter and asks who is coordinating resource staging.",
+            "Mutual aid asks for a patient count and transport plan you cannot yet verify."
+          ]
+        },
+        {
+          title: "A crew raises a patient-safety concern",
+          story: "At the crash, a paramedic privately reports that another provider may have departed from the service's clinical protocol on an earlier call. The allegation is not verified. A current patient is deteriorating, several responders are seeking assignments and medical control is available. How do you protect patients and preserve a fair review?",
+          options: [
+            "Address the active patient's care through authorized providers and medical direction, maintain scene coordination, and initiate the appropriate patient-safety reporting route for the separate allegation.",
+            "Assign a qualified leader to operational coordination, support necessary medical-control consultation, and ensure the concern is documented without a premature finding.",
+            "Separate urgent clinical supervision from the later fact-finding process, protect the involved staff's rights and follow the applicable quality-assurance escalation procedure."
+          ],
+          dimension: "Clinical oversight, ethics and operational supervision",
+          notes: "Assess recognition of immediate patient needs, boundaries of clinical authority, medical direction, confidentiality and nonretaliatory quality improvement.",
+          consequences: [
+            "The provider asks whether they will be removed from duty before the allegation has been investigated.",
+            "The receiving hospital requests an accurate handoff, while staff ask how the incident should be documented.",
+            "The crew seeks clarification about which details can be shared outside the protected review process."
+          ]
+        },
+        {
+          title: "Briefing after a difficult response",
+          story: "A hospital liaison requests a summary; a patient's family has unanswered questions; an operations manager wants to know why mutual aid was delayed. You have incomplete information and a potential quality-review concern. What is your leadership response?",
+          options: [
+            "Provide an authorized factual operational timeline and clear outstanding uncertainties, protect patient privacy and route clinical and quality-review details through approved processes.",
+            "Document dispatch/resource decisions, assign follow-up for coverage and communication gaps, and ensure the appropriate supervisor handles the family-facing response.",
+            "Prepare separate operational and confidential quality-review handoffs, identify system learning questions and avoid speculating about provider fault."
+          ],
+          dimension: "Confidentiality, systems leadership and communication",
+          notes: "Review respect for patient privacy, accurate command reporting, cross-agency cooperation and a quality-improvement mindset without unsupported fault findings.",
+          consequences: ["A structured operations review is initiated.", "The resource coordination plan is revisited.", "A quality-assurance follow-up is documented."]
+        }
+      ]
     }
-  ];
-  const el = (id) => document.getElementById(id);
+  };
+
+  const el = id => document.getElementById(id);
   const title = el("scenario-title"), story = el("scenario-story");
   const options = el("scenario-options"), note = el("scenario-reason");
   const next = el("scenario-next"), reset = el("scenario-reset");
   const progress = el("progress-fill"), step = el("scenario-step");
-  if (![title,story,options,note,next,reset,progress,step].every(Boolean)) return;
-  let index = 0;
-  let picks = [];
-  let selection = -1;
+  const rationale = el("scenario-rationale");
+  const buttons = Array.from(document.querySelectorAll(".track-choice"));
+  if (![title, story, options, note, next, reset, progress, step, rationale,
+         el("track-title"), el("track-intro"), el("scene-designator"),
+         el("scene-tag"), el("scene-caption"), el("scene-summary")].every(Boolean)) return;
+
+  let trackId = "police", index = 0, selection = -1;
+  let picks = [], reasons = [];
+  const current = () => tracks[trackId];
+
+  function updateHero() {
+    const track = current();
+    el("track-title").textContent = track.label + " assessment";
+    el("track-intro").textContent = track.intro + " The sample is unscored and its choices have not been validated for selection.";
+    el("scene-designator").textContent = track.scene;
+    el("scene-tag").textContent = track.tag;
+    el("scene-caption").textContent = track.caption;
+    el("scene-summary").textContent = track.summary;
+    el("program-name").textContent = track.label.toUpperCase();
+    document.body.dataset.assessmentTrack = trackId;
+    buttons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.track === trackId)));
+  }
+
   function render() {
-    const stage = stages[index];
+    const stage = current().stages[index];
     title.textContent = stage.title;
-    story.textContent = stage.story;
-    step.textContent = "Decision " + (index + 1) + " of " + stages.length;
-    progress.style.width = ((index + 1) / stages.length * 100) + "%";
+    const inherited = index ? current().stages[index - 1].consequences[picks[index - 1]] : "";
+    story.textContent = (inherited ? inherited + "\n\n" : "") + stage.story;
+    step.textContent = "Decision " + (index + 1) + " of " + current().stages.length;
+    progress.style.width = ((index + 1) / current().stages.length * 100) + "%";
     note.hidden = true;
     note.textContent = "";
-    next.textContent = index === stages.length - 1 ? "Review your decisions" : "Continue";
+    next.textContent = index === current().stages.length - 1 ? "Review your decisions" : "Continue";
     next.disabled = true;
+    next.hidden = false;
     options.replaceChildren();
+    rationale.hidden = false;
+    rationale.value = "";
+    const rationaleLabel = document.querySelector(".rationale-label");
+    if (rationaleLabel) rationaleLabel.hidden = false;
     selection = -1;
     stage.options.forEach((response, i) => {
       const button = document.createElement("button");
@@ -71,48 +228,62 @@
         selection = i;
         options.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
         note.hidden = false;
-        note.textContent = "Response recorded in this browser session only. Continue without seeing a score; in a real assessment, trained assessors would also review your reasoning.";
+        note.textContent = "Choice selected. Explain any assumptions or missing facts if you wish, then continue. No score is calculated.";
         next.disabled = false;
       });
       options.appendChild(button);
     });
   }
+
   function summary() {
-    title.textContent = "Your decision review";
-    story.textContent = "These are your three selected actions. There is no numerical score or pass/fail. A defensible promotional assessment would also collect explanations, evaluate equivalent forms and use trained assessors applying validated, job-related behavior anchors.";
+    title.textContent = current().label + " — decision review";
+    story.textContent = "The three responses below are a personal reflection only. There is no numerical score, ranking or pass/fail. A real assessment would require agency job analysis, equivalent administration and trained assessors with validated evidence-based rubrics.";
     step.textContent = "Sample exercise complete";
     progress.style.width = "100%";
     options.replaceChildren();
-    stages.forEach((stage, i) => {
+    rationale.hidden = true;
+    const rationaleLabel = document.querySelector(".rationale-label");
+    if (rationaleLabel) rationaleLabel.hidden = true;
+    current().stages.forEach((stage, i) => {
       const card = document.createElement("div");
       card.className = "promote-review-card";
       const heading = document.createElement("strong");
       heading.textContent = (i + 1) + ". " + stage.dimension;
       const choice = document.createElement("p");
       choice.textContent = "Your selection: " + stage.options[picks[i]];
+      const explanation = document.createElement("p");
+      explanation.textContent = "Your reasoning: " + (reasons[i] || "Not provided");
       const review = document.createElement("p");
-      review.textContent = "Illustrative assessor considerations: " + stage.notes;
-      card.append(heading, choice, review);
+      review.textContent = "Illustrative trained assessor considerations: " + stage.notes;
+      card.append(heading, choice, explanation, review);
       options.appendChild(card);
     });
     note.hidden = false;
-    note.textContent = "Reflection: Which additional facts, agency policies, or available resources could change your decisions? Real candidate-specific material must not be entered into this public demonstration.";
+    note.textContent = "These observations are illustrative, not a determination of promotion readiness. No selection recommendation has been made, and no information has been transmitted or saved.";
     next.disabled = true;
     next.hidden = true;
     reset.textContent = "Try again";
   }
+
+  function setTrack(id) {
+    if (!Object.hasOwn(tracks, id)) id = "police";
+    trackId = id; index = 0; selection = -1; picks = []; reasons = [];
+    reset.textContent = "Restart";
+    updateHero();
+    render();
+  }
+
   next.addEventListener("click", () => {
     if (selection < 0) return;
     picks.push(selection);
+    reasons.push(rationale.value.trim().slice(0, 700));
     index += 1;
-    if (index < stages.length) render();
+    if (index < current().stages.length) render();
     else summary();
   });
-  reset.addEventListener("click", () => {
-    index = 0; picks = []; selection = -1;
-    next.hidden = false;
-    reset.textContent = "Restart";
-    render();
-  });
-  render();
+  reset.addEventListener("click", () => setTrack(trackId));
+  buttons.forEach(button => button.addEventListener("click", () => setTrack(button.dataset.track)));
+
+  const requested = new URL(window.location.href).searchParams.get("track");
+  setTrack(requested || "police");
 })();
