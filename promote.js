@@ -203,6 +203,8 @@
   function render() {
     const stage = current().stages[index];
     title.textContent = stage.title;
+    // Move keyboard/screen-reader focus to the newly presented decision.
+    title.setAttribute("tabindex", "-1");
     const inherited = index ? current().stages[index - 1].consequences[picks[index - 1]] : "";
     story.textContent = (inherited ? inherited + "\n\n" : "") + stage.story;
     step.textContent = "Decision " + (index + 1) + " of " + current().stages.length;
@@ -237,6 +239,7 @@
 
   function summary() {
     title.textContent = current().label + " — decision review";
+    title.setAttribute("tabindex", "-1");
     story.textContent = "The three responses below are a personal reflection only. There is no numerical score, ranking or pass/fail. A real assessment would require agency job analysis, equivalent administration and trained assessors with validated evidence-based rubrics.";
     step.textContent = "Sample exercise complete";
     progress.style.width = "100%";
@@ -280,9 +283,13 @@
     index += 1;
     if (index < current().stages.length) render();
     else summary();
+    title.focus();
   });
   reset.addEventListener("click", () => setTrack(trackId));
-  buttons.forEach(button => button.addEventListener("click", () => setTrack(button.dataset.track)));
+  buttons.forEach(button => button.addEventListener("click", () => {
+    setTrack(button.dataset.track);
+    title.focus();
+  }));
 
   const requested = new URL(window.location.href).searchParams.get("track");
   setTrack(requested || "police");
