@@ -29,7 +29,7 @@ frame=document.createElement("iframe");frame.title="Fictional candidate exercise
 window.addEventListener("message",event=>{
 const d=event.data;
 if(!frame||!selected||selected.status!=="active"||event.origin!==window.location.origin||event.source!==frame.contentWindow||!d||d.type!=="shield-demo-complete"||d.track!==selected.track)return;
-if(!Array.isArray(d.choices)||d.choices.length<1||d.choices.length>20||!d.choices.every(n=>Number.isInteger(n)&&n>=0&&n<=2)||!Array.isArray(d.decisions)||d.decisions.length!==d.choices.length||!d.decisions.every(x=>x&&["dimension","choice","outcome"].every(k=>typeof x[k]==="string"&&x[k].length<=2000)))return;
+if(!Array.isArray(d.choices)||d.choices.length!==6||!d.choices.every(n=>Number.isInteger(n)&&n>=0&&n<=2)||!Array.isArray(d.decisions)||d.decisions.length!==d.choices.length||!d.decisions.every(x=>x&&["dimension","choice","outcome"].every(k=>typeof x[k]==="string"&&x[k].trim().length>0&&x[k].length<=2000)))return;
 const s=selected;s.decisions=d.decisions.map(x=>({dimension:x.dimension,choice:x.choice,outcome:x.outcome}));s.status="review";closeWorkspace();render();el("notice").textContent=s.id+" completed; awaiting assessor review.";el("filter").focus();
 });
 function review(s){
