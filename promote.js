@@ -560,6 +560,25 @@
     title.focus();
   }));
 
+  // Agency setup is a local rehearsal, not a real applicant administration portal.
+  const setup = document.createElement("section");
+  setup.className = "promote-review-card";
+  const setupHeading = document.createElement("h3");
+  setupHeading.textContent = "Agency administrator — fictional session setup";
+  const setupInfo = document.createElement("p");
+  setupInfo.textContent = "Select a profession above. Start a fresh fictional candidate session, complete the decisions, then open the human assessor handoff. No accounts, candidate identifiers or scores.";
+  const launch = document.createElement("button");
+  launch.type = "button";
+  launch.className = "option-btn";
+  launch.textContent = "Start fictional candidate session";
+  launch.addEventListener("click", () => {
+    setTrack(trackId);
+    title.focus();
+  });
+  setup.append(setupHeading, setupInfo, launch);
+  const switcher = document.querySelector(".track-switch");
+  if (switcher && typeof switcher.after === "function") switcher.after(setup);
+
   const requested = new URL(window.location.href).searchParams.get("track");
   setTrack(requested || "police");
 })();
