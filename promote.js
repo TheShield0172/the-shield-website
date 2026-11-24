@@ -494,6 +494,47 @@
     next.disabled = true;
     next.hidden = true;
     reset.textContent = "Try again";
+    addAssessorWorkspace();
+  }
+
+  // Fictional assessor handoff; browser memory only, never a selection decision.
+  function addAssessorWorkspace() {
+    const panel = document.createElement("section");
+    panel.className = "promote-review-card";
+    const heading = document.createElement("h3");
+    heading.textContent = "Human assessor workspace — fictional rehearsal";
+    const intro = document.createElement("p");
+    intro.textContent = "Review the decision trail above. Record only fictional observations, not ratings or promotion recommendations. Restart clears this workspace.";
+    panel.append(heading, intro);
+    current().stages.forEach((stage, i) => {
+      const label = document.createElement("label");
+      label.textContent = "Decision " + (i + 1) + ": observable behavior, missing evidence and follow-up question";
+      const field = document.createElement("textarea");
+      field.id = "assessor-observation-" + i;
+      field.maxLength = 700;
+      field.rows = 3;
+      label.setAttribute("for", field.id);
+      panel.append(label, field);
+    });
+    const finish = document.createElement("button");
+    finish.type = "button";
+    finish.className = "option-btn";
+    finish.textContent = "Prepare fictional review handoff";
+    const output = document.createElement("div");
+    output.setAttribute("role", "status");
+    finish.addEventListener("click", () => {
+      output.replaceChildren();
+      const title = document.createElement("h4");
+      title.textContent = current().label + " — fictional review handoff (unscored)";
+      output.appendChild(title);
+      current().stages.forEach((stage, i) => {
+        const item = document.createElement("p");
+        item.textContent = "Decision " + (i + 1) + " — " + (el("assessor-observation-" + i).value.trim() || "No observation recorded");
+        output.appendChild(item);
+      });
+    });
+    panel.append(finish, output);
+    options.appendChild(panel);
   }
 
   function setTrack(id) {
