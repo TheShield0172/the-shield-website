@@ -17,6 +17,20 @@ test("real Chromium: all three fictional assessment lifecycles",async()=>{
  const row=page.locator("#sessions article").filter({hasText:"DEMO-00"+(i+1)});
  await row.getByRole("button",{name:"Launch candidate"}).click();
  assert.equal(await page.locator("#active").innerText(),"1");
+ // Reject forged completion from the parent window, even with matching origin and track.
+ await page.evaluate(track=>window.postMessage({type:"shield-demo-complete",track,choices:[0],decisions:[{dimension:"Synthetic",choice:"Synthetic",outcome:"Synthetic"}]},location.origin),track);
+ await page.evaluate(()=>new Promise(resolve=>setTimeout(resolve,50)));
+ assert.equal(await page.locator("#active").innerText(),"1");
+ assert.equal(await page.locator("#review").innerText(),"0");
+ // Reject wrong-track and malformed messages from the actual candidate frame.
+ await page.frameLocator("#workspace iframe").locator("body").evaluate((body,track)=>{
+ const w=body.ownerDocument.defaultView;
+ w.parent.postMessage({type:"shield-demo-complete",track:track==="police"?"fire":"police",choices:[0],decisions:[{dimension:"Synthetic",choice:"Synthetic",outcome:"Synthetic"}]},w.location.origin);
+ w.parent.postMessage({type:"shield-demo-complete",track,choices:[99],decisions:[]},w.location.origin);
+ },track);
+ await page.evaluate(()=>new Promise(resolve=>setTimeout(resolve,50)));
+ assert.equal(await page.locator("#active").innerText(),"1");
+ assert.equal(await page.locator("#review").innerText(),"0");
  const frame=page.frameLocator("#workspace iframe");
  for(let n=0;n<6;n++){await frame.locator("#scenario-options button").first().click();await frame.locator("#scenario-next").click();}
  await row.getByRole("button",{name:"Open assessor review"}).waitFor();
