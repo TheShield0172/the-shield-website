@@ -495,6 +495,11 @@
     next.hidden = true;
     reset.textContent = "Try again";
     addAssessorWorkspace();
+    // Only fixed fictional choice indices cross the same-origin frame boundary.
+    // Free-text reasoning and observations are deliberately excluded.
+    if (window.parent !== window && new URL(window.location.href).searchParams.get("adminDemo") === "1") {
+      window.parent.postMessage({type:"shield-demo-complete",track:trackId,choices:picks.slice(),decisions:current().stages.map((stage,i)=>({dimension:stage.dimension,choice:stageOptions(stage,picks[i-1])[picks[i]],outcome:stageConsequences(stage,picks[i-1])[picks[i]]}))},window.location.origin);
+    }
   }
 
   // Fictional assessor handoff; browser memory only, never a selection decision.

@@ -1,0 +1,18 @@
+name: PROMOTE connected dashboard checks
+on:
+  pull_request:
+    paths:
+      - 'promote*'
+      - 'tests/promote*'
+      - '.github/workflows/promote-connected.yml'
+permissions:
+  contents: read
+jobs:
+  connected:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/promote-admin.test.cjs tests/promote.test.cjs tests/agency-training.test.cjs

@@ -57,7 +57,7 @@ test("Every assessment has scenario stages, non-scored reviews and illustrative 
   for (const dimension of ["Fireground size-up", "Clinical oversight", "Situational judgment and resource allocation"]) {
     assert.ok(source.includes(dimension), "missing competency dimension " + dimension);
   }
-  assert.match(source, /consequences\[picks\[index - 1\]\]/);
+  assert.match(source, /stageConsequences\(prior, picks\[priorIndex - 1\]\)\[picks\[priorIndex\]\]/);
   assert.match(source, /Your reasoning:/);
   assert.match(source, /no numerical score/i);
   assert.doesNotMatch(source, /speechRecognition|face-api|sentiment|aiRank|finalScore|passFail/);
@@ -75,12 +75,12 @@ test("Keyboard users are directed to each new decision and the final review", ()
 // Presentation order must not change the canonical branch selected or review text.
 test("PROMOTE rotates displayed choices but preserves canonical branching", () => {
   const source = load("promote.js");
-  assert.match(source, /const order = stage\.options\.map\(\(_, i\) => \(i \+ index\) % stage\.options\.length\)/);
+  assert.match(source, /const order = availableOptions\.map\(\(_, i\) => \(i \+ index\) % availableOptions\.length\)/);
   assert.match(source, /order\.forEach\(\(optionId, i\) =>/);
   assert.match(source, /selection = optionId/);
   assert.match(source, /picks\.push\(selection\)/);
-  assert.match(source, /consequences\[picks\[index - 1\]\]/);
-  assert.match(source, /stage\.options\[picks\[i\]\]/);
+  assert.match(source, /stageConsequences\(prior, picks\[priorIndex - 1\]\)\[picks\[priorIndex\]\]/);
+  assert.match(source, /stageOptions\(stage, picks\[i - 1\]\)\[picks\[i\]\]/);
   assert.doesNotMatch(source, /Math\.random/);
 });
 
@@ -90,7 +90,7 @@ test("All three fictional tracks include a fourth supervisory tradeoff decision"
   assert.ok(source.includes(heading), "missing expanded decision: "+heading);
  }
  assert.match(source, /current\(\)\.stages\.length/);
- assert.match(source, /stage\.options\[picks\[i\]\]/);
+ assert.match(source, /stageOptions\(stage, picks\[i - 1\]\)\[picks\[i\]\]/);
 });
 
 test("PROMOTE contains five fictional decision stages in each track", () => {
@@ -103,7 +103,7 @@ test("PROMOTE contains five fictional decision stages in each track", () => {
 test("PROMOTE review displays the chosen consequence for every decision, including the last", () => {
  const source=load("promote.js");
  new vm.Script(source,{filename:"promote.js"});
- assert.match(source,/stage\.consequences\[picks\[i\]\]/);
+ assert.match(source,/stageConsequences\(stage, picks\[i - 1\]\)\[picks\[i\]\]/);
  assert.match(source,/Fictional development:/);
  assert.match(source,/card\.append\(heading, choice, outcome, explanation, review\)/);
 });
@@ -131,7 +131,7 @@ test("PROMOTE carries the last two chosen fictional consequences into later deci
  const source=load("promote.js");
  assert.match(source, /Math\.max\(0, index - 2\)/);
  assert.match(source, /stages\.slice\(trailStart, index\)/);
- assert.match(source, /prior\.consequences\[picks\[priorIndex\]\]/);
+ assert.match(source, /stageConsequences\(prior, picks\[priorIndex - 1\]\)\[picks\[priorIndex\]\]/);
  assert.match(source, /trail\.join/);
  new vm.Script(source,{filename:"promote.js"});
 });
@@ -147,7 +147,7 @@ test("PROMOTE fictional decision trail uses real newline escapes, not literal ba
 
 test("PROMOTE uses prior choice to tailor the next briefing in every profession", () => {
  const source=load("promote.js");
- assert.equal((source.match(/followUpByPriorChoice:/g)||[]).length,3);
+ assert.equal((source.match(/"?followUpByPriorChoice"?:/g)||[]).length,3);
  assert.match(source,/stage\.followUpByPriorChoice\[picks\[index - 1\]\]/);
  assert.match(source,/Your earlier decision changes this briefing:/);
  assert.match(source,/stage\.story/);
@@ -163,56 +163,6 @@ test("PROMOTE review includes the choice-dependent briefing from the prior selec
   assert.doesNotMatch(source, /finalScore|aiRank|passFail/);
 });
 
-test("Police stage two has three genuinely different choice-dependent follow-ups", () => {
- const source=load("promote.js");
- const match=source.match(/"followUpOptionsByPriorChoice": (\[.*?\]),\n\s*"followUpConsequencesByPriorChoice": (\[.*?\]),/);
- assert.ok(match,"conditional options and outcomes must be present");
- const options=JSON.parse(match[1]), outcomes=JSON.parse(match[2]);
- assert.equal(options.length,3);
- for(let i=0;i<3;i++){assert.equal(options[i].length,3);assert.equal(outcomes[i].length,3);}
- assert.equal(new Set(options.map(x=>x[0])).size,3,"each prior decision must change follow-up");
- assert.match(source,/stageOptions\(stage, picks\[index - 1\]\)/);
- assert.match(source,/stageConsequences\(stage, picks\[i - 1\]\)/);
- new vm.Script(source,{filename:"promote.js"});
-});
-
-test("Fire Officer second decision has distinct conditional response and consequence paths", () => {
- const source=load("promote.js");
- const fire=source.slice(source.indexOf('"title": "Withdrawal threshold under uncertain rescue conditions"'));
- const match=fire.match(/"followUpOptionsByPriorChoice": (\[[\s\S]*?\]),\n\s*"followUpConsequencesByPriorChoice": (\[[\s\S]*?\]),/);
- assert.ok(match,"Fire branch options and outcomes should be defined");
- const options=JSON.parse(match[1]), outcomes=JSON.parse(match[2]);
- assert.equal(options.length,3);
- assert.equal(outcomes.length,3);
- for(let i=0;i<3;i++){assert.equal(options[i].length,3);assert.equal(outcomes[i].length,3);}
- assert.equal(new Set(options.map(branch=>branch[0])).size,3);
- new vm.Script(source,{filename:"promote.js"});
-});
-
-test("EMS second decision branches into distinct supervisory choices and consequences", () => {
- const source=load("promote.js");
- const ems=source.slice(source.indexOf('"title": "A transport decision strains system coverage"'));
- function branchArray(key) {
-   const marker='"'+key+'": ';
-   const start=ems.indexOf(marker)+marker.length;
-   assert.ok(start>=marker.length,"missing "+key);
-   let depth=0,end=start;
-   for(;end<ems.length;end++) {
-     if(ems[end]==="[") depth++;
-     if(ems[end]==="]" && (depth-=1)===0) {end++;break;}
-   }
-   return JSON.parse(ems.slice(start,end));
- }
- const choices=branchArray("followUpOptionsByPriorChoice");
- const outcomes=branchArray("followUpConsequencesByPriorChoice");
- assert.equal(choices.length,3);
- assert.equal(outcomes.length,3);
- for(let i=0;i<3;i++){assert.equal(choices[i].length,3);assert.equal(outcomes[i].length,3);}
- assert.equal(new Set(choices.map(branch=>branch[0])).size,3);
- new vm.Script(source,{filename:"promote.js"});
-});
-
- 
 // Inspect the actual scenario objects rather than matching only source fragments.
 // The stub exits the browser UI early; no candidate data or network is involved.
 test("All three tracks have coherent six-stage branch data and distinct follow-up choices", () => {

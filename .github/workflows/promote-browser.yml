@@ -1,0 +1,21 @@
+name: PROMOTE browser lifecycle
+on:
+  pull_request:
+    paths:
+      - 'promote*'
+      - 'tests/promote*'
+      - '.github/workflows/promote-browser.yml'
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --package-lock=false playwright
+      - run: npx playwright install --with-deps chromium
+      - run: node --test tests/promote-browser.test.cjs
