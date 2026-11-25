@@ -9,6 +9,7 @@ test("real Chromium: all three fictional assessment lifecycles",async()=>{
  try{
  browser=await chromium.launch({headless:true});
  const page=await browser.newPage({viewport:{width:390,height:844}});
+ const digests=new Set();
  const errors=[];page.on("pageerror",e=>errors.push(e.message));
  await page.goto("http://127.0.0.1:"+server.address().port+"/promote-admin.html");
  for(const [i,track] of ["police","fire","ems"].entries()){
@@ -60,7 +61,19 @@ test("real Chromium: all three fictional assessment lifecycles",async()=>{
  assert.equal(await page.locator("#done").innerText(),String(i+1));
  await page.getByRole("button",{name:"Generate SHA-256 report digest"}).click();
  await page.getByText(/SHA-256 \(fictional report content, not a signature\): [a-f0-9]{64}/).waitFor();
- await page.emulateMedia({media:"print"});await page.pdf();await page.emulateMedia({media:"screen"});
+ const digestLine=page.getByText(/SHA-256 \(fictional report content, not a signature\): [a-f0-9]{64}/);
+ const firstDigest=await digestLine.innerText();
+ // Reopen the immutable fictional report and independently regenerate its digest.
+ await row.getByRole("button",{name:"View report"}).click();
+ await page.getByRole("button",{name:"Generate SHA-256 report digest"}).click();
+ await digestLine.waitFor();
+ assert.equal(await digestLine.innerText(),firstDigest);
+ assert.ok(!digests.has(firstDigest),"different fictional sessions must have different digests");
+ digests.add(firstDigest);
+ await page.emulateMedia({media:"print"});
+ assert.ok(await digestLine.isVisible(),"digest must remain visible in print media");
+ const pdf=await page.pdf();assert.equal(pdf.subarray(0,5).toString(),"%PDF-");
+ await page.emulateMedia({media:"screen"});
  }
  assert.deepEqual(errors,[]);
  }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}
