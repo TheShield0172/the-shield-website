@@ -1,5 +1,12 @@
 name: PROMOTE browser lifecycle
 on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'promote*'
+      - 'tests/promote*'
+      - '.github/workflows/promote-browser.yml'
   pull_request:
     paths:
       - 'promote*'
