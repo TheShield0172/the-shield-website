@@ -31,6 +31,22 @@ test("real Chromium: all three fictional assessment lifecycles",async()=>{
  await page.evaluate(()=>new Promise(resolve=>setTimeout(resolve,50)));
  assert.equal(await page.locator("#active").innerText(),"1");
  assert.equal(await page.locator("#review").innerText(),"0");
+ // A correct-origin, correct-track message must still contain all six nonempty decisions.
+ await page.frameLocator("#workspace iframe").locator("body").evaluate((body,track)=>{
+ const w=body.ownerDocument.defaultView;
+ const valid={dimension:"Synthetic",choice:"Synthetic",outcome:"Synthetic"};
+ for(const count of [0,1,5,7]){
+ w.parent.postMessage({type:"shield-demo-complete",track,choices:Array(count).fill(0),decisions:Array(count).fill(valid)},w.location.origin);
+ }
+ for(const key of ["dimension","choice","outcome"]){
+ const decisions=Array.from({length:6},()=>({...valid}));
+ decisions[2][key]="   ";
+ w.parent.postMessage({type:"shield-demo-complete",track,choices:Array(6).fill(0),decisions},w.location.origin);
+ }
+ },track);
+ await page.evaluate(()=>new Promise(resolve=>setTimeout(resolve,100)));
+ assert.equal(await page.locator("#active").innerText(),"1");
+ assert.equal(await page.locator("#review").innerText(),"0");
  const frame=page.frameLocator("#workspace iframe");
  for(let n=0;n<6;n++){await frame.locator("#scenario-options button").first().click();await frame.locator("#scenario-next").click();}
  await row.getByRole("button",{name:"Open assessor review"}).waitFor();
