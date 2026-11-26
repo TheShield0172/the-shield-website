@@ -367,6 +367,15 @@
 
   // Public-only fictional samples; never import private assessment material.
   const rankSamples = [
+["fire-engineer","Fire Engineer","fire","A recurring apparatus inspection discrepancy requires documented review.","Verify the facts and coordinate a documented response.","Seek authorized review while maintaining safeguards.","Present alternatives and identify follow-up responsibility."],
+["fire-captain","Fire Captain","fire","Company training and staffing commitments conflict.","Verify the facts and coordinate a documented response.","Seek authorized review while maintaining safeguards.","Present alternatives and identify follow-up responsibility."],
+["fire-division-chief","Fire Division Chief","fire","Two districts request the same reserve resources.","Verify the facts and coordinate a documented response.","Seek authorized review while maintaining safeguards.","Present alternatives and identify follow-up responsibility."],
+["fire-deputy-chief","Fire Deputy Chief","fire","Multiple divisions face competing continuity priorities.","Verify the facts and coordinate a documented response.","Seek authorized review while maintaining safeguards.","Present alternatives and identify follow-up responsibility."],
+["ems-fto","EMS FTO","ems","A trainee repeatedly omits handoff documentation.","Verify the facts and coordinate a documented response.","Seek authorized review while maintaining safeguards.","Present alternatives and identify follow-up responsibility."],
+["ems-lieutenant","EMS Lieutenant","ems","Two crews request relief while coverage is limited.","Verify the facts and coordinate a documented response.","Seek authorized review while maintaining safeguards.","Present alternatives and identify follow-up responsibility."],
+["ems-captain","EMS Captain","ems","Several teams have overdue competency reviews.","Verify the facts and coordinate a documented response.","Seek authorized review while maintaining safeguards.","Present alternatives and identify follow-up responsibility."],
+["ems-deputy-chief","EMS Deputy Chief","ems","Clinical oversight and operations disagree on implementation timing.","Verify the facts and coordinate a documented response.","Seek authorized review while maintaining safeguards.","Present alternatives and identify follow-up responsibility."],
+["ems-director","EMS Director","ems","The governing board requests a regional service strategy.","Verify the facts and coordinate a documented response.","Seek authorized review while maintaining safeguards.","Present alternatives and identify follow-up responsibility."],
     ["police-corporal","Police Corporal","police","A new officer repeatedly omits required report details while calls are waiting.","Coach the officer and arrange a documented follow-up.","Arrange immediate peer assistance and review the next report.","Notify the supervisor and propose a focused remediation plan."],
     ["police-lieutenant","Police Lieutenant","police","Two shift supervisors disagree about staffing and an unresolved complaint requires independent review.","Reallocate coverage and designate an independent reviewer.","Request temporary support while establishing review deadlines.","Convene supervisors to resolve coverage and preserve complaint records."],
     ["police-captain","Police Captain","police","Overtime is rising while complaint response times and training completion deteriorate.","Review workload and establish measurable corrective priorities.","Pilot a staffing adjustment with defined safeguards.","Request a cross-unit review and interim service standards."],
@@ -387,8 +396,8 @@
   if(rankGroup){
     const groups=[
       ["Police",["police-corporal","police","police-lieutenant","police-captain","police-commander","police-deputy-chief","police-chief"]],
-      ["Fire",["fire-lieutenant","fire","fire-battalion-chief","fire-chief"]],
-      ["EMS",["ems","ems-manager","ems-chief"]]
+      ["Fire",["fire-engineer","fire-lieutenant","fire","fire-captain","fire-battalion-chief","fire-division-chief","fire-deputy-chief","fire-chief"]],
+      ["EMS",["ems-fto","ems","ems-lieutenant","ems-captain","ems-manager","ems-deputy-chief","ems-director","ems-chief"]]
     ];
     rankGroup.replaceChildren();
     Object.assign(rankGroup.style,{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,220px),1fr))",gap:"16px",alignItems:"start"});
