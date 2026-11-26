@@ -17,9 +17,9 @@ test("fictional report print gate blocks before digest and after digest failure"
   }
   const ids=Object.fromEntries(["total","active","review","done","sessions","filter","workspace","notice","create","track"].map(id=>[id,new Node("div")]));
   ids.track.value="police";
-  const handlers={};let prints=0,fail=false;
+  const handlers={};let prints=0,fail=false,hold=false,release;
   const window={location:{origin:"https://fictional.invalid"},addEventListener:(name,fn)=>{handlers[name]=fn;},print:()=>{prints++;}};
-  const crypto={subtle:{digest:async(algorithm,bytes)=>{if(fail)throw Error("synthetic failure");return require("node:crypto").webcrypto.subtle.digest(algorithm,bytes);}}};
+  const crypto={subtle:{digest:async(algorithm,bytes)=>{if(hold)await new Promise(resolve=>{release=resolve;});if(fail)throw Error("synthetic failure");return require("node:crypto").webcrypto.subtle.digest(algorithm,bytes);}}};
   vm.runInNewContext(admin,{document:{getElementById:id=>ids[id],createElement:tag=>new Node(tag)},window,crypto,TextEncoder});
   const all=node=>[node,...node.children.flatMap(all)];
   const click=(node,label)=>{const button=all(node).find(n=>n.tag==="button"&&n.textContent===label);assert.ok(button,label);return button.events.click();};
@@ -37,8 +37,16 @@ test("fictional report print gate blocks before digest and after digest failure"
   assert.ok(all(ids.workspace).some(n=>/^SHA-256 .*: [a-f0-9]{64}$/.test(n.textContent)));
   click(ids.workspace,"Print report");
   assert.equal(prints,1);
+  hold=true;
+  const pending=click(ids.workspace,"Generate SHA-256 report digest");
+  click(ids.workspace,"Print report");
+  assert.equal(prints,1,"printing must be blocked during regeneration");
+  hold=false;
   fail=true;
   await click(ids.workspace,"Generate SHA-256 report digest");
+  fail=false;
+  release();
+  await pending;
   click(ids.workspace,"Print report");
   assert.equal(prints,1);
 });
