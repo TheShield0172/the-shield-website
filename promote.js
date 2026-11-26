@@ -384,7 +384,27 @@
     tracks[id]={...source,label,intro:"A short fictional leadership sample for "+label+".",caption:label+" leadership rehearsal",summary:story,stages:[{title:"Leadership decision",story,options:choices,dimension:"Role-specific judgment and accountability",notes:"Consider authority, evidence, communication, proportionality and follow-up.",consequences:["A stakeholder requests a documented rationale.","A colleague identifies an unresolved constraint.","Leadership requests a follow-up deadline."]},{title:"Follow-through",story:"New information challenges your initial assumptions. How will you verify the impact of your decision?",options:["Review available records and establish a measurable follow-up.","Seek independent input and document remaining uncertainty.","Reassess the decision with affected stakeholders and communicate changes."],dimension:"Verification and adaptive leadership",notes:"Consider evidence quality, ownership and corrective action.",consequences:["A review identifies a missing record.","A stakeholder requests clarification.","A follow-up meeting is scheduled."]}]};
   }
   const rankGroup=document.querySelector(".track-switch");
-  if(rankGroup){for(const [id,label] of rankSamples){const b=document.createElement("button");b.type="button";b.className="track-choice";b.dataset.track=id;b.textContent=label;b.setAttribute("aria-pressed","false");rankGroup.appendChild(b);}}
+  if(rankGroup){
+    const groups=[
+      ["Police",["police-corporal","police","police-lieutenant","police-captain","police-commander","police-deputy-chief","police-chief"]],
+      ["Fire",["fire-lieutenant","fire","fire-battalion-chief","fire-chief"]],
+      ["EMS",["ems","ems-manager","ems-chief"]]
+    ];
+    rankGroup.replaceChildren();
+    Object.assign(rankGroup.style,{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,220px),1fr))",gap:"16px",alignItems:"start"});
+    for(const [name,ids] of groups){
+      const section=document.createElement("section");
+      section.setAttribute("aria-label",name+" ranks");
+      Object.assign(section.style,{display:"grid",gap:"8px",padding:"14px",border:"1px solid currentColor",borderRadius:"12px",minWidth:"0"});
+      const heading=document.createElement("h3");heading.textContent=name;heading.style.margin="0 0 6px";section.appendChild(heading);
+      for(const id of ids){
+        if(!tracks[id])continue;
+        const b=document.createElement("button");b.type="button";b.className="track-choice";b.dataset.track=id;b.textContent=tracks[id].label;b.setAttribute("aria-pressed","false");
+        Object.assign(b.style,{width:"100%",whiteSpace:"normal",textAlign:"left"});section.appendChild(b);
+      }
+      rankGroup.appendChild(section);
+    }
+  }
   const el = id => document.getElementById(id);
   const title = el("scenario-title"), story = el("scenario-story");
   const options = el("scenario-options"), note = el("scenario-reason");
