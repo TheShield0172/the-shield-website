@@ -365,6 +365,26 @@
     }
   };
 
+  // Public-only fictional samples; never import private assessment material.
+  const rankSamples = [
+    ["police-corporal","Police Corporal","police","A new officer repeatedly omits required report details while calls are waiting.","Coach the officer and arrange a documented follow-up.","Arrange immediate peer assistance and review the next report.","Notify the supervisor and propose a focused remediation plan."],
+    ["police-lieutenant","Police Lieutenant","police","Two shift supervisors disagree about staffing and an unresolved complaint requires independent review.","Reallocate coverage and designate an independent reviewer.","Request temporary support while establishing review deadlines.","Convene supervisors to resolve coverage and preserve complaint records."],
+    ["police-captain","Police Captain","police","Overtime is rising while complaint response times and training completion deteriorate.","Review workload and establish measurable corrective priorities.","Pilot a staffing adjustment with defined safeguards.","Request a cross-unit review and interim service standards."],
+    ["police-commander","Police Commander","police","Multiple divisions report inconsistent implementation of a new department policy.","Establish common implementation measures and division accountability.","Commission a focused compliance review with interim guidance.","Convene division leads and set a phased implementation schedule."],
+    ["police-deputy-chief","Deputy Chief","police","A major service disruption exposes conflicting division priorities and uncertain public information.","Coordinate division continuity plans and verified public updates.","Assign an independent review lead and establish executive checkpoints.","Seek mutual support while documenting resource and communication decisions."],
+    ["police-chief","Chief of Police","police","City leadership requests immediate budget reductions while community confidence and service capacity are under pressure.","Present transparent service tradeoffs and protected core functions.","Propose phased reductions with public performance measures.","Request a joint budget review and publish decision criteria."],
+    ["fire-lieutenant","Fire Lieutenant","fire","A crew member reports a recurring equipment inspection omission before a scheduled drill.","Verify readiness and coach the assigned crew member.","Arrange a replacement check and document the discrepancy.","Notify command and establish a corrective inspection plan."],
+    ["fire-battalion-chief","Fire Battalion Chief","fire","Two stations face simultaneous staffing shortages and an apparatus is unavailable.","Coordinate temporary coverage and notify command.","Request mutual support and reassess station availability.","Prioritize coverage gaps and establish a documented contingency."],
+    ["fire-chief","Fire Chief","fire","A proposed station closure creates competing fiscal, response coverage and community concerns.","Present a transparent coverage and budget analysis.","Commission a service impact review and consult stakeholders.","Propose phased alternatives with measurable response safeguards."],
+    ["ems-manager","EMS Operations Manager","ems","Repeated hospital delays are reducing available ambulance coverage across districts.","Coordinate with hospitals and establish escalation thresholds.","Review deployment patterns and arrange temporary coverage.","Convene clinical and operations leads to address system delays."],
+    ["ems-chief","EMS Chief","ems","A funding reduction threatens clinical education and geographic service coverage.","Present clinical and coverage risks with budget alternatives.","Develop phased changes with quality monitoring.","Seek partner support and establish transparent service priorities."]
+  ];
+  for(const [id,label,base,story,...choices] of rankSamples){
+    const source=tracks[base];
+    tracks[id]={...source,label,intro:"A short fictional leadership sample for "+label+".",caption:label+" leadership rehearsal",summary:story,stages:[{title:"Leadership decision",story,options:choices,dimension:"Role-specific judgment and accountability",notes:"Consider authority, evidence, communication, proportionality and follow-up.",consequences:["A stakeholder requests a documented rationale.","A colleague identifies an unresolved constraint.","Leadership requests a follow-up deadline."]},{title:"Follow-through",story:"New information challenges your initial assumptions. How will you verify the impact of your decision?",options:["Review available records and establish a measurable follow-up.","Seek independent input and document remaining uncertainty.","Reassess the decision with affected stakeholders and communicate changes."],dimension:"Verification and adaptive leadership",notes:"Consider evidence quality, ownership and corrective action.",consequences:["A review identifies a missing record.","A stakeholder requests clarification.","A follow-up meeting is scheduled."]}]};
+  }
+  const rankGroup=document.querySelector(".track-switch");
+  if(rankGroup){for(const [id,label] of rankSamples){const b=document.createElement("button");b.type="button";b.className="track-choice";b.dataset.track=id;b.textContent=label;b.setAttribute("aria-pressed","false");rankGroup.appendChild(b);}}
   const el = id => document.getElementById(id);
   const title = el("scenario-title"), story = el("scenario-story");
   const options = el("scenario-options"), note = el("scenario-reason");
@@ -571,7 +591,7 @@
   const setupHeading = document.createElement("h3");
   setupHeading.textContent = "Agency administrator — fictional session setup";
   const setupInfo = document.createElement("p");
-  setupInfo.textContent = "Select a profession above. Start a fresh fictional candidate session, complete the decisions, then open the human assessor handoff. No accounts, candidate identifiers or scores.";
+  setupInfo.textContent = "Select a profession and rank above. Start a fresh fictional candidate session, complete the decisions, then open the human assessor handoff. No accounts, candidate identifiers or scores.";
   const launch = document.createElement("button");
   launch.type = "button";
   launch.className = "option-btn";
