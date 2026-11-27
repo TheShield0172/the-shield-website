@@ -422,13 +422,13 @@
           "status": "pending_reconciliation",
           "checked": null,
           "sources": [],
-          "question": "Verify current acknowledgment rules and exceptions against primary authority."
+          "question": "Official legislative section 7922.530/7922.535 returned HTTP 403 on 2026-11-27; obtain official agency guidance and statutory text before certification."
         },
         "production": {
           "status": "pending_reconciliation",
           "checked": null,
           "sources": [],
-          "question": "Verify current production rules and exceptions against primary authority."
+          "question": "Official legislative section 7922.530/7922.535 returned HTTP 403 on 2026-11-27; obtain official agency guidance and statutory text before certification."
         },
         "fees_waivers": {
           "status": "pending_reconciliation",
@@ -1961,7 +1961,7 @@
       }
     },
     "Maryland": {
-      "status": "preliminary",
+      "status": "partial_primary_review",
       "prior_profile_sources": [
         [
           "Maryland Legislature — §4-203",
@@ -1994,28 +1994,40 @@
           "question": "Verify current eligibility rules and exceptions against primary authority."
         },
         "request": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current request rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ggp&section=4-202"
+          ],
+          "question": "Check agency-specific procedures.",
+          "finding": "Written application generally required; listed records and custodian waiver are exceptions. Wrong custodian must notify within ten working days and identify correct custodian/location if known."
         },
         "acknowledgment": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current acknowledgment rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ggp&section=4-203"
+          ],
+          "question": "Check special-record timing.",
+          "finding": "If production expected to exceed ten working days, written or email notice within ten working days must estimate timing, fees and explain delay."
         },
         "production": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current production rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ggp&section=4-203"
+          ],
+          "question": "Reconcile section 4-356 and amendments.",
+          "finding": "Ordinary grant/denial and approved production outer limit is 30 days; section 4-356 applications have a 50-day decision rule. Consent may extend limits up to 30 days; statutory dispute resolution tolls limits."
         },
         "fees_waivers": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current fees waivers rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ggp&section=4-206"
+          ],
+          "question": "Check special statutory fees.",
+          "finding": "First two hours of search and preparation free; actual costs for standard format, reasonable fees for customized format; discretionary waiver on request for affidavit-supported indigency or public interest."
         },
         "personnel": {
           "status": "pending_reconciliation",
@@ -2036,16 +2048,22 @@
           "question": "Verify current body camera rules and exceptions against primary authority."
         },
         "denial": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current denial rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ggp&section=4-203"
+          ],
+          "question": "Check section 4-343 and special exceptions.",
+          "finding": "Written reasons, authority, description and review remedies within ten working days of denial; disclose segregable portions. Certain discretionary denials require redaction explanation."
         },
         "appeals": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current appeals rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ggp&section=4-362"
+          ],
+          "question": "Verify board prerequisites and filing deadlines.",
+          "finding": "Circuit court complaint available for denied access subject to statutory conditions; compliance board decisions may be appealed."
         },
         "filing_limits": {
           "status": "pending_reconciliation",
