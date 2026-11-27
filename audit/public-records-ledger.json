@@ -1865,44 +1865,49 @@
           "question": "Verify current 911 rules and exceptions against primary authority."
         },
         "eligibility": {
-          "status": "checked_general_rule",
-          "checked": "2026-11-26",
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
           "sources": [
             "https://legislature.maine.gov/statutes/1/title1sec408-A.html"
           ],
-          "question": null
+          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
+          "finding": "General access granted to a person; check special-record restrictions separately."
         },
         "request": {
-          "status": "checked_general_rule",
-          "checked": "2026-11-26",
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
           "sources": [
             "https://legislature.maine.gov/statutes/1/title1sec408-A.html"
           ],
-          "question": null
+          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
+          "finding": "No mandatory written or in-person request; sufficient description must reach responsible office."
         },
         "acknowledgment": {
-          "status": "checked_general_rule",
-          "checked": "2026-11-26",
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
           "sources": [
             "https://legislature.maine.gov/statutes/1/title1sec408-A.html"
           ],
-          "question": null
+          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
+          "finding": "Five working days from receipt at responsible office; forwarding without willful delay."
         },
         "production": {
-          "status": "checked_general_rule",
-          "checked": "2026-11-26",
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
           "sources": [
             "https://legislature.maine.gov/statutes/1/title1sec408-A.html"
           ],
-          "question": null
+          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
+          "finding": "Reasonable time; nonbinding good-faith estimate and effort to meet it."
         },
         "fees_waivers": {
-          "status": "checked_general_rule",
-          "checked": "2026-11-26",
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
           "sources": [
             "https://legislature.maine.gov/statutes/1/title1sec408-A.html"
           ],
-          "question": null
+          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
+          "finding": "Standard paper copies capped at 10 cents/page; no electronic per-page fee; first two staff hours free, then up to $25/hour; discretionary indigency/public-interest waiver."
         },
         "personnel": {
           "status": "pending_reconciliation",
@@ -1923,12 +1928,13 @@
           "question": "Verify current body camera rules and exceptions against primary authority."
         },
         "denial": {
-          "status": "checked_general_rule",
-          "checked": "2026-11-26",
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
           "sources": [
             "https://legislature.maine.gov/statutes/1/title1sec408-A.html"
           ],
-          "question": null
+          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
+          "finding": "Written denial or anticipated denial within five working days; statutory basis required; burdensome-request protection requires court procedure."
         },
         "appeals": {
           "status": "checked_general_rule",
@@ -2377,16 +2383,22 @@
           "question": "Verify current 911 rules and exceptions against primary authority."
         },
         "eligibility": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current eligibility rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.revisor.mn.gov/statutes/cite/13.03"
+          ],
+          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
+          "finding": "Any person may inspect public government data, subject to classifications."
         },
         "request": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current request rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.revisor.mn.gov/statutes/cite/13.03"
+          ],
+          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
+          "finding": "Request responsible authority or designee."
         },
         "acknowledgment": {
           "status": "pending_reconciliation",
@@ -2395,16 +2407,22 @@
           "question": "Verify current acknowledgment rules and exceptions against primary authority."
         },
         "production": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current production rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.revisor.mn.gov/statutes/cite/13.03"
+          ],
+          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
+          "finding": "Copies as soon as reasonably possible if unavailable immediately."
         },
         "fees_waivers": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current fees waivers rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.revisor.mn.gov/statutes/cite/13.03"
+          ],
+          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
+          "finding": "Inspection free; qualifying paper copies up to 100 pages capped at 25 cents/page; special commercial-value and waiver questions remain."
         },
         "personnel": {
           "status": "pending_reconciliation",
@@ -2425,10 +2443,13 @@
           "question": "Verify current body camera rules and exceptions against primary authority."
         },
         "denial": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current denial rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.revisor.mn.gov/statutes/cite/13.03"
+          ],
+          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
+          "finding": "Oral determination at request or written as soon as possible; specific legal basis; written certification on request."
         },
         "appeals": {
           "status": "pending_reconciliation",
