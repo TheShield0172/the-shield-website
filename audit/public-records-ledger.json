@@ -3314,7 +3314,7 @@
       }
     },
     "New York": {
-      "status": "preliminary",
+      "status": "partial_primary_review",
       "prior_profile_sources": [
         [
           "NY Senate — Public Officers Law §86 definitions",
@@ -3355,22 +3355,31 @@
           "question": "Verify current eligibility rules and exceptions against primary authority."
         },
         "request": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current request rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.nysenate.gov/legislation/laws/PBO/89"
+          ],
+          "question": "Check agency-specific regulations and special record procedures.",
+          "finding": "Written reasonably described requests; email accepted where reasonable means exist; state agencies with websites must provide online submission."
         },
         "acknowledgment": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current acknowledgment rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.nysenate.gov/legislation/laws/PBO/89"
+          ],
+          "question": "Check special subsection 5 procedures separately.",
+          "finding": "Within five business days provide, deny in writing or acknowledge with reasonable estimated decision date."
         },
         "production": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current production rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.nysenate.gov/legislation/laws/PBO/89"
+          ],
+          "question": "Check case law on unreasonable delays.",
+          "finding": "If granted but disclosure cannot occur within twenty business days after acknowledgment, give written reason and reasonable definite date."
         },
         "fees_waivers": {
           "status": "pending_reconciliation",
@@ -3379,10 +3388,13 @@
           "question": "Verify current fees waivers rules and exceptions against primary authority."
         },
         "personnel": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current personnel rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.nysenate.gov/legislation/laws/PBO/89"
+          ],
+          "question": "Reconcile sections 86 and 87 and current disciplinary disclosure case law.",
+          "finding": "Subsections 2-b and 2-c require specified personal redactions and permit technical-infraction redactions in law enforcement disciplinary records."
         },
         "investigations": {
           "status": "pending_reconciliation",
@@ -3397,16 +3409,22 @@
           "question": "Verify current body camera rules and exceptions against primary authority."
         },
         "denial": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current denial rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.nysenate.gov/legislation/laws/PBO/89"
+          ],
+          "question": "Check implementing regulations for initial denial notice.",
+          "finding": "Failure to comply with subsection 3 constitutes denial; ordinary appeal denial requires written reasons."
         },
         "appeals": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current appeals rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.nysenate.gov/legislation/laws/PBO/89"
+          ],
+          "question": "Verify judicial filing period and special subsection 5 exceptions.",
+          "finding": "Ordinary written administrative appeal within 30 days; agency has ten business days to explain further denial or provide access; Article 78 review available."
         },
         "filing_limits": {
           "status": "pending_reconciliation",
@@ -3423,7 +3441,7 @@
       }
     },
     "North Carolina": {
-      "status": "preliminary",
+      "status": "partial_primary_review",
       "prior_profile_sources": [
         [
           "NC Legislature — public-records definition §132-1",
@@ -3466,34 +3484,49 @@
           "question": "Verify current 911 rules and exceptions against primary authority."
         },
         "eligibility": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current eligibility rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_132/GS_132-6.html"
+          ],
+          "question": "Check record-specific access restrictions.",
+          "finding": "Any person may inspect public records; no motive disclosure required."
         },
         "request": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current request rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_132/GS_132-6.html"
+          ],
+          "question": "Check other special request formalities.",
+          "finding": "Inspection at reasonable times under reasonable supervision; database requests may be required in writing under 132-6.2(c)."
         },
         "acknowledgment": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current acknowledgment rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_132/GS_132-6.html"
+          ],
+          "question": "Check agency-specific and record-specific provisions.",
+          "finding": "General section sets no numerical acknowledgment deadline."
         },
         "production": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current production rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_132/GS_132-6.html"
+          ],
+          "question": "Check case law and special statutory deadlines.",
+          "finding": "General copies must be furnished as promptly as possible; qualifying online access may satisfy duty."
         },
         "fees_waivers": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current fees waivers rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_132/GS_132-6.2.html"
+          ],
+          "question": "Check waiver provisions and special fees; segregation cost borne by agency under 132-6(c).",
+          "finding": "Ordinary uncertified copies limited to direct reproduction cost; extensive resource use can trigger reasonable actual-cost service charge; fee disputes may be mediated by state CIO."
         },
         "personnel": {
           "status": "pending_reconciliation",
@@ -3514,10 +3547,13 @@
           "question": "Verify current body camera rules and exceptions against primary authority."
         },
         "denial": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current denial rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-27",
+          "sources": [
+            "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_132/GS_132-6.2.html"
+          ],
+          "question": "Check general denial remedies and notice requirements.",
+          "finding": "Database denial requires explanation, reduced to writing on request; general section 132-6(c) prohibits denial solely because confidential and public material are mixed."
         },
         "appeals": {
           "status": "pending_reconciliation",
