@@ -2080,7 +2080,7 @@
       }
     },
     "Massachusetts": {
-      "status": "preliminary",
+      "status": "partial_primary_review",
       "prior_profile_sources": [
         [
           "Massachusetts Secretary — official 950 CMR 32.00 regulation",
@@ -2117,28 +2117,40 @@
           "question": "Verify current eligibility rules and exceptions against primary authority."
         },
         "request": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current request rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://malegislature.gov/Laws/GeneralLaws/Parti/Titlex/Chapter66/Section10"
+          ],
+          "finding": "Hand delivery, first-class mail or email to records access officer; reasonably describe records.",
+          "question": "Check oral inspection procedures under regulations."
         },
         "acknowledgment": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current acknowledgment rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://malegislature.gov/Laws/GeneralLaws/Parti/Titlex/Chapter66/Section10"
+          ],
+          "finding": "Written response within 10 business days if withholding or unable to produce within ordinary deadline.",
+          "question": "Check special statutory exceptions."
         },
         "production": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current production rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://malegislature.gov/Laws/GeneralLaws/Parti/Titlex/Chapter66/Section10"
+          ],
+          "finding": "Ordinary 10 business days; burden response generally specifies up to 15 business days for state agencies or 25 for municipalities from receipt, subject to agreement or approved extension.",
+          "question": "Check extension exceptions and special records."
         },
         "fees_waivers": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current fees waivers rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://malegislature.gov/Laws/GeneralLaws/Parti/Titlex/Chapter66/Section10"
+          ],
+          "finding": "Standard black-and-white copies capped at five cents per page; state agency first four labor hours free; municipal first two free where population exceeds 20,000; discretionary public-interest or hardship waiver.",
+          "question": "Check special fee statutes and approved exceptions."
         },
         "personnel": {
           "status": "pending_reconciliation",
@@ -2165,10 +2177,13 @@
           "question": "Verify current denial rules and exceptions against primary authority."
         },
         "appeals": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current appeals rules and exceptions against primary authority."
+          "status": "partial_primary_checked",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://malegislature.gov/Laws/GeneralLaws/Parti/Titlex/Chapter66/Section10A"
+          ],
+          "finding": "Initial requester may petition supervisor of records; determination due within ten business days; superior court review available.",
+          "question": "Verify regulatory petition deadline and separate judicial filing limits."
         },
         "filing_limits": {
           "status": "pending_reconciliation",
@@ -2362,7 +2377,7 @@
       }
     },
     "Minnesota": {
-      "status": "preliminary",
+      "status": "partial_primary_review",
       "prior_profile_sources": [
         [
           "Minnesota Revisor — § 13.03 access, fees and denial",
@@ -2426,12 +2441,12 @@
         },
         "production": {
           "status": "partial_primary_checked",
-          "checked": "2026-11-27",
+          "checked": "2026-11-28",
           "sources": [
-            "https://www.revisor.mn.gov/statutes/cite/13.03"
+            "https://www.revisor.mn.gov/statutes/cite/13.03/pdf"
           ],
-          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
-          "finding": "Copies as soon as reasonably possible if unavailable immediately."
+          "finding": "2026 section 13.03 subdivision 3(g) permits suspension of further response when notified requester fails to inspect or collect available data within five business days, until inspection or collection and payment.",
+          "question": "Verify ordinary production timing and amendment effective date against session law."
         },
         "fees_waivers": {
           "status": "partial_primary_checked",
@@ -2462,12 +2477,12 @@
         },
         "denial": {
           "status": "partial_primary_checked",
-          "checked": "2026-11-27",
+          "checked": "2026-11-28",
           "sources": [
-            "https://www.revisor.mn.gov/statutes/cite/13.03"
+            "https://www.revisor.mn.gov/statutes/cite/13.03/pdf"
           ],
-          "question": "Reconcile special-record exceptions and 2026 session laws before final certification.",
-          "finding": "Oral determination at request or written as soon as possible; specific legal basis; written certification on request."
+          "finding": "2026 edition requires specific legal basis for denial and written certification on request.",
+          "question": "Reconcile special-record denial rules."
         },
         "appeals": {
           "status": "pending_reconciliation",
