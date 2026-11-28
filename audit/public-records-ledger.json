@@ -2809,7 +2809,7 @@
       }
     },
     "Nebraska": {
-      "status": "preliminary",
+      "status": "partial_primary_review",
       "prior_profile_sources": [
         [
           "Nebraska Legislature — official Chapter 84 statutory text",
@@ -2832,34 +2832,49 @@
           "question": "Verify current 911 rules and exceptions against primary authority."
         },
         "eligibility": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current eligibility rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://nebraskalegislature.gov/laws/statutes.php?statute=84-712"
+          ],
+          "finding": "Residents and other interested persons may inspect; residency affects fees; news media count as residents.",
+          "question": "Check special record restrictions."
         },
         "request": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current request rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://nebraskalegislature.gov/laws/statutes.php?statute=84-712"
+          ],
+          "finding": "Written request triggers subsection 4; existing formats available subject to statutory conditions.",
+          "question": "Check agency-specific submission rules."
         },
         "acknowledgment": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current acknowledgment rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://nebraskalegislature.gov/laws/statutes.php?statute=84-712"
+          ],
+          "finding": "Within four business days of actual receipt, provide cost estimate and access, denial, or justified extension.",
+          "question": "Check special statutory exceptions."
         },
         "production": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current production rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://nebraskalegislature.gov/laws/statutes.php?statute=84-712"
+          ],
+          "finding": "Extension must identify earliest practicable completion date; requester has ten business days to respond to estimate.",
+          "question": "Check remedies for unreasonable extensions."
         },
         "fees_waivers": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current fees waivers rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://nebraskalegislature.gov/laws/statutes.php?statute=84-712"
+          ],
+          "finding": "Residents receive eight cumulative labor hours free; nonresidents may incur labor and legal review costs. Deposit permitted above $50; discretionary public-interest waiver.",
+          "question": "Check special fee statutes and 2024 amendment application."
         },
         "personnel": {
           "status": "pending_reconciliation",
@@ -2898,10 +2913,13 @@
           "question": "Verify current filing limits rules and exceptions against primary authority."
         },
         "amendments": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current amendments rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://nebraskalegislature.gov/laws/statutes.php?statute=84-712"
+          ],
+          "finding": "Official section history identifies 2024 LB43 section 8; older annotation refers to four hours, not current eight-hour resident rule.",
+          "question": "Check 2026 session laws and effective dates across remaining sections."
         }
       }
     },
@@ -3576,7 +3594,7 @@
       }
     },
     "North Dakota": {
-      "status": "preliminary",
+      "status": "partial_primary_review",
       "prior_profile_sources": [
         [
           "North Dakota Attorney General — March 2026 Open Records Guide",
@@ -3609,10 +3627,13 @@
           "question": "Verify current eligibility rules and exceptions against primary authority."
         },
         "request": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current request rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://ndlegis.gov/cencode/t44c04.pdf"
+          ],
+          "finding": "44-04-18(2): initial request need not be written or in person; written clarification permitted; identity and motive cannot be demanded under this subsection.",
+          "question": "Check litigation-party exception and special records."
         },
         "acknowledgment": {
           "status": "pending_reconciliation",
@@ -3621,22 +3642,31 @@
           "question": "Verify current acknowledgment rules and exceptions against primary authority."
         },
         "production": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current production rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://ndlegis.gov/cencode/t44c04.pdf"
+          ],
+          "finding": "44-04-18(8): unreasonable delay violates statute; subsections 9–10 provide draft exceptions.",
+          "question": "Check AG opinions on reasonable delay."
         },
         "fees_waivers": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current fees waivers rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://ndlegis.gov/cencode/t44c04.pdf"
+          ],
+          "finding": "44-04-18(2)-(3): paper copies up to $0.25 per impression; locating and excision each capped at $25/hour after initial hour; special IT costs possible.",
+          "question": "Check waiver authority and special fee statutes."
         },
         "personnel": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current personnel rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://ndlegis.gov/cencode/t44c04.pdf"
+          ],
+          "finding": "44-04-18.1 and .3 distinguish exempt personal information and confidential medical and specified officer information; internal misconduct investigation exemption ends at completion or 75 calendar days, whichever first.",
+          "question": "Check other exemptions applicable after completion and licensing records."
         },
         "investigations": {
           "status": "pending_reconciliation",
@@ -3651,10 +3681,13 @@
           "question": "Verify current body camera rules and exceptions against primary authority."
         },
         "denial": {
-          "status": "pending_reconciliation",
-          "checked": null,
-          "sources": [],
-          "question": "Verify current denial rules and exceptions against primary authority."
+          "status": "partial_primary_review",
+          "checked": "2026-11-28",
+          "sources": [
+            "https://ndlegis.gov/cencode/t44c04.pdf"
+          ],
+          "finding": "44-04-18(7): state legal authority or nonexistence; written denial if requested; subsection 13 requires written reasons for disruptive repeated requests.",
+          "question": "Check AG review and court remedies."
         },
         "appeals": {
           "status": "pending_reconciliation",
